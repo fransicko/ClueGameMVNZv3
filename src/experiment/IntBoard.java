@@ -47,22 +47,25 @@ public class IntBoard {
 	}
 
 	public void calcTargets(BoardCell cell, int pathLength) {
-		if (pathLength == 1) {
-			for (BoardCell c : adjMatrix.get(cell)) {
-				if (!visited.contains(c)){
-					targets.add(c);
-				}
-			}
-			return;
-		}
 		this.targets = new HashSet<BoardCell>();
-		this.visited = new HashSet<BoardCell>();
-		for (BoardCell c : adjMatrix.get(cell)){
-			visited.add(c);
-			calcTargets(c, pathLength - 1);
-			visited.remove(c);
+		this.visited = new HashSet<BoardCell>();	
+		visited.add(cell);
+		findAllTargets(cell, pathLength);
+	}
+	
+	private void findAllTargets(BoardCell cell, int pathLength) {
+		for (BoardCell c: this.adjMatrix.get(cell)){
+			if (this.visited.contains(c)){
+				continue;
+			}
+			if (pathLength == 1){
+				this.targets.add(c);
+			}else {
+				this.visited.add(c);
+				findAllTargets(c, pathLength -1);
+				this.visited.remove(c);
+			}
 		}
-		
 	}
 
 	public Set<BoardCell> getTargets(){
