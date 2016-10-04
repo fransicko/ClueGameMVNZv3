@@ -9,6 +9,10 @@ public class IntBoard {
 	private Map<BoardCell, Set<BoardCell>> adjMatrix;
 	Set<BoardCell> visited;
 	Set<BoardCell> targets;
+	
+	
+	
+	
 
 	public IntBoard(int height, int width){
 		super();
