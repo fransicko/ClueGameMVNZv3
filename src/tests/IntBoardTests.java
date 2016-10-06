@@ -7,7 +7,6 @@ import org.junit.*;
 
 import clueGame.Board;
 import clueGame.BoardCell;
-import experiment.*;
 
 //@Before method to set up your IntBoard.
 //Methods to test the creation of adjacency lists, including:

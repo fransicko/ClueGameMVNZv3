@@ -123,5 +123,13 @@ public class Board {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	public void loadRoomConfig() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void loadBoardConfig() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
