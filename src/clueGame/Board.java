@@ -138,12 +138,13 @@ public class Board {
            int value = 0; 
            String word = "";
            while (in.hasNextLine()){
-        	  // System.out.println(in.nextLine());
+        	   
         	   word = in.nextLine();
+        	   System.out.println(word);
         	   value++;
            }
            
-           //This grabs the number of colums. and removes Commas, bitches
+           //This grabs the number of colums. and removes Commas
            for (int i = 0; i< word.length(); i++){
         	   word = word.replace(",", "");
            }
@@ -151,6 +152,7 @@ public class Board {
            NUM_COLS = word.length();
            NUM_ROWS = value;
            
+          Board board = new Board(NUM_ROWS, NUM_COLS);
             
             
             //Read the file line by line
