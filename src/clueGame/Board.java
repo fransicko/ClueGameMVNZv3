@@ -8,10 +8,7 @@ import java.io.*;
 public class Board {
 	private int startCell;
 	private int pathLength;
-<<<<<<< HEAD
-=======
 	
->>>>>>> 5a06319d2d336116b51d5cd4bfdfc0dfdc6bbd3d
 	private Map<BoardCell, Set<BoardCell>> adjMatrix;
 	private Map<Character, String> legendMap = new HashMap<Character, String>();
 	Set<BoardCell> visited;
@@ -23,7 +20,6 @@ public class Board {
 	private BoardCell[][] grid = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 	int NUM_ROWS;
 	int NUM_COLS;
-	BoardCell boardCell;
 
 
 
@@ -38,10 +34,6 @@ public class Board {
 	}
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 5a06319d2d336116b51d5cd4bfdfc0dfdc6bbd3d
 	public Board(int height, int width){
 		super();
 		this.grid = new BoardCell[height][width];	
@@ -49,10 +41,7 @@ public class Board {
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
 				grid[i][j] = new BoardCell(i, j);
-<<<<<<< HEAD
-=======
 				
->>>>>>> 5a06319d2d336116b51d5cd4bfdfc0dfdc6bbd3d
 			}
 		}
 		calcAdjacencies();
@@ -213,57 +202,10 @@ public class Board {
 				for (int i = 0; i < NUM_ROWS; i++){
 					for (int j = 0; j < NUM_COLS; j++){					
 						board.board[i][j] = csvFile[j];
-<<<<<<< HEAD
-						String temp = csvFile[j];
-						grid[i][j].setInitial(temp);
-						//System.out.println(boardCell.getInitial());
-						System.out.println(temp);
-						//System.out.println(board.board[i][j]);
-					}
-				}
-
-			}
-		} 
-		catch (Exception e) {
-			//System.out.println(e.getMessage());
-			e.printStackTrace();
-		} 
-		finally
-		{
-			try {
-				fileReader.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		System.out.println();
-
-		//This File reader, reads the file and puts it into a map
-		final String DELIMITERTWO = ", ";
-		try
-		{
-			String line = "";
-			//Create the file reader
-			fileReader = new BufferedReader(new FileReader(legendFile));
-
-			//Read the file line by line
-			while ((line = fileReader.readLine()) != null) 
-			{
-				//Get all tokens available in line
-				String[] legend = line.split(DELIMITERTWO);
-
-				//This grabs all the letters for the keys
-				for (int i = 0; i < legend.length; i = i + 3){
-					Character key = legend[i].charAt(0);
-					//System.out.println(key);
-					legendMap.put(key, legend[i+1]);
-				}
-=======
 						//this.grid[i][j];
 						System.out.println(board.grid[i][j]);
 					}
 				}
->>>>>>> 5a06319d2d336116b51d5cd4bfdfc0dfdc6bbd3d
 			}
 		} 
 		catch (Exception e) {
