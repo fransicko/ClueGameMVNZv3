@@ -4,6 +4,8 @@ public class BoardCell {
 
 	private int y;
 	private int x;
+	private String boardCellInitial;
+
 	
 	public BoardCell(int y, int x) {
 		super();
@@ -29,10 +31,15 @@ public class BoardCell {
 		return null;
 	}
 
-	public Object getInitial() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public void setInitial(String string){
+		boardCellInitial = string;
 	}
 
+
+	public String getInitial() {
+		// TODO Auto-generated method stub
+		return boardCellInitial;
+	}
 
 }
