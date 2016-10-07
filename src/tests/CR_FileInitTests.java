@@ -8,6 +8,7 @@ package tests;
 // Assert.assertEquals
 import static org.junit.Assert.*;
 
+import java.io.FileNotFoundException;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -35,7 +36,12 @@ public class CR_FileInitTests {
 		// set the file names to use my config files
 		board.setConfigFiles("CR_ClueLayout.csv", "CR_ClueLegend.txt");		
 		// Initialize will load BOTH config files 
-		board.initialize();
+		try {
+			board.initialize();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());;
+		}
 	}
 	@Test
 	public void testRooms() {
