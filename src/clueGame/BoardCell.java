@@ -4,13 +4,15 @@ public class BoardCell {
 
 	private int y;
 	private int x;
+	private String letter;
 	private String boardCellInitial;
 
 	
-	public BoardCell(int y, int x) {
+	public BoardCell(int y, int x, String letter) {
 		super();
 		this.y = y;
 		this.x = x;
+		this.letter = letter;
 	}
 
 	public int getY() {
@@ -50,12 +52,12 @@ public class BoardCell {
 
 	
 	public void setInitial(String string){
-		boardCellInitial = string;
+		this.letter = string;
 	}
 
 
 	public String getInitial() {
-		return boardCellInitial;
+		return this.letter;
 	}
 
 }

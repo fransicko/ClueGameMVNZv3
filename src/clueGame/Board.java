@@ -40,7 +40,7 @@ public class Board {
 
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
-				grid[i][j] = new BoardCell(i, j);
+				grid[i][j] = new BoardCell(i, j, null);
 				
 			}
 		}
@@ -210,9 +210,8 @@ public class Board {
 
 				for (int i = 0; i < NUM_ROWS; i++){
 					for (int j = 0; j < NUM_COLS; j++){					
-						board.board[i][j] = csvFile[j];
-						//this.grid[i][j];
-						System.out.println(board.grid[i][j]);
+						this.grid[i][j] = new BoardCell(i,j, csvFile[j]);
+						System.out.println(grid[i][j].getInitial());
 					}
 				}
 			}
