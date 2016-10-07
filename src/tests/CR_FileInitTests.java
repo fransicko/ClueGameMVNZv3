@@ -35,13 +35,9 @@ public class CR_FileInitTests {
 		board = Board.getInstance();
 		// set the file names to use my config files
 		board.setConfigFiles("CR_ClueLayout.csv", "CR_ClueLegend.txt");		
-		// Initialize will load BOTH config files 
-		try {
+		// Initialize will load BOTH config files
 			board.initialize();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());;
-		}
+
 	}
 	@Test
 	public void testRooms() {
