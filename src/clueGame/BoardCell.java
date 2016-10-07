@@ -22,13 +22,30 @@ public class BoardCell {
 	}
 
 	public boolean isDoorway() {
-		// TODO Auto-generated method stub
+		
+		if (boardCellInitial.length() == 2) {
+			return true;
+		}
+		
 		return false;
 	}
 
-	public Object getDoorDirection() {
-		// TODO Auto-generated method stub
-		return null;
+	public DoorDirection getDoorDirection() {
+		
+		if (boardCellInitial.charAt(1) == 'U') {
+			return DoorDirection.UP;
+		}
+		if (boardCellInitial.charAt(1) == 'D') {
+			return DoorDirection.DOWN;
+		}
+		if (boardCellInitial.charAt(1) == 'L') {
+			return DoorDirection.LEFT;
+		}
+		if (boardCellInitial.charAt(1) == 'R') {
+			return DoorDirection.RIGHT;
+		}
+		
+		return DoorDirection.NONE;
 	}
 
 	
@@ -38,7 +55,6 @@ public class BoardCell {
 
 
 	public String getInitial() {
-		// TODO Auto-generated method stub
 		return boardCellInitial;
 	}
 

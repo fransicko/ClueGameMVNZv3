@@ -8,7 +8,6 @@ import java.io.*;
 public class Board {
 	private int startCell;
 	private int pathLength;
-	private BoardCell[][] grid;
 	private Map<BoardCell, Set<BoardCell>> adjMatrix;
 	private Map<Character, String> legendMap = new HashMap<Character, String>();
 	Set<BoardCell> visited;
@@ -17,8 +16,10 @@ public class Board {
 	String layoutFile;
 	String legendFile;
 	String[][] board = new String[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+	private BoardCell[][] grid = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 	int NUM_ROWS;
 	int NUM_COLS;
+	BoardCell boardCell;
 
 
 
@@ -34,7 +35,6 @@ public class Board {
 
 
 
-	int counter = 0;
 	public Board(int height, int width){
 		super();
 		this.grid = new BoardCell[height][width];	
@@ -42,8 +42,6 @@ public class Board {
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
 				grid[i][j] = new BoardCell(i, j);
-				counter++;
-				//System.out.println(counter);
 			}
 		}
 		calcAdjacencies();
@@ -120,11 +118,6 @@ public class Board {
 		//Delimiter used in CSV file
 		final String DELIMITER = ",";
 		
-		
-		
-		
-		
-		
 		try
 		{
 			FileReader readerTwo = new FileReader(layoutFile);
@@ -167,10 +160,13 @@ public class Board {
 				for (int i = 0; i < NUM_ROWS; i++){
 					for (int j = 0; j < NUM_COLS; j++){					
 						board.board[i][j] = csvFile[j];
+						String temp = csvFile[j];
+						grid[i][j].setInitial(temp);
+						//System.out.println(boardCell.getInitial());
+						System.out.println(temp);
+						//System.out.println(board.board[i][j]);
 					}
 				}
-
-				//grid[0][0].setInitial(board.board[0][0]);
 
 			}
 		} 
