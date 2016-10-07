@@ -12,7 +12,7 @@ public class BoardCell {
 		super();
 		this.y = y;
 		this.x = x;
-		this.letter = letter;
+		this.boardCellInitial = letter;
 	}
 
 	public int getY() {
@@ -50,14 +50,9 @@ public class BoardCell {
 		return DoorDirection.NONE;
 	}
 
-	
-	public void setInitial(String string){
-		this.letter = string;
-	}
-
 
 	public String getInitial() {
-		return this.letter;
+		return this.boardCellInitial;
 	}
 
 }

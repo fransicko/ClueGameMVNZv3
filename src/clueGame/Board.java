@@ -202,19 +202,21 @@ public class Board {
 			Board board = new Board(NUM_ROWS, NUM_COLS);
 			this.grid = new BoardCell[NUM_ROWS][NUM_COLS];
 
+			int i = 0;
+			int count = 0;
 			//Read the file line by line
 			while ((line = fileReader.readLine()) != null) 
 			{
 				//Get all tokens available in line
 				String[] csvFile = line.split(DELIMITER); 
 
-				for (int i = 0; i < NUM_ROWS; i++){
-					for (int j = 0; j < NUM_COLS; j++){					
-						this.grid[i][j] = new BoardCell(i,j, csvFile[j]);
-						System.out.println(grid[i][j].getInitial());
-					}
+				for (int j = 0; j < NUM_COLS; j++){
+				this.grid[i][j] = new BoardCell(i,j, csvFile[j]);
 				}
+				i++;
+				count++;
 			}
+			System.out.println(count);
 		} 
 		catch (Exception e) {
 			System.out.println(e.getMessage());
