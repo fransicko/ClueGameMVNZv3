@@ -50,8 +50,9 @@ public class BoardCell {
 	}
 
 
-	public String getInitial() {
-		return this.boardCellInitial;
+	public char getInitial() {
+		
+		return boardCellInitial.charAt(0);
 	}
 
 }

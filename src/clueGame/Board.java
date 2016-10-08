@@ -153,7 +153,8 @@ public class Board {
 			}
 		} 
 		catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			 
 		} 
 		finally
 		{
@@ -199,8 +200,6 @@ public class Board {
 			
 
 
-			//This creates the board size. The grid now a RowsXCols size. 
-			Board board = new Board(NUM_ROWS, NUM_COLS);
 			this.grid = new BoardCell[NUM_ROWS][NUM_COLS];
 
 			int i = 0;
@@ -217,11 +216,11 @@ public class Board {
 				i++;
 				count++;
 			}
+			in.close();
 			System.out.println(count);
 		} 
 		catch (Exception e) {
-			System.out.println(e.getMessage());
-			
+			throw new BadConfigFormatException("error");
 		} 
 		finally
 		{
@@ -243,24 +242,7 @@ public class Board {
 		public int getNumRows() {
 			
 			int rows = NUM_ROWS;
-//			
-//			FileReader readerTwo = null;
-//				try {
-//					readerTwo = new FileReader(layoutFile);
-//				} catch (FileNotFoundException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				Scanner in = new Scanner(readerTwo);
-//				//This while loop detects the number of rows. 
-//				int value = 0; 
-//				while (in.hasNextLine()){
-//					value++;
-//				}
-//
-//				rows = value;
-//				in.close();
-//				
+
 			return rows;
 		}
 
@@ -268,30 +250,6 @@ public class Board {
 		public int getNumColumns() {
 			
 			int cols = NUM_COLS;
-			
-//			FileReader readerTwo = null;
-//				try {
-//					readerTwo = new FileReader(layoutFile);
-//				} catch (FileNotFoundException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				Scanner in = new Scanner(readerTwo);
-//				//This while loop detects the number of rows.  
-//				String word = "";
-//				while (in.hasNextLine()){
-//					word = in.nextLine();
-//				}
-//
-//				//This grabs the number of columns. and removes Commas so it doesn't count any extras
-//				for (int i = 0; i< word.length(); i++){
-//					word = word.replace(",", "");
-//
-//				}
-//
-//				cols = word.length();
-//				in.close();
-				
 				
 			return cols;
 		}
