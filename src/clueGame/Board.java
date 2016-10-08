@@ -137,12 +137,12 @@ public class Board {
 			String line = "";
 			//Create the file reader
 			fileReader = new BufferedReader(new FileReader(legendFile));
-
+			String[] legend = null;
 			//Read the file line by line
 			while ((line = fileReader.readLine()) != null) 
 			{
 				//Get all tokens available in line
-				String[] legend = line.split(DELIMITERTWO);
+				 legend = line.split(DELIMITERTWO);
 
 				//This grabs all the letters for the keys
 				for (int i = 0; i < legend.length; i = i + 3){
@@ -150,19 +150,20 @@ public class Board {
 					//System.out.println(key);
 					legendMap.put(key, legend[i+1]);
 				}
-
-				for (int i = 0; i < legend.length; i++) {
-					if (!legendMap.containsKey(legend[0])){
-						throw new BadConfigFormatException("This is not a valid room inside the legend.");
-					}
+			}
+			
+			for (int i = 0; i < legend.length; i++) {
+				if (!legendMap.containsKey(legend[0])){
+					throw new BadConfigFormatException("This is not a valid room inside the legend. " + legend[0]);
 				}
-
 			}
 		} 
 		catch (Exception e) {
 			throw new BadConfigFormatException("Some Exception", e);
 		} 
-		finally
+		
+		
+		
 		{
 			try {
 				fileReader.close();
