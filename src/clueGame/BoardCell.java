@@ -4,7 +4,6 @@ public class BoardCell {
 
 	private int y;
 	private int x;
-	private String letter;
 	private String boardCellInitial;
 
 	
@@ -25,7 +24,7 @@ public class BoardCell {
 
 	public boolean isDoorway() {
 		
-		if (boardCellInitial.length() == 2) {
+		if (boardCellInitial.length() == 2 && boardCellInitial.charAt(1) != 'N') {
 			return true;
 		}
 		
