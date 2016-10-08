@@ -57,7 +57,7 @@ public class Tests {
 		assertEquals("Observatory", legend.get('O'));
 		assertEquals("Utilities", legend.get('U'));
 		assertEquals("Atrium", legend.get('A'));
-		//assertEquals("Den", legend.get('D'));
+		assertEquals("Den", legend.get('D'));
 	}
 	
 	@Test

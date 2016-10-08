@@ -129,6 +129,8 @@ public class Board {
 
 	public void loadRoomConfig() throws BadConfigFormatException {
 		BufferedReader fileReader = null;
+		String[] legend = null;
+
 
 		//This File reader, reads the file and puts it into a map
 		final String DELIMITERTWO = ", ";
@@ -137,33 +139,25 @@ public class Board {
 			String line = "";
 			//Create the file reader
 			fileReader = new BufferedReader(new FileReader(legendFile));
-			String[] legend = null;
+
 			//Read the file line by line
 			while ((line = fileReader.readLine()) != null) 
 			{
 				//Get all tokens available in line
-				 legend = line.split(DELIMITERTWO);
+				legend = line.split(DELIMITERTWO);
 
 				//This grabs all the letters for the keys
 				for (int i = 0; i < legend.length; i = i + 3){
 					Character key = legend[i].charAt(0);
-					//System.out.println(key);
 					legendMap.put(key, legend[i+1]);
-				}
-			}
-			
-			for (int i = 0; i < legend.length; i++) {
-				if (!legendMap.containsKey(legend[0])){
-					throw new BadConfigFormatException("This is not a valid room inside the legend. " + legend[0]);
-				}
+				}	
 			}
 		} 
 		catch (Exception e) {
 			throw new BadConfigFormatException("Some Exception", e);
 		} 
-		
-		
-		
+
+
 		{
 			try {
 				fileReader.close();
@@ -224,7 +218,6 @@ public class Board {
 				count++;
 			}
 			in.close();
-			System.out.println(count);
 		} 
 		catch (Exception e) {
 			throw new BadConfigFormatException("error",e);
