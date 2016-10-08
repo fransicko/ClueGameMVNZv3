@@ -20,6 +20,7 @@ public class Board {
 	private BoardCell[][] grid = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 	int NUM_ROWS;
 	int NUM_COLS;
+	String[] fullLegend = null;
 
 
 
@@ -129,8 +130,6 @@ public class Board {
 
 	public void loadRoomConfig() throws BadConfigFormatException {
 		BufferedReader fileReader = null;
-		String[] legend = null;
-
 
 		//This File reader, reads the file and puts it into a map
 		final String DELIMITERTWO = ", ";
@@ -140,25 +139,26 @@ public class Board {
 			//Create the file reader
 			fileReader = new BufferedReader(new FileReader(legendFile));
 
+			int location = 0;
 			//Read the file line by line
 			while ((line = fileReader.readLine()) != null) 
 			{
+				
 				//Get all tokens available in line
-				legend = line.split(DELIMITERTWO);
-
+				String[] legend = line.split(DELIMITERTWO);
+				location++;
 				//This grabs all the letters for the keys
 				for (int i = 0; i < legend.length; i = i + 3){
 					Character key = legend[i].charAt(0);
 					legendMap.put(key, legend[i+1]);
-				}	
+				}
 			}
+			
+			checkLegend();
 		} 
 		catch (Exception e) {
 			throw new BadConfigFormatException("Some Exception", e);
-		} 
-
-
-		{
+		} {
 			try {
 				fileReader.close();
 			} catch (IOException e) {
@@ -168,6 +168,33 @@ public class Board {
 
 
 	}
+	
+	
+	
+	
+	
+	
+	public void checkLegend() throws BadConfigFormatException{
+		
+		
+		for (int i = 0; i < NUM_ROWS; i++){
+			for (int j = 0; j < NUM_COLS; j++) {
+				
+				char letter = grid[i][j].getInitial();
+				
+				if (!legendMap.containsKey(letter)){
+					throw new BadConfigFormatException("Does not contain the Legend key: " + letter);
+				}
+			}
+		}
+
+		
+		
+
+	}
+	
+	
+	
 	public void loadBoardConfig() throws BadConfigFormatException, FileNotFoundException {
 		BufferedReader fileReader = null;
 		//Delimiter used in CSV file
