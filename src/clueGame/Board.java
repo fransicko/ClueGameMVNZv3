@@ -1,4 +1,4 @@
-	package clueGame;
+package clueGame;
 
 import java.util.*;
 import java.io.*;
@@ -67,7 +67,7 @@ public class Board {
 				adjMatrix.put(grid[i][j], adjSet);
 			}
 		}
-		
+
 	}
 
 	public void calcTargets(BoardCell cell, int pathLength) {
@@ -258,23 +258,46 @@ public class Board {
 	}
 
 	public Set<BoardCell> getAdjList(int one, int two) {
-		//System.out.println(grid[one][two].getInitial());
-		
-		Set<BoardCell> temp = adjMatrix.get(grid[one][two]);
-		 
+		// System.out.println(grid[one][two].getInitial());
 
-		if (grid[one][two].getInitial() != 'W') {
-			temp.clear();
-			return temp;
-		}
-		
+			
+			System.out.println("Points("+ one + ", "+two + ") is being tested");
+			HashSet<BoardCell> temp = (HashSet<BoardCell>) adjMatrix.get(grid[one][two]);
+			
+			
+			System.out.println("Size of Temp before tests: " + temp.size());
+			
+			Iterator<BoardCell> iter = temp.iterator();
+
+			if (iter.hasNext()) {
+				BoardCell value = iter.next();
+				System.out.println("Tested: " + value.getWholeValue());
+				if (value.getInitial() != 'W') {
+					temp.remove(value);
+					System.out.println("Removed " + value.getWholeValue());
+				}
+			}
+			
+			if (!temp.contains("W")){
+				temp.clear();
+			}
+			
+
+
+			System.out.println("Size of Temp is: " + temp.size());
+			
+			Iterator<BoardCell> iterTwo = temp.iterator();
+			if (iterTwo.hasNext()) {
+				BoardCell valueTwo = iterTwo.next();
+				System.out.println("What is left in the Set: " + valueTwo.getWholeValue());
+			}
+
 		return temp;
 	}
 
-	
-	//I changed the return type to Int. It was a Void.
+	// I changed the return type to Int. It was a Void.
 	public int calcTargets(int i, int j, int k) {
-		return 0;	
+		return 0;
 	}
 
 }

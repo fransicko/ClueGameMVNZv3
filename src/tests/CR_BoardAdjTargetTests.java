@@ -32,6 +32,9 @@ public class CR_BoardAdjTargetTests {
 	@Test
 	public void testAdjacenciesInsideRooms()
 	{
+		
+		
+		
 		// Test a corner
 		Set<BoardCell> testList = board.getAdjList(0, 0);
 		assertEquals(0, testList.size());

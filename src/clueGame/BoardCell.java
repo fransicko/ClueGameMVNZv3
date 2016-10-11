@@ -54,5 +54,10 @@ public class BoardCell {
 		
 		return boardCellInitial.charAt(0);
 	}
+	
+	
+	public String getWholeValue() {
+		return boardCellInitial;
+	}
 
 }
