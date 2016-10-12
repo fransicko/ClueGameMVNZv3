@@ -52,17 +52,30 @@ public class Board {
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid[0].length; j++) {
 				Set<BoardCell> adjSet = new HashSet<BoardCell>();
-				if (i > 0) {
-					adjSet.add(getCellAt(i - 1, j));
+				
+				// This checks to see if the one above it is not out of bounds, if adj tiles are walkway or doors.. and it tests if the tile that is being tested is a walk way or a door. 
+				if (i > 0 && grid[i-1][j].getWholeValue().equals("W") || i > 0 && grid[i-1][j].getWholeValue().length() == 2 && grid[i -1][j].getWholeValue().charAt(1) == 'D') {
+					if (grid[i][j].getWholeValue().equals("W") || grid[i][j].getWholeValue().length() == 2){
+						adjSet.add(getCellAt(i - 1, j));
+					}
 				}
-				if (i < grid.length - 1) {
-					adjSet.add(getCellAt(i + 1, j));
+				// This checks to see if the one Below it is not out of bounds, if adj tiles are walkway or doors.. and it tests if the tile that is being tested is a walk way or a door.
+				if (i < grid.length - 1 && grid[i+1][j].getWholeValue().equals("W") || i < grid.length - 1  && grid[i+1][j].getWholeValue().length() == 2 && grid[i + 1][j].getWholeValue().charAt(1) == 'U') {
+					if (grid[i][j].getWholeValue().equals("W") || grid[i][j].getWholeValue().length() == 2){
+						adjSet.add(getCellAt(i + 1, j));
+					}
 				}
-				if (j > 0) {
-					adjSet.add(getCellAt(i, j - 1));
+				// This checks to see if the one left it is not out of bounds, if adj tiles are walkway or doors.. and it tests if the tile that is being tested is a walk way or a door.
+				if (j > 0 && grid[i][j - 1].getWholeValue().equals("W") || j > 0  && grid[i][j- 1].getWholeValue().length() == 2 && grid[i][j - 1].getWholeValue().charAt(1) == 'R' ) {
+					if (grid[i][j].getWholeValue().equals("W") || grid[i][j].getWholeValue().length() == 2){
+						adjSet.add(getCellAt(i, j - 1));
+					}
 				}
-				if (j < grid[i].length - 1) {
-					adjSet.add(getCellAt(i, j + 1));
+				// This checks to see if the one right it is not out of bounds, if adj tiles are walkway or doors.. and it tests if the tile that is being tested is a walk way or a door.
+				if (j < grid[i].length - 1 && grid[i][j + 1].getWholeValue().equals("W") || j < grid[i].length - 1  && grid[i][j + 1].getWholeValue().length() == 2  && grid[i][j + 1].getWholeValue().charAt(1) == 'L' ) {
+					if (grid[i][j].getWholeValue().equals("W") || grid[i][j].getWholeValue().length() == 2){
+						adjSet.add(getCellAt(i, j + 1));
+					}
 				}
 				adjMatrix.put(grid[i][j], adjSet);
 			}
@@ -258,41 +271,9 @@ public class Board {
 	}
 
 	public Set<BoardCell> getAdjList(int one, int two) {
-		// System.out.println(grid[one][two].getInitial());
-
-			
-			System.out.println("Points("+ one + ", "+two + ") is being tested");
-			HashSet<BoardCell> temp = (HashSet<BoardCell>) adjMatrix.get(grid[one][two]);
-			
-			
-			System.out.println("Size of Temp before tests: " + temp.size());
-			
-			Iterator<BoardCell> iter = temp.iterator();
-
-			if (iter.hasNext()) {
-				BoardCell value = iter.next();
-				System.out.println("Tested: " + value.getWholeValue());
-				if (value.getInitial() != 'W') {
-					temp.remove(value);
-					System.out.println("Removed " + value.getWholeValue());
-				}
-			}
-			
-			if (!temp.contains("W")){
-				temp.clear();
-			}
-			
 
 
-			System.out.println("Size of Temp is: " + temp.size());
-			
-			Iterator<BoardCell> iterTwo = temp.iterator();
-			if (iterTwo.hasNext()) {
-				BoardCell valueTwo = iterTwo.next();
-				System.out.println("What is left in the Set: " + valueTwo.getWholeValue());
-			}
-
-		return temp;
+		return adjMatrix.get(grid[one][two]);
 	}
 
 	// I changed the return type to Int. It was a Void.
