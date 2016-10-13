@@ -59,5 +59,10 @@ public class BoardCell {
 	public String getWholeValue() {
 		return boardCellInitial;
 	}
+	
+	public char getSecondInitial() {
+		
+		return boardCellInitial.charAt(1);
+	}
 
 }

@@ -59,8 +59,13 @@ public class Board {
 				if (i > 0 && grid[i - 1][j].getWholeValue().equals("W")
 						|| i > 0 && grid[i - 1][j].getWholeValue().length() == 2
 								&& grid[i - 1][j].getWholeValue().charAt(1) == 'D') {
-					if (grid[i][j].getWholeValue().equals("W") || grid[i][j].getWholeValue().length() == 2) {
+					if (grid[i][j].getWholeValue().equals("W")) {
 						adjSet.add(getCellAt(i - 1, j));
+					}
+					if (grid[i][j].getWholeValue().length() == 2) {
+						if ((grid[i][j].getSecondInitial() == 'U')) {
+							adjSet.add(getCellAt(i - 1, j));
+						}
 					}
 				}
 				// This checks to see if the one Below it is not out of bounds,
@@ -69,8 +74,13 @@ public class Board {
 				if (i < grid.length - 1 && grid[i + 1][j].getWholeValue().equals("W")
 						|| i < grid.length - 1 && grid[i + 1][j].getWholeValue().length() == 2
 								&& grid[i + 1][j].getWholeValue().charAt(1) == 'U') {
-					if (grid[i][j].getWholeValue().equals("W") || grid[i][j].getWholeValue().length() == 2) {
+					if (grid[i][j].getWholeValue().equals("W")) {
 						adjSet.add(getCellAt(i + 1, j));
+					}
+					if (grid[i][j].getWholeValue().length() == 2) {
+						if ((grid[i][j].getSecondInitial() == 'D')) {
+							adjSet.add(getCellAt(i + 1, j));
+						}
 					}
 				}
 				// This checks to see if the one left it is not out of bounds,
@@ -79,8 +89,13 @@ public class Board {
 				if (j > 0 && grid[i][j - 1].getWholeValue().equals("W")
 						|| j > 0 && grid[i][j - 1].getWholeValue().length() == 2
 								&& grid[i][j - 1].getWholeValue().charAt(1) == 'R') {
-					if (grid[i][j].getWholeValue().equals("W") || grid[i][j].getWholeValue().length() == 2) {
+					if (grid[i][j].getWholeValue().equals("W")) {
 						adjSet.add(getCellAt(i, j - 1));
+					}
+					if (grid[i][j].getWholeValue().length() == 2) {
+						if ((grid[i][j].getSecondInitial() == 'L')) {
+							adjSet.add(getCellAt(i, j - 1));
+						}
 					}
 				}
 				// This checks to see if the one right it is not out of bounds,
@@ -89,8 +104,13 @@ public class Board {
 				if (j < grid[i].length - 1 && grid[i][j + 1].getWholeValue().equals("W")
 						|| j < grid[i].length - 1 && grid[i][j + 1].getWholeValue().length() == 2
 								&& grid[i][j + 1].getWholeValue().charAt(1) == 'L') {
-					if (grid[i][j].getWholeValue().equals("W") || grid[i][j].getWholeValue().length() == 2) {
+					if (grid[i][j].getWholeValue().equals("W")) {
 						adjSet.add(getCellAt(i, j + 1));
+					}
+					if (grid[i][j].getWholeValue().length() == 2) {
+						if ((grid[i][j].getSecondInitial() == 'R')) {
+							adjSet.add(getCellAt(i, j + 1));
+						}
 					}
 				}
 				adjMatrix.put(grid[i][j], adjSet);
