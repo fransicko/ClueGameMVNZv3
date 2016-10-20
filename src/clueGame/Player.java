@@ -15,6 +15,10 @@ public class Player {
 		this.column = column;
 		this.color = color;
 	}
+	
+	public Card disproveSuggestion( Solution suggestion) {
+		return null;
+	}
 
 	// These are for testing purposes
 	public String getName() {
