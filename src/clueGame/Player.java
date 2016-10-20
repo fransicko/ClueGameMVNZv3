@@ -16,7 +16,7 @@ public class Player {
 		this.color = color;
 	}
 	
-	public Card disproveSuggestion( Solution suggestion) {
+	public Card disproveSuggestion(Solution suggestion) {
 		return null;
 	}
 
