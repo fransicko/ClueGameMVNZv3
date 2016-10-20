@@ -1,5 +1,6 @@
 package clueGame;
 
+// Each person will make an accusation and that will be a solution
 public class Solution {
 	public String person;
 	public String room;
