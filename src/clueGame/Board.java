@@ -19,6 +19,9 @@ public class Board {
 	int NUM_ROWS;
 	int NUM_COLS;
 	String[] fullLegend = null;
+	
+	// This will be our deck of cards, the number is hard coded since we have a set number of things
+	Card[] deck = new Card[21];
 
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
