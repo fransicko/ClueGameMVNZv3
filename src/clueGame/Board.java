@@ -1,7 +1,9 @@
 package clueGame;
 
 import java.util.*;
+import java.awt.Color;
 import java.io.*;
+import java.lang.reflect.Field;
 
 public class Board {
 	private int startCell;
@@ -25,6 +27,9 @@ public class Board {
 	
 	// This will be our deck of cards, the number is hard coded since we have a set number of things
 	ArrayList<Card> deck = new ArrayList<>();
+	// Player objects
+	HumanPlayer person;
+	ArrayList<ComputerPlayer> comp = new ArrayList<ComputerPlayer>();
 
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
@@ -284,6 +289,7 @@ public class Board {
 	public void loadPlayerFiles() throws FileNotFoundException {
 		FileReader readerThree = new FileReader(playerFile);
 		Scanner in = new Scanner(readerThree);
+		String DELIMITER = ",";
 		
 		// This integer is so that we can just read everything from the players file
 		int i = 0;
@@ -291,6 +297,10 @@ public class Board {
 			String line = in.nextLine();
 			// We only read lines that aren't commented out
 			if (line.charAt(0) != '/') {
+				String[] plFile = line.split(DELIMITER);
+				if (i == 0) {
+					person = new HumanPlayer(plFile[0], Integer.parseInt(plFile[1]), Integer.parseInt(plFile[2]), convert(plFile[3]));
+				}
 			}
 		}
 	}
@@ -303,6 +313,19 @@ public class Board {
 			weapon = in.nextLine();
 			deck.add(new Card(weapon,CardType.WEAPON));
 		}
+	}
+	
+	//This is to convert a string to a color
+	public Color convert(String strColor) {
+		Color color;
+		try {
+			//We can use reflection to convert the string to a color
+			Field field = Class.forName("java.awt.Color").getField(strColor.trim());
+			color = (Color)field.get(null);
+		} catch(Exception e) {
+			color = null;//Not defined
+		}
+		return color;
 	}
 	
 	//This will select the answer, 
