@@ -281,8 +281,18 @@ public class Board {
 	
 	// This is were me and the have added code
 	// This is were we will load the files to fill our players
-	public void loadPlayerFiles() {
+	public void loadPlayerFiles() throws FileNotFoundException {
+		FileReader readerThree = new FileReader(playerFile);
+		Scanner in = new Scanner(readerThree);
 		
+		// This integer is so that we can just read everything from the players file
+		int i = 0;
+		while (in.hasNext()) {
+			String line = in.nextLine();
+			// We only read lines that aren't commented out
+			if (line.charAt(0) != '/') {
+			}
+		}
 	}
 	
 	//This will select the answer, 
