@@ -285,6 +285,16 @@ public class Board {
 		
 	}
 	
+	public void loadWeaponFiles() throws FileNotFoundException {
+		FileReader reader = new FileReader(weaponFile);
+		Scanner in = new Scanner(reader);
+		String weapon = "";
+		while (in.hasNextLine()) {
+			weapon = in.nextLine();
+			deck.add(new Card(weapon,CardType.WEAPON));
+		}
+	}
+	
 	//This will select the answer, 
 	//not sure how it works yet but will soon
 	public void selectAnswer() {
