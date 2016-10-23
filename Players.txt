@@ -5,5 +5,5 @@ Mr. Smith, 0, 6, black
 Ms. Proudmoore, 9, 0, blue
 Mr. Wrynn, 22, 1, gray
 Mr. Thrall, 3, 18, green
-Mr. Medivh, 21, 21, purple
+Mr. Medivh, 21, 21, magenta
 Mr. Hellscream, 6, 6, red

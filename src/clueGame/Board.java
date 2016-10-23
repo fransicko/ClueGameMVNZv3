@@ -158,6 +158,8 @@ public class Board {
 		try {
 			loadBoardConfig();
 			loadRoomConfig();
+			loadPlayerFiles();
+			loadWeaponFiles();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -166,6 +168,21 @@ public class Board {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void loadConfigFile() {
+		try {
+			loadBoardConfig();
+			loadRoomConfig();
+			loadPlayerFiles();
+			loadWeaponFiles();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BadConfigFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void loadRoomConfig() throws BadConfigFormatException {
@@ -223,7 +240,7 @@ public class Board {
 		}
 
 	}
-	
+
 	public void loadBoardConfig() throws BadConfigFormatException, FileNotFoundException {
 		BufferedReader fileReader = null;
 		// Delimiter used in CSV file
@@ -396,6 +413,11 @@ public class Board {
 	public void calcTargets(int i, int j, int k) {
 		// Called CalcTargets
 		calcTargets(grid[i][j], k);
+	}
+	
+	// These getters are for testing
+	public HumanPlayer getPerson() {
+		return person;
 	}
 
 }

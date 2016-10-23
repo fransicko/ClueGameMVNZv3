@@ -6,6 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clueGame.Board;
+import clueGame.HumanPlayer;
 
 public class SetupTests {
 	// Constants that I will use to test whether the file was loaded correctly
@@ -26,12 +27,15 @@ public class SetupTests {
 		// set the file names for the player and weapon files
 		board.setConfigFiles2("Players.txt", "weapons.txt");
 		// Initialize will load BOTH config files 
-		board.initialize();
+		board.loadConfigFile();
 	}
 	
+	// This will check to see if the people were loaded in correctly
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void PeopleLoaded() {
+		//check that the person is there
+		HumanPlayer person = board.getPerson();
+		
 	}
 
 }
