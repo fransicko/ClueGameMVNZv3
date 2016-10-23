@@ -24,7 +24,7 @@ public class Board {
 	int NUM_ROWS;
 	int NUM_COLS;
 	String[] fullLegend = null;
-	
+
 	// This will be our deck of cards, the number is hard coded since we have a set number of things
 	ArrayList<Card> deck = new ArrayList<>();
 	// Player objects
@@ -69,7 +69,7 @@ public class Board {
 				// that is being tested is a walk way or a door.
 				if (i > 0 && grid[i - 1][j].getWholeValue().equals("W")
 						|| i > 0 && grid[i - 1][j].getWholeValue().length() == 2
-								&& grid[i - 1][j].getWholeValue().charAt(1) == 'D') {
+						&& grid[i - 1][j].getWholeValue().charAt(1) == 'D') {
 					if (grid[i][j].getWholeValue().equals("W")) {
 						adjSet.add(getCellAt(i - 1, j));
 					}
@@ -84,7 +84,7 @@ public class Board {
 				// that is being tested is a walk way or a door.
 				if (i < grid.length - 1 && grid[i + 1][j].getWholeValue().equals("W")
 						|| i < grid.length - 1 && grid[i + 1][j].getWholeValue().length() == 2
-								&& grid[i + 1][j].getWholeValue().charAt(1) == 'U') {
+						&& grid[i + 1][j].getWholeValue().charAt(1) == 'U') {
 					if (grid[i][j].getWholeValue().equals("W")) {
 						adjSet.add(getCellAt(i + 1, j));
 					}
@@ -99,7 +99,7 @@ public class Board {
 				// that is being tested is a walk way or a door.
 				if (j > 0 && grid[i][j - 1].getWholeValue().equals("W")
 						|| j > 0 && grid[i][j - 1].getWholeValue().length() == 2
-								&& grid[i][j - 1].getWholeValue().charAt(1) == 'R') {
+						&& grid[i][j - 1].getWholeValue().charAt(1) == 'R') {
 					if (grid[i][j].getWholeValue().equals("W")) {
 						adjSet.add(getCellAt(i, j - 1));
 					}
@@ -114,7 +114,7 @@ public class Board {
 				// that is being tested is a walk way or a door.
 				if (j < grid[i].length - 1 && grid[i][j + 1].getWholeValue().equals("W")
 						|| j < grid[i].length - 1 && grid[i][j + 1].getWholeValue().length() == 2
-								&& grid[i][j + 1].getWholeValue().charAt(1) == 'L') {
+						&& grid[i][j + 1].getWholeValue().charAt(1) == 'L') {
 					if (grid[i][j].getWholeValue().equals("W")) {
 						adjSet.add(getCellAt(i, j + 1));
 					}
@@ -169,7 +169,7 @@ public class Board {
 		}
 
 	}
-	
+
 	public void loadConfigFile() {
 		try {
 			loadBoardConfig();
@@ -206,7 +206,7 @@ public class Board {
 				for (int i = 0; i < legend.length; i = i + 3) {
 					Character key = legend[i].charAt(0);
 					legendMap.put(key, legend[i + 1]);
-					
+
 					//We will add the rooms to our deck of cards
 					deck.add(new Card(legend[i+1], CardType.ROOM));
 				}
@@ -300,14 +300,27 @@ public class Board {
 		}
 
 	}
-	
+
 	// This is were me and the have added code
 	// This is were we will load the files to fill our players
+	//This is to convert a string to a color
+	public java.awt.Color convert(String strColor) {
+		java.awt.Color color;
+		try {
+			//We can use reflection to convert the string to a color
+			Field field = java.awt.Color.class.getField(strColor);//Class.forName("java.awt.Color").getField(strColor.trim());
+			color = (java.awt.Color)field.get(null);
+		} catch(Exception e) {
+			color = null;//Not defined
+		}
+		return color;
+	}
+
 	public void loadPlayerFiles() throws FileNotFoundException {
 		FileReader readerThree = new FileReader(playerFile);
 		Scanner in = new Scanner(readerThree);
-		String DELIMITER = ",";
-		
+		String DELIMITER = ", ";
+
 		// This integer is so that we can just read everything from the players file
 		int i = 0;
 		while (in.hasNext()) {
@@ -317,11 +330,15 @@ public class Board {
 				String[] plFile = line.split(DELIMITER);
 				if (i == 0) {
 					person = new HumanPlayer(plFile[0], Integer.parseInt(plFile[1]), Integer.parseInt(plFile[2]), convert(plFile[3]));
+					++i;
+				}
+				else {
+					comp.add(new ComputerPlayer(plFile[0], Integer.parseInt(plFile[1]), Integer.parseInt(plFile[2]), convert(plFile[3])));
 				}
 			}
 		}
 	}
-	
+
 	public void loadWeaponFiles() throws FileNotFoundException {
 		FileReader reader = new FileReader(weaponFile);
 		Scanner in = new Scanner(reader);
@@ -331,31 +348,19 @@ public class Board {
 			deck.add(new Card(weapon,CardType.WEAPON));
 		}
 	}
-	
-	//This is to convert a string to a color
-	public Color convert(String strColor) {
-		Color color;
-		try {
-			//We can use reflection to convert the string to a color
-			Field field = Class.forName("java.awt.Color").getField(strColor.trim());
-			color = (Color)field.get(null);
-		} catch(Exception e) {
-			color = null;//Not defined
-		}
-		return color;
-	}
-	
+
+
 	//This will select the answer, 
 	//not sure how it works yet but will soon
 	public void selectAnswer() {
-		
+
 	}
-	
+
 	//This will handle suggestions
 	public Card handleSuggestion() {
 		return null;
 	}
-	
+
 	// this will check the accusation to see if it is correct
 	public boolean checkAccusation(Solution accusation) {
 		return false;
@@ -397,7 +402,7 @@ public class Board {
 		layoutFile = string;
 		legendFile = string2;
 	}
-	
+
 	// This is for the player and weapon files, just so past tests pass
 	public void setConfigFiles2(String string3, String string4) {
 		playerFile = string3;
@@ -414,10 +419,15 @@ public class Board {
 		// Called CalcTargets
 		calcTargets(grid[i][j], k);
 	}
-	
+
 	// These getters are for testing
 	public HumanPlayer getPerson() {
 		return person;
+	}
+
+	// Get the person at the index
+	public ComputerPlayer getComp(int index) {
+		return comp.get(index);
 	}
 
 }

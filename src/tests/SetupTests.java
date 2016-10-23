@@ -2,10 +2,13 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.awt.Color;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clueGame.Board;
+import clueGame.ComputerPlayer;
 import clueGame.HumanPlayer;
 
 public class SetupTests {
@@ -35,7 +38,24 @@ public class SetupTests {
 	public void PeopleLoaded() {
 		//check that the person is there
 		HumanPlayer person = board.getPerson();
+		assertEquals("Mr. Smith", person.getName());
+		assertEquals(0, person.getRow());
+		assertEquals(6, person.getColumn());
+		assertEquals(Color.black, person.getColor());
 		
+		//Check the first person
+		ComputerPlayer comp1 = board.getComp(0);
+		assertEquals("Ms. Proudmoore", comp1.getName());
+		assertEquals(9, comp1.getRow());
+		assertEquals(0, comp1.getColumn());
+		assertEquals(Color.blue, comp1.getColor());
+		
+		//Check the last person
+		ComputerPlayer comp2 = board.getComp(4);
+		assertEquals("Mr. Hellscream", comp2.getName());
+		assertEquals(6, comp2.getRow());
+		assertEquals(6, comp2.getColumn());
+		assertEquals(Color.red, comp2.getColor());
 	}
 
 }
