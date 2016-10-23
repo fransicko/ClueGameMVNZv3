@@ -57,5 +57,11 @@ public class SetupTests {
 		assertEquals(6, comp2.getColumn());
 		assertEquals(Color.red, comp2.getColor());
 	}
+	
+	// This will chack to make sure we have a full deck.
+	@Test
+	public void FullDeck() {
+		
+	}
 
 }
