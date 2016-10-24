@@ -47,14 +47,14 @@ public class SetupTests {
 		assertEquals(Color.black, person.getColor());
 		
 		//Check the first person
-		ComputerPlayer comp1 = board.getComp(0);
+		ComputerPlayer comp1 = board.getCompAt(0);
 		assertEquals("Ms. Proudmoore", comp1.getName());
 		assertEquals(9, comp1.getRow());
 		assertEquals(0, comp1.getColumn());
 		assertEquals(Color.blue, comp1.getColor());
 		
 		//Check the last person
-		ComputerPlayer comp2 = board.getComp(4);
+		ComputerPlayer comp2 = board.getCompAt(4);
 		assertEquals("Mr. Hellscream", comp2.getName());
 		assertEquals(6, comp2.getRow());
 		assertEquals(6, comp2.getColumn());
@@ -90,6 +90,27 @@ public class SetupTests {
 		assertTrue(checkDeck.get(15).getType() == CardType.WEAPON);
 		assertTrue(checkDeck.get(0).getName().equals("Bathroom"));
 		assertTrue(checkDeck.get(0).getType() == CardType.ROOM);
+	}
+	
+	@Test
+	public void DealtCards() {
+		HumanPlayer a = board.getPerson();
+		ComputerPlayer b = board.getCompAt(0);
+		ComputerPlayer c = board.getCompAt(4);
+		
+		//Check to make sure that these people have the correct corresponding # of cards 
+		assertEquals(4, a.hand.size());
+		assertEquals(4, b.hand.size());
+		assertEquals(3, c.hand.size());
+		
+		// Check to make sure that each person has a unique card and checks to make sure that there are no dupicates
+		int checkDupicats = a.hand.size();
+		ArrayList<ComputerPlayer> d = new ArrayList<>(board.getComp());
+		for (ComputerPlayer i: d) {
+			checkDupicats += i.hand.size();
+		}
+		
+		assertEquals(21, checkDupicats);
 	}
 
 }

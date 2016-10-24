@@ -450,8 +450,12 @@ public class Board {
 	}
 
 	// Get the person at the index
-	public ComputerPlayer getComp(int index) {
+	public ComputerPlayer getCompAt(int index) {
 		return comp.get(index);
+	}
+	
+	public ArrayList<ComputerPlayer> getComp() {
+		return comp;
 	}
 	
 	public int deckSize(){
