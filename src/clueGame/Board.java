@@ -176,6 +176,7 @@ public class Board {
 			loadRoomConfig();
 			loadPlayerFiles();
 			loadWeaponFiles();
+			dealHands();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -349,6 +350,26 @@ public class Board {
 		while (in.hasNextLine()) {
 			weapon = in.nextLine();
 			deck.add(new Card(weapon,CardType.WEAPON));
+		}
+	}
+	
+	public void dealHands() {
+		Random ran = new Random();
+		ArrayList<Card> newDeck = new ArrayList<>(deck);
+		
+		while (!newDeck.isEmpty()) {
+			int card = Math.abs(ran.nextInt())%newDeck.size();
+			person.giveCard(newDeck.get(card));
+			newDeck.remove(card);
+			
+			for (ComputerPlayer i: comp) {
+				if (!newDeck.isEmpty()) {
+					card = Math.abs(ran.nextInt())%newDeck.size();
+					i.giveCard(newDeck.get(card));
+					newDeck.remove(card);
+				}
+				
+			}
 		}
 	}
 
