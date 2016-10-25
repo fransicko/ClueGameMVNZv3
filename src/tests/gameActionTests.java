@@ -61,6 +61,11 @@ public class gameActionTests {
 	}
 	
 	@Test
+	public void selectRoomTarget() {
+		
+	}
+	
+	@Test
 	public void checkAccusation() {
 		
 	}
