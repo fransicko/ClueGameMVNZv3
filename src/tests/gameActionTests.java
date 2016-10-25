@@ -75,15 +75,16 @@ public class gameActionTests {
 		assertEquals(board.getCellAt(21, 3), selectedB);
 	}
 	
-	//Test to make sure that 
+	//Test to make sure that if we visited a room than we don't automatically visit again when moving
 	@Test
 	public void selectNotVisitedRoomTarget() {
-		
+		ComputerPlayer a = new ComputerPlayer("test", 9, 0, Color.gray);
+		board.calcTargets(2, 7, 4);
 	}
 	
 	@Test
 	public void checkAccusation() {
-		
+		fail("Not yet implemented");
 	}
 	
 	@Test
