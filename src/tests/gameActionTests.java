@@ -62,6 +62,11 @@ public class gameActionTests {
 	
 	@Test
 	public void selectRoomTarget() {
+		ComputerPlayer a = new ComputerPlayer("test", 9, 0, Color.gray);
+		board.calcTargets(9, 0, 2);
+		
+		BoardCell selected = a.pickLocation(board.getTargets());
+		assertEquals(board.getCellAt(9, 0), selected);
 		
 	}
 	
