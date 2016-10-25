@@ -83,14 +83,14 @@ public class gameActionTests {
 		board.calcTargets(2, 7, 4);
 		BoardCell selected = a.pickLocation(board.getTargets());
 		
-		boolean loc_1_8 = false;
-		boolean loc_4_5 = false;
+		int loc_1_8 = 0;
+		int loc_4_5 = 0;
 		
 		if (selected == board.getCellAt(1, 8)) {
-			loc_1_8 = true;
+			loc_1_8 += 1;
 		}
 		else if (selected == board.getCellAt(4, 5)) {
-			loc_4_5 = true;
+			loc_4_5 += 1;
 		}
 		
 		// This will move us out of the door and into the next door
@@ -98,11 +98,18 @@ public class gameActionTests {
 		board.calcTargets(selected, 6);
 		selected = a.pickLocation(board.getTargets());
 		if (selected == board.getCellAt(1, 8)) {
-			loc_1_8 = true;
+			loc_1_8 += 1;
 		}
 		else if (selected == board.getCellAt(4, 5)) {
-			loc_4_5 = true;
+			loc_4_5 += 1;
 		}
+		
+		// Make sure they are visited after two runs
+		assertEquals(1, loc_1_8);
+		assertEquals(1, loc_4_5);
+		
+		// we will go through a loop to make sure that its getting more than one spot
+		
 		
 	}
 	
