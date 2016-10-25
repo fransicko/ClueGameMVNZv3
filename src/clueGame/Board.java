@@ -129,7 +129,7 @@ public class Board {
 		}
 
 	}
-
+	
 	public void calcTargets(BoardCell cell, int pathLength) {
 		this.targets = new HashSet<BoardCell>();
 		this.visited = new HashSet<BoardCell>();
