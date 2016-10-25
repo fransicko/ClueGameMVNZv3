@@ -103,7 +103,12 @@ public class SetupTests {
 		assertEquals(4, b.hand.size());
 		assertEquals(3, c.hand.size());
 		
-		// Check to make sure that each person has a unique card and checks to make sure that there are no dupicates
+		// Check to make sure that each person has a unique card and checks to make sure that there are no duplicates
+		// How does this check duplicates? Before the deck is dealt, there are 21 unique cards in the deck. Once all the cards are,
+		// dealt, the deck will be empty and each players will have from 3-4 cards, each of which are unique. When the test is run, all
+		// cards from the players are put back into a testing deck that will check if the total number of cards is 21. Since the 
+		// cards are unique since the the dealing of the cards, and putting into the testing deck, if the number of cards is 21, then
+		// there will not be any duplicates.
 		int checkDupicats = a.hand.size();
 		ArrayList<ComputerPlayer> d = new ArrayList<>(board.getComp());
 		for (ComputerPlayer i: d) {
