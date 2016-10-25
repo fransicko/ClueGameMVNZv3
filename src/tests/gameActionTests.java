@@ -60,13 +60,24 @@ public class gameActionTests {
 		assertTrue(loc_24_2);
 	}
 	
+	//Test that only a door is selected if it is an option and has not been visited
 	@Test
 	public void selectRoomTarget() {
 		ComputerPlayer a = new ComputerPlayer("test", 9, 0, Color.gray);
 		board.calcTargets(9, 0, 2);
+		BoardCell selectedA = a.pickLocation(board.getTargets());
 		
-		BoardCell selected = a.pickLocation(board.getTargets());
-		assertEquals(board.getCellAt(9, 0), selected);
+		ComputerPlayer b = new ComputerPlayer("test1", 0, 0, Color.gray);
+		board.calcTargets(23, 3, 2);
+		BoardCell selectedB = b.pickLocation(board.getTargets());
+		
+		assertEquals(board.getCellAt(10, 0), selectedA);
+		assertEquals(board.getCellAt(21, 3), selectedB);
+	}
+	
+	//Test to make sure that 
+	@Test
+	public void selectNotVisitedRoomTarget() {
 		
 	}
 	
