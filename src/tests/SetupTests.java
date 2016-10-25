@@ -61,7 +61,8 @@ public class SetupTests {
 	// This will chack to make sure we have a full deck.
 	@Test
 	public void FullDeck() {
-		
+		int size = board.deckSize();
+		assertEquals(13, size);
 	}
 
 }

@@ -429,5 +429,9 @@ public class Board {
 	public ComputerPlayer getComp(int index) {
 		return comp.get(index);
 	}
+	
+	public int deckSize(){
+		return deck.size();
+	}
 
 }
