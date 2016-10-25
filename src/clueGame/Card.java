@@ -14,5 +14,13 @@ public class Card {
 		// Made it false because it wont let it be null
 		return false;
 	}
+	
+	public String getName() {
+		return cardName;
+	}
+	
+	public CardType getType() {
+		return type;
+	}
 
 }

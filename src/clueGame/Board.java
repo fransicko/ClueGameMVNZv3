@@ -26,10 +26,10 @@ public class Board {
 	String[] fullLegend = null;
 
 	// This will be our deck of cards, the number is hard coded since we have a set number of things
-	ArrayList<Card> deck = new ArrayList<>();
+	private ArrayList<Card> deck = new ArrayList<>();
 	// Player objects
-	HumanPlayer person;
-	ArrayList<ComputerPlayer> comp = new ArrayList<ComputerPlayer>();
+	private HumanPlayer person;
+	private ArrayList<ComputerPlayer> comp = new ArrayList<ComputerPlayer>();
 
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
@@ -208,7 +208,9 @@ public class Board {
 					legendMap.put(key, legend[i + 1]);
 
 					//We will add the rooms to our deck of cards
-					deck.add(new Card(legend[i+1], CardType.ROOM));
+					if (key != 'X' && key != 'W') {
+						deck.add(new Card(legend[i+1], CardType.ROOM));
+					}
 				}
 			}
 
@@ -335,6 +337,7 @@ public class Board {
 				else {
 					comp.add(new ComputerPlayer(plFile[0], Integer.parseInt(plFile[1]), Integer.parseInt(plFile[2]), convert(plFile[3])));
 				}
+				deck.add(new Card(plFile[0], CardType.PERSON));
 			}
 		}
 	}
@@ -432,6 +435,10 @@ public class Board {
 	
 	public int deckSize(){
 		return deck.size();
+	}
+	
+	public ArrayList<Card> getDeck() {
+		return deck;
 	}
 
 }

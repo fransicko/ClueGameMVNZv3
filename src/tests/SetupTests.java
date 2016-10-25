@@ -3,11 +3,14 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clueGame.Board;
+import clueGame.Card;
+import clueGame.CardType;
 import clueGame.ComputerPlayer;
 import clueGame.HumanPlayer;
 
@@ -62,7 +65,31 @@ public class SetupTests {
 	@Test
 	public void FullDeck() {
 		int size = board.deckSize();
-		assertEquals(13, size);
+		assertEquals(21, size);
+		
+		int room = 0;
+		int weapon = 0;
+		int person = 0;
+		ArrayList<Card> checkDeck = board.getDeck();
+		
+		// We will run throught the array of cards to make sure that we have the correct number of cards of each type
+		for (Card i: checkDeck) {
+			if (i.getType() == CardType.PERSON) ++person;
+			else if (i.getType() == CardType.WEAPON) ++weapon;
+			else if (i.getType() == CardType.ROOM) ++room;
+		}
+		
+		assertEquals(6, person);
+		assertEquals(6, weapon);
+		assertEquals(9, room);
+		
+		//Test to make sure that the cards are loaded correctly
+		assertTrue(checkDeck.get(12).getName().equals("Mr. Thrall"));
+		assertTrue(checkDeck.get(12).getType() == CardType.PERSON);
+		assertTrue(checkDeck.get(15).getName().equals("DoomHammer"));
+		assertTrue(checkDeck.get(15).getType() == CardType.WEAPON);
+		assertTrue(checkDeck.get(0).getName().equals("Bathroom"));
+		assertTrue(checkDeck.get(0).getType() == CardType.ROOM);
 	}
 
 }
