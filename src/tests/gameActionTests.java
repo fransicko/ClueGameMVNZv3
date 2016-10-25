@@ -78,8 +78,32 @@ public class gameActionTests {
 	//Test to make sure that if we visited a room than we don't automatically visit again when moving
 	@Test
 	public void selectNotVisitedRoomTarget() {
+		// This will be the initial set up
 		ComputerPlayer a = new ComputerPlayer("test", 9, 0, Color.gray);
 		board.calcTargets(2, 7, 4);
+		BoardCell selected = a.pickLocation(board.getTargets());
+		
+		boolean loc_1_8 = false;
+		boolean loc_4_5 = false;
+		
+		if (selected == board.getCellAt(1, 8)) {
+			loc_1_8 = true;
+		}
+		else if (selected == board.getCellAt(4, 5)) {
+			loc_4_5 = true;
+		}
+		
+		// This will move us out of the door and into the next door
+		// The point is to make sure that we visited both doors then we will do a random one after
+		board.calcTargets(selected, 6);
+		selected = a.pickLocation(board.getTargets());
+		if (selected == board.getCellAt(1, 8)) {
+			loc_1_8 = true;
+		}
+		else if (selected == board.getCellAt(4, 5)) {
+			loc_4_5 = true;
+		}
+		
 	}
 	
 	@Test
