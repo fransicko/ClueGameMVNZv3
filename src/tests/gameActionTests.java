@@ -109,6 +109,22 @@ public class gameActionTests {
 		assertEquals(1, loc_4_5);
 		
 		// we will go through a loop to make sure that its getting more than one spot
+		boolean loc = false;
+		ComputerPlayer test = new ComputerPlayer("test1", 0, 0, Color.gray);
+		board.calcTargets(selected, 6);
+		BoardCell selectedT = test.pickLocation(board.getTargets());
+		
+		//The point of this is to make sure that we land on a different location other than the doors
+		for (int i = 0; i < 50; ++i) {
+			if (selectedT != board.getCellAt(4, 5) && selectedT != board.getCellAt(1, 8)) {
+				loc = true;
+				break;
+			}
+			board.calcTargets(selectedT, 6);
+			selectedT = test.pickLocation(board.getTargets());
+		}
+		
+		assertTrue(loc);
 		
 		
 	}
