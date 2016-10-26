@@ -34,7 +34,7 @@ public class Board {
 	private HumanPlayer person;
 	private ArrayList<ComputerPlayer> comp = new ArrayList<ComputerPlayer>();
 	//This is the solution to the game
-	public Solution solution;
+	private Solution solution;
 
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
