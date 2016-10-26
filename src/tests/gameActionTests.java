@@ -3,6 +3,8 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Random;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -184,7 +186,18 @@ public class gameActionTests {
 	
 	@Test
 	public void createSuggestion() {
-		fail("Not yet implemented");
+		Random ran = new Random();
+		// Check an array with one person
+		ArrayList<Card> p = new ArrayList<>();
+		int ppl = Math.abs(ran.nextInt())%Board.getInstance().personCards.size();
+		p.add(Board.getInstance().personCards.get(ppl));
+		assertTrue()
+		
+		// Check an array with one weapon
+		ArrayList<Card> w = new ArrayList<>();
+		int weapon = Math.abs(ran.nextInt())%Board.getInstance().weaponCards.size();
+		w.add(Board.getInstance().weaponCards.get(weapon));
+		
 	}
 
 }

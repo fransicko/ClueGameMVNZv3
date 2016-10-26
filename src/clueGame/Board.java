@@ -30,6 +30,7 @@ public class Board {
 	public ArrayList<Card> roomCards = new ArrayList<>();
 	public ArrayList<Card> personCards = new ArrayList<>();
 	public ArrayList<Card> weaponCards = new ArrayList<>();
+	public ArrayList<Card> seenCards = new ArrayList<>();
 	// Player objects
 	private HumanPlayer person;
 	private ArrayList<ComputerPlayer> comp = new ArrayList<ComputerPlayer>();

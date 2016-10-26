@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
@@ -51,6 +52,20 @@ public class ComputerPlayer extends Player{
 	}
 	
 	public void createSuggestion() {
+		String room = Board.getInstance().board[21][3];
+		
+		ArrayList<Card> people = new ArrayList<>();
+		for (Card i : Board.getInstance().personCards) {
+			if (!Board.getInstance().seenCards.contains(i)) {
+				people.add(i);
+			}
+		}
+		ArrayList<Card> weapon = new ArrayList<>();
+		for (Card i : Board.getInstance().weaponCards) {
+			if (!Board.getInstance().seenCards.contains(i)) {
+				weapon.add(i);
+			}
+		}
 		
 	}
 
