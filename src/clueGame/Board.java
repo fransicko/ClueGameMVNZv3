@@ -25,11 +25,16 @@ public class Board {
 	int NUM_COLS;
 	String[] fullLegend = null;
 
-	// This will be our deck of cards, the number is hard coded since we have a set number of things
+	// This will be our deck of cards, the other three are the sub decks of deck.
 	private ArrayList<Card> deck = new ArrayList<>();
+	private ArrayList<Card> roomCards = new ArrayList<>();
+	private ArrayList<Card> personCards = new ArrayList<>();
+	private ArrayList<Card> weaponCards = new ArrayList<>();
 	// Player objects
 	private HumanPlayer person;
 	private ArrayList<ComputerPlayer> comp = new ArrayList<ComputerPlayer>();
+	//This is the solution to the game
+	private Solution solution;
 
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
@@ -160,6 +165,8 @@ public class Board {
 			loadRoomConfig();
 			loadPlayerFiles();
 			loadWeaponFiles();
+			makeDeck();
+			dealHands();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -176,7 +183,9 @@ public class Board {
 			loadRoomConfig();
 			loadPlayerFiles();
 			loadWeaponFiles();
+			makeDeck();
 			dealHands();
+			mkSoln();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -184,6 +193,19 @@ public class Board {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	//This will make a solution, this can be changed later but for testing right now we will do this
+	public void mkSoln() {
+		Random ran = new Random();
+		int room = Math.abs(ran.nextInt())%roomCards.size();
+		int ppl = 0;
+		do {
+			ppl = Math.abs(ran.nextInt())%personCards.size();
+		} while (personCards.get(ppl).getName().equals(person.getName()));
+		int weapon = Math.abs(ran.nextInt())%weaponCards.size();
+		
+		solution = new Solution(personCards.get(ppl).getName(), roomCards.get(room).getName(), weaponCards.get(weapon).getName());
 	}
 
 	public void loadRoomConfig() throws BadConfigFormatException {
@@ -210,7 +232,7 @@ public class Board {
 
 					//We will add the rooms to our deck of cards
 					if (key != 'X' && key != 'W') {
-						deck.add(new Card(legend[i+1], CardType.ROOM));
+						roomCards.add(new Card(legend[i+1], CardType.ROOM));
 					}
 				}
 			}
@@ -338,7 +360,7 @@ public class Board {
 				else {
 					comp.add(new ComputerPlayer(plFile[0], Integer.parseInt(plFile[1]), Integer.parseInt(plFile[2]), convert(plFile[3])));
 				}
-				deck.add(new Card(plFile[0], CardType.PERSON));
+				personCards.add(new Card(plFile[0], CardType.PERSON));
 			}
 		}
 	}
@@ -349,7 +371,7 @@ public class Board {
 		String weapon = "";
 		while (in.hasNextLine()) {
 			weapon = in.nextLine();
-			deck.add(new Card(weapon,CardType.WEAPON));
+			weaponCards.add(new Card(weapon,CardType.WEAPON));
 		}
 	}
 	
@@ -370,6 +392,19 @@ public class Board {
 				}
 				
 			}
+		}
+	}
+	
+	// This will make the deck
+	public void makeDeck() {
+		for (Card i: roomCards) {
+			deck.add(i);
+		}
+		for (Card i: personCards) {
+			deck.add(i);
+		}
+		for (Card i: weaponCards) {
+			deck.add(i);
 		}
 	}
 
@@ -464,6 +499,11 @@ public class Board {
 	
 	public ArrayList<Card> getDeck() {
 		return deck;
+	}
+	
+	//Just for testing, don't use in game
+	public Solution getSoln() {
+		return solution;
 	}
 
 }
