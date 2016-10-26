@@ -265,6 +265,8 @@ public class gameActionTests {
 		Card weapon = w.get(weaponSelect);
 		assertEquals("DoomHammer", weapon.getName());
 		
+		fail("Not yet implemented");
+		
 		
 		
 	}
