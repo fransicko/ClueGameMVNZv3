@@ -111,12 +111,20 @@ public class gameActionTests {
 		assertEquals(1, loc_4_5);
 
 		// we will go through a loop to make sure that its getting more than one spot
-		boolean loc = false;
-		ComputerPlayer test = new ComputerPlayer("test1", 0, 0, Color.gray);
-		board.calcTargets(selected, 6);
+		ComputerPlayer test = new ComputerPlayer("test1", 2, 7, Color.gray);
+		board.calcTargets(2, 7, 2);
 		BoardCell selectedT = test.pickLocation(board.getTargets());
-
-		//The point of this is to make sure that we land on a different location other than the doors
+		assertEquals(selectedT, board.getCellAt(1, 8));
+		
+		// selected is now the north-east door
+		board.calcTargets(selectedT, 1); 
+		selectedT = test.pickLocation(board.getTargets()); //we are now out of the room
+		
+		board.calcTargets(selectedT, 4); 
+		selectedT = test.pickLocation(board.getTargets());
+		// We should not be in the room
+		assertNotEquals(selectedT, board.getCellAt(1, 8));
+		/*//The point of this is to make sure that we land on a different location other than the doors
 		for (int i = 0; i < 50; ++i) {
 			if (selectedT != board.getCellAt(4, 5) && selectedT != board.getCellAt(1, 8)) {
 				loc = true;
@@ -126,7 +134,7 @@ public class gameActionTests {
 			selectedT = test.pickLocation(board.getTargets());
 		}
 
-		assertTrue(loc);
+		assertTrue(loc);*/
 
 
 	}
@@ -151,7 +159,7 @@ public class gameActionTests {
 		//Check wrong weapon
 		String w = "";
 		for (Card i: board.weaponCards) {
-			if (i.getName() != board.getSoln().person) {
+			if (i.getName() != board.getSoln().weapon) {
 				w = i.getName();
 				break;
 			}
@@ -162,7 +170,7 @@ public class gameActionTests {
 		//Check for wrong room
 		String r = "";
 		for (Card i: board.roomCards) {
-			if (i.getName() != board.getSoln().person) {
+			if (i.getName() != board.getSoln().room) {
 				r = i.getName();
 				break;
 			}
@@ -183,7 +191,8 @@ public class gameActionTests {
 				break;
 			}
 		}
-		Solution wrongP = new Solution(p, board.getSoln().room, board.getSoln().weapon)
+		Solution wrongP = new Solution(p, board.getSoln().room, board.getSoln().weapon);
+		fail("Not yet implemented");
 	}
 
 	@Test

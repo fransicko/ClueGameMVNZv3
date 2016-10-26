@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class ComputerPlayer extends Player{
 	// This will be used to keep track of rooms visited
-	private BoardCell visited = new BoardCell(0,0,"nothing");
+	private BoardCell visited = new BoardCell(0, 0,"nothing");
 
 	public ComputerPlayer(String name, int row, int column, Color color) {
 		super(name, row, column, color);
@@ -17,8 +17,9 @@ public class ComputerPlayer extends Player{
 	
 	public BoardCell pickLocation(Set<BoardCell> targets) {
 		for (BoardCell i: targets) {
-			if (i.isDoorway() && !(visited.getX() == i.getX() && visited.getY() == i.getY())) {
-				visited = new BoardCell(i.getX(), i.getY(), i.getWholeValue());
+			//(visited.getX() == i.getX() && visited.getY() == i.getY())
+			if (i.isDoorway() && !(visited.getX() == i.getX() && visited.getY() == i.getY() && visited.getWholeValue().equals(i.getWholeValue()))) {
+				visited = new BoardCell(i.getY(), i.getX(), i.getWholeValue());
 				return i;
 			}
 		}
