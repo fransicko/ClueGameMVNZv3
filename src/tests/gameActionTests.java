@@ -185,9 +185,6 @@ public class gameActionTests {
 	public void disproveSuggestion() {
 		ComputerPlayer test = new ComputerPlayer("Testing", 0, 0, Color.black);
 		Solution correct = new Solution(board.getSoln().person, board.getSoln().room, board.getSoln().weapon);
-		Card P = new Card(board.getSoln().person, CardType.PERSON);
-		Card R = new Card(board.getSoln().room, CardType.ROOM);
-		Card W = new Card(board.getSoln().weapon, CardType.WEAPON);
 		//Check for one wrong card
 		String p = "";
 		for (Card i: board.personCards) {
@@ -204,10 +201,43 @@ public class gameActionTests {
 				break;
 			}
 		}
+		//Check for wrong room
+		String r = "";
+		for (Card i: board.roomCards) {
+			if (i.getName() != board.getSoln().room) {
+				r = i.getName();
+				break;
+			}
+		}
+
+		//Check with only one correct value
 		Solution wrongPW = new Solution(p, board.getSoln().room, w);
 		Card correctR = test.disproveSuggestion(wrongPW);
-		assertEquals();
+		assertEquals(board.getSoln().room, correctR.getName());
 
+		//Check with two correct values
+		Solution wrongP = new Solution(p, board.getSoln().room, board.getSoln().weapon);
+		// These will be used to check that we return atleast one of them
+		boolean cR = false;
+		boolean cW = false;
+
+		for (int i = 0; i < 10; ++i) {
+			Card correctRW = test.disproveSuggestion(wrongP);
+			if (correctRW.getName().equals(board.getSoln().room)) {
+				cR = true;
+			}
+			else if (correctRW.getName().equals(board.getSoln().weapon)) {
+				cW = true;
+			}
+		}
+
+		assertTrue(cR);
+		assertTrue(cW);
+
+		//Now we check if it is null
+		Solution wrongPWR = new Solution(p, r, w);
+		Card correctNULL = test.disproveSuggestion(wrongPWR);
+		assertNull(correctNULL);
 	}
 
 	@Test
