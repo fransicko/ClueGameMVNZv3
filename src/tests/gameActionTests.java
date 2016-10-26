@@ -137,7 +137,7 @@ public class gameActionTests {
 		Solution correct = new Solution(board.getSoln().person, board.getSoln().room, board.getSoln().weapon);
 		assertTrue(board.checkAccusation(correct));
 		
-		//Check
+		//Check for wrong person
 		String p = "";
 		for (Card i: board.personCards) {
 			if (i.getName() != board.getSoln().person) {
@@ -159,7 +159,17 @@ public class gameActionTests {
 		Solution wrongW = new Solution(board.getSoln().person, board.getSoln().room, w);
 		assertFalse(board.checkAccusation(wrongW));
 		
-		fail("Not yet implemented");
+		//Check for wrong room
+		String r = "";
+		for (Card i: board.roomCards) {
+			if (i.getName() != board.getSoln().person) {
+				r = i.getName();
+				break;
+			}
+		}
+		Solution wrongR = new Solution(board.getSoln().person, r, board.getSoln().weapon);
+		assertFalse(board.checkAccusation(wrongR));
+		
 	}
 	
 	@Test
