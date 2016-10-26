@@ -10,6 +10,7 @@ import org.junit.Test;
 import clueGame.Board;
 import clueGame.BoardCell;
 import clueGame.Card;
+import clueGame.CardType;
 import clueGame.ComputerPlayer;
 import clueGame.Solution;
 
@@ -115,11 +116,11 @@ public class gameActionTests {
 		board.calcTargets(2, 7, 2);
 		BoardCell selectedT = test.pickLocation(board.getTargets());
 		assertEquals(selectedT, board.getCellAt(1, 8));
-		
+
 		// selected is now the north-east door
 		board.calcTargets(selectedT, 1); 
 		selectedT = test.pickLocation(board.getTargets()); //we are now out of the room
-		
+
 		board.calcTargets(selectedT, 4); 
 		selectedT = test.pickLocation(board.getTargets());
 		// We should not be in the room
@@ -182,7 +183,11 @@ public class gameActionTests {
 
 	@Test
 	public void disproveSuggestion() {
+		ComputerPlayer test = new ComputerPlayer("Testing", 0, 0, Color.black);
 		Solution correct = new Solution(board.getSoln().person, board.getSoln().room, board.getSoln().weapon);
+		Card P = new Card(board.getSoln().person, CardType.PERSON);
+		Card R = new Card(board.getSoln().room, CardType.ROOM);
+		Card W = new Card(board.getSoln().weapon, CardType.WEAPON);
 		//Check for one wrong card
 		String p = "";
 		for (Card i: board.personCards) {
@@ -191,8 +196,18 @@ public class gameActionTests {
 				break;
 			}
 		}
-		Solution wrongP = new Solution(p, board.getSoln().room, board.getSoln().weapon);
-		fail("Not yet implemented");
+		//Check wrong weapon
+		String w = "";
+		for (Card i: board.weaponCards) {
+			if (i.getName() != board.getSoln().weapon) {
+				w = i.getName();
+				break;
+			}
+		}
+		Solution wrongPW = new Solution(p, board.getSoln().room, w);
+		Card correctR = test.disproveSuggestion(wrongPW);
+		assertEquals();
+
 	}
 
 	@Test
