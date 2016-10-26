@@ -41,7 +41,13 @@ public class ComputerPlayer extends Player{
 	}
 	
 	public void makeAccusation() {
+		Random ran = new Random();
+		int room = Math.abs(ran.nextInt())%Board.getInstance().roomCards.size();
+		int ppl = Math.abs(ran.nextInt())%Board.getInstance().personCards.size();
+		int weapon = Math.abs(ran.nextInt())%Board.getInstance().weaponCards.size();
 		
+		Solution compSoln = new Solution(Board.getInstance().personCards.get(ppl).getName(), Board.getInstance().roomCards.get(room).getName(), Board.getInstance().weaponCards.get(weapon).getName());
+		Board.getInstance().checkAccusation(compSoln);
 	}
 	
 	public void createSuggestion() {

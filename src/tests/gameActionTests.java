@@ -9,7 +9,9 @@ import org.junit.Test;
 
 import clueGame.Board;
 import clueGame.BoardCell;
+import clueGame.Card;
 import clueGame.ComputerPlayer;
+import clueGame.Solution;
 
 public class gameActionTests {
 	// NOTE: I made Board static because I only want to set it up one 
@@ -129,9 +131,34 @@ public class gameActionTests {
 		
 	}
 	
-	//This will test the accusation made by the player, which is you
+	//This will test the accusation made by the player
 	@Test
 	public void checkAccusation() {
+		Solution correct = new Solution(board.getSoln().person, board.getSoln().room, board.getSoln().weapon);
+		assertTrue(board.checkAccusation(correct));
+		
+		//Check
+		String p = "";
+		for (Card i: board.personCards) {
+			if (i.getName() != board.getSoln().person) {
+				p = i.getName();
+				break;
+			}
+		}
+		Solution wrongP = new Solution(p, board.getSoln().room, board.getSoln().weapon);
+		assertFalse(board.checkAccusation(wrongP));
+		
+		//Check wrong weapon
+		String w = "";
+		for (Card i: board.weaponCards) {
+			if (i.getName() != board.getSoln().person) {
+				w = i.getName();
+				break;
+			}
+		}
+		Solution wrongW = new Solution(board.getSoln().person, board.getSoln().room, w);
+		assertFalse(board.checkAccusation(wrongW));
+		
 		fail("Not yet implemented");
 	}
 	
