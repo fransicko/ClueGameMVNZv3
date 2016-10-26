@@ -268,13 +268,34 @@ public class gameActionTests {
 		a.createSuggestion();
 		assertEquals("Ms. Proudmoore", a.suggestion.person);
 		assertEquals("DoomHammer", a.suggestion.weapon);
-		// Check an array with one weapon
 		
-		//w.add(Board.getInstance().weaponCards.get(0));
-		int weaponSelect = Math.abs(ran.nextInt())%w.size();
-		Card weapon = w.get(weaponSelect);
+		// check with multiple people
+		// Because of the random selection,
+		boolean isPerson = false;
+		board.personCards.add(p.get(2));
+		board.personCards.add(p.get(3));
 		
 		
+		for(int i = 0; i < 100; i++) {
+			a.createSuggestion();
+			if(a.suggestion.person.equals("Mr. Wrynn")) {
+				break;
+			}
+		}
+		assertEquals("Mr. Wrynn", a.suggestion.person);
+		
+		// check with multiple weapons
+		boolean isWeapon = false;
+		board.weaponCards.add(w.get(2));
+		board.weaponCards.add(w.get(3));
+		
+		for(int i = 0; i < 100; i++) {
+			a.createSuggestion();
+			if(a.suggestion.weapon.equals("Atiesh")) {
+				break;
+			}
+		}
+		assertEquals("Atiesh", a.suggestion.weapon);
 		//fail("Not yet implemented");
 		
 		
