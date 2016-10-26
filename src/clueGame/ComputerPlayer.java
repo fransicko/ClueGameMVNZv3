@@ -10,6 +10,7 @@ import java.util.Set;
 public class ComputerPlayer extends Player{
 	// This will be used to keep track of rooms visited
 	private BoardCell visited = new BoardCell(0, 0,"nothing");
+	public Solution suggestion = new Solution("", "", "");
 
 	public ComputerPlayer(String name, int row, int column, Color color) {
 		super(name, row, column, color);
@@ -71,7 +72,7 @@ public class ComputerPlayer extends Player{
 		int selection1 = Math.abs(ran.nextInt())%people.size();
 		int selection2 = Math.abs(ran.nextInt())%weapon.size();
 		
-		
+		suggestion = new Solution(people.get(selection1).getName(), room, weapon.get(selection2).getName());
 		
 	}
 

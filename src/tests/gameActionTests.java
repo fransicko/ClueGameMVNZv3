@@ -250,22 +250,32 @@ public class gameActionTests {
 	@Test
 	public void createSuggestion() {
 		ComputerPlayer a = new ComputerPlayer("test", 21, 3, Color.gray);
+		ArrayList<Card> p = new ArrayList<>(board.personCards);
+		ArrayList<Card> w = new ArrayList<>(board.weaponCards);
 		Random ran = new Random();
 		
+		// Check to make sure that the suggested room is the current room
+		a.createSuggestion();
+		assertEquals(board.getCellAt(21, 3).getWholeValue(), a.suggestion.room);
+		
+		// Check with only one person and weapon
 		// Check an array with one person
-		ArrayList<Card> p = new ArrayList<>();
-		p.add(Board.getInstance().personCards.get(1));
-		int personSelect = Math.abs(ran.nextInt())%p.size();
-		Card person = p.get(personSelect);
-		assertEquals("Ms. Proudmoore", person.getName());
+		board.personCards = new ArrayList<>();
+		board.personCards.add(p.get(1));
+		board.weaponCards = new ArrayList<>();
+		board.weaponCards.add(w.get(0));
+		
+		a.createSuggestion();
+		assertEquals("Ms. Proudmoore", a.suggestion.person);
+		assertEquals("DoomHammer", a.suggestion.weapon);
 		// Check an array with one weapon
-		ArrayList<Card> w = new ArrayList<>();
-		w.add(Board.getInstance().weaponCards.get(0));
+		
+		//w.add(Board.getInstance().weaponCards.get(0));
 		int weaponSelect = Math.abs(ran.nextInt())%w.size();
 		Card weapon = w.get(weaponSelect);
-		assertEquals("DoomHammer", weapon.getName());
 		
-		fail("Not yet implemented");
+		
+		//fail("Not yet implemented");
 		
 		
 		
