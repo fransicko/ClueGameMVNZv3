@@ -126,18 +126,8 @@ public class gameActionTests {
 		board.calcTargets(selectedT, 4); 
 		selectedT = test.pickLocation(board.getTargets());
 		// We should not be in the room
+		// NOTE: for this test it will fail for certain times
 		assertNotEquals(selectedT, board.getCellAt(1, 8));
-		/*//The point of this is to make sure that we land on a different location other than the doors
-		for (int i = 0; i < 50; ++i) {
-			if (selectedT != board.getCellAt(4, 5) && selectedT != board.getCellAt(1, 8)) {
-				loc = true;
-				break;
-			}
-			board.calcTargets(selectedT, 6);
-			selectedT = test.pickLocation(board.getTargets());
-		}
-
-		assertTrue(loc);*/
 
 
 	}
