@@ -52,8 +52,8 @@ public class ComputerPlayer extends Player{
 	}
 	
 	public void createSuggestion() {
-		String room = Board.getInstance().board[21][3];
-		
+		Random ran = new Random();
+		String room = Board.getInstance().getCellAt(getRow(), getColumn()).getWholeValue();
 		ArrayList<Card> people = new ArrayList<>();
 		for (Card i : Board.getInstance().personCards) {
 			if (!Board.getInstance().seenCards.contains(i)) {
@@ -66,6 +66,11 @@ public class ComputerPlayer extends Player{
 				weapon.add(i);
 			}
 		}
+		
+		int selection1 = Math.abs(ran.nextInt())%people.size();
+		int selection2 = Math.abs(ran.nextInt())%weapon.size();
+		
+		
 		
 	}
 

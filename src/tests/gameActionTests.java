@@ -186,17 +186,23 @@ public class gameActionTests {
 	
 	@Test
 	public void createSuggestion() {
+		ComputerPlayer a = new ComputerPlayer("test", 21, 3, Color.gray);
 		Random ran = new Random();
+		
 		// Check an array with one person
 		ArrayList<Card> p = new ArrayList<>();
-		int ppl = Math.abs(ran.nextInt())%Board.getInstance().personCards.size();
-		p.add(Board.getInstance().personCards.get(ppl));
-		assertTrue()
-		
+		p.add(Board.getInstance().personCards.get(1));
+		int personSelect = Math.abs(ran.nextInt())%p.size();
+		Card person = p.get(personSelect);
+		assertEquals("Ms. Proudmoore", person.getName());
 		// Check an array with one weapon
 		ArrayList<Card> w = new ArrayList<>();
-		int weapon = Math.abs(ran.nextInt())%Board.getInstance().weaponCards.size();
-		w.add(Board.getInstance().weaponCards.get(weapon));
+		w.add(Board.getInstance().weaponCards.get(0));
+		int weaponSelect = Math.abs(ran.nextInt())%w.size();
+		Card weapon = w.get(weaponSelect);
+		assertEquals("DoomHammer", weapon.getName());
+		
+		
 		
 	}
 
