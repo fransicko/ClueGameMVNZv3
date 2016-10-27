@@ -317,6 +317,16 @@ public class gameActionTests {
 		Board.getInstance().comp.get(5).hand = new ArrayList<Card>();
 		Card human2 = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().person.getName());
 		assertNull(human2);
+		
+		// Two computers can disprove but only the first one can disprove
+		Board.getInstance().person.hand = new ArrayList<Card>();
+		Board.getInstance().comp.get(1).hand.add(new Card(board.getSoln().person, CardType.PERSON));
+		Board.getInstance().comp.get(2).hand.add(new Card(board.getSoln().room, CardType.ROOM));
+		Card comp0 = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().comp.get(0).getName());
+		assertTrue(board.getSoln().person.equals(comp0.getName()));
+		
+		//
+		
 	}
 
 }

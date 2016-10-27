@@ -418,15 +418,33 @@ public class Board {
 
 	//This will handle suggestions, the suggester is the person who made the suggestion
 	public Card handleSuggestion(Solution suggestion, String suggester) {
-		if (!suggester.equals(person.getName()) && person.disproveSuggestion(suggestion) != null) return person.disproveSuggestion(suggestion);
+		int correct = 0;
+		Card correctSugs = null;
 		
-		for (ComputerPlayer i: comp) {
-			if (i.getName() != suggester) {
-				if (i.disproveSuggestion(suggestion) != null) return i.disproveSuggestion(suggestion);
+		if (!suggester.equals(person.getName()) && person.disproveSuggestion(suggestion) != null) {
+			correctSugs = new Card(person.disproveSuggestion(suggestion));
+			
+			for (ComputerPlayer i: comp) {
+				if (i.getName() != suggester) {
+					if (i.disproveSuggestion(suggestion) != null) return i.disproveSuggestion(suggestion);
+				}
+			}
+			
+		}
+		
+		else {
+			for (ComputerPlayer i: comp) {
+				if (i.getName() != suggester) {
+					if (i.disproveSuggestion(suggestion) != null) return i.disproveSuggestion(suggestion);
+				}
 			}
 		}
 		
-		return null;
+		
+		
+		
+		return correctSugs;
+		
 	}
 
 	// this will check the accusation to see if it is correct
