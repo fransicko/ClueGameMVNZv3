@@ -2,6 +2,7 @@ package clueControlGUI;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -63,14 +64,14 @@ public class clueControlGUI extends JPanel{
 	
 	private JPanel createNextPlayerButtonPanel() {
 		JButton nextPlayer = new JButton("Next player");
-		JPanel panel = new JPanel();
+		JPanel panel = new JPanel(new BorderLayout());
 		panel.add(nextPlayer);
 		return panel;
 	}
 	
 	private JPanel createMakeAccusationButtonPanel() {
 		JButton accusation = new JButton("Make an Accusation");
-		JPanel panel = new JPanel();
+		JPanel panel = new JPanel(new BorderLayout());
 		panel.add(accusation);
 		return panel;
 	}
