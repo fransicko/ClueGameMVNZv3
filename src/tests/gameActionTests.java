@@ -233,11 +233,6 @@ public class gameActionTests {
 	}
 
 	@Test
-	public void handleSuggestion() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void createSuggestion() {
 		ComputerPlayer a = new ComputerPlayer("test", 21, 3, Color.gray);
 		ArrayList<Card> p = new ArrayList<>(board.personCards);
@@ -286,10 +281,11 @@ public class gameActionTests {
 			}
 		}
 		assertEquals("Atiesh", a.suggestion.weapon);
-		//fail("Not yet implemented");
-		
-		
-		
+	}
+	
+	@Test
+	public void handleSuggestion() {
+		fail("Not yet implemented");
 	}
 
 }

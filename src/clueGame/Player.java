@@ -10,7 +10,7 @@ public class Player {
 	private int column;
 	private Color color;
 	public ArrayList<Card> hand = new ArrayList<>();
-	
+
 	public Player(String name, int row, int column, Color color) {
 		super();
 		Name = name;
@@ -18,27 +18,36 @@ public class Player {
 		this.column = column;
 		this.color = color;
 	}
-	
+
 	public Card disproveSuggestion(Solution suggestion) {
 		//These are here to see if any of the cards are correct
 		boolean cP = Board.getInstance().getSoln().person.equals(suggestion.person);
 		boolean cW = Board.getInstance().getSoln().weapon.equals(suggestion.weapon);
 		boolean cR = Board.getInstance().getSoln().room.equals(suggestion.room);
-		
+
+		//This will be our dummy var
+		Card ans = null;
+
 		if (cP && cW && cR) {
 			Random ran = new Random();
 			int choose = Math.abs(ran.nextInt())%3;
-			
+
 			switch (choose) {
 			case 0:
-				return new Card(suggestion.person, CardType.PERSON);
+				ans = new Card(suggestion.person, CardType.PERSON);
+				Board.getInstance().seenCards.add(new Card(ans));
+				return ans;
 			case 1:
-				return new Card(suggestion.weapon, CardType.WEAPON);
+				ans = new Card(suggestion.weapon, CardType.WEAPON);
+				Board.getInstance().seenCards.add(new Card(ans));
+				return ans;
 			case 2:
-				return new Card(suggestion.room, CardType.ROOM);
+				ans = new Card(suggestion.room, CardType.ROOM);
+				Board.getInstance().seenCards.add(new Card(ans));
+				return ans;
 			}
 		}
-		
+
 		else if (cP || cW || cR) {
 			//first check the combinations of them
 			if (cP && cW) {
@@ -46,9 +55,13 @@ public class Player {
 				int choose = Math.abs(ran.nextInt())%2;
 				switch (choose) {
 				case 0:
-					return new Card(suggestion.person, CardType.PERSON);
+					ans = new Card(suggestion.person, CardType.PERSON);
+					Board.getInstance().seenCards.add(new Card(ans));
+					return ans;
 				case 1:
-					return new Card(suggestion.weapon, CardType.WEAPON);
+					ans = new Card(suggestion.weapon, CardType.WEAPON);
+					Board.getInstance().seenCards.add(new Card(ans));
+					return ans;
 				}
 			}
 			else if (cP && cR) {
@@ -56,9 +69,13 @@ public class Player {
 				int choose = Math.abs(ran.nextInt())%2;
 				switch (choose) {
 				case 0:
-					return new Card(suggestion.person, CardType.PERSON);
+					ans = new Card(suggestion.person, CardType.PERSON);
+					Board.getInstance().seenCards.add(new Card(ans));
+					return ans;
 				case 1:
-					return new Card(suggestion.room, CardType.ROOM);
+					ans = new Card(suggestion.room, CardType.ROOM);
+					Board.getInstance().seenCards.add(new Card(ans));
+					return ans;
 				}
 			}
 			else if (cW && cR) {
@@ -66,20 +83,24 @@ public class Player {
 				int choose = Math.abs(ran.nextInt())%2;
 				switch (choose) {
 				case 0:
-					return new Card(suggestion.weapon, CardType.WEAPON);
+					ans = new Card(suggestion.weapon, CardType.WEAPON);
+					Board.getInstance().seenCards.add(new Card(ans));
+					return ans;
 				case 1:
-					return new Card(suggestion.room, CardType.ROOM);
+					ans = new Card(suggestion.room, CardType.ROOM);
+					Board.getInstance().seenCards.add(new Card(ans));
+					return ans;
 				}
 			}
-			
+
 			// Now check the individual ones
 			if (cP) return new Card(suggestion.person, CardType.PERSON);
 			if (cW) return new Card(suggestion.weapon, CardType.WEAPON);
 			if (cR) return new Card(suggestion.room, CardType.ROOM);
 		}
-		
+
 		return null;
-		
+
 	}
 
 	// These are for testing purposes
@@ -114,12 +135,12 @@ public class Player {
 	public void setColor(Color color) {
 		this.color = color;
 	}
-	
+
 	public void giveCard(Card card) {
 		hand.add(card);
 	}
-	
-	
-	
+
+
+
 
 }
