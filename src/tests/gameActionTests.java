@@ -325,7 +325,10 @@ public class gameActionTests {
 		Card comp0 = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().comp.get(0).getName());
 		assertTrue(board.getSoln().person.equals(comp0.getName()));
 		
-		//
+		// Player then computer can disprove but only computer will disprove
+		Board.getInstance().person.hand.add((new Card(board.getSoln().weapon, CardType.WEAPON)));
+		Card comp1 = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().comp.get(0).getName());
+		assertTrue(board.getSoln().person.equals(comp1.getName()));
 		
 	}
 
