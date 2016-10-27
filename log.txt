@@ -1,0 +1,577 @@
+commit ac1b386ccac8f3dc06a69662ebc357f669afef55
+Author: The Ngo <The@laathe.mines.edu>
+Date:   Wed Oct 26 19:36:55 2016 -0600
+
+    Finished handleSuggestion last test
+
+commit 23a69e8e502019dcddc428b6ac600818c377fbbf
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Wed Oct 26 19:25:57 2016 -0600
+
+    I moved some things around in our handleSuggestion method.
+
+commit ac2a0f16138f468b879a55044ee2e0c9265e7f4c
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Wed Oct 26 19:03:14 2016 -0600
+
+    Working on the handle suggestion test, i've added some code to the handlesuggestion method in board.
+
+commit 35c47175aca042e9bd74732da78fe49d5866863a
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Wed Oct 26 18:37:24 2016 -0600
+
+    I went back and changed how player disproved the suggestion. I also updated the disproveSuggestion test to make our our code works.
+
+commit 09d7d59b61ceefbad83ecd0d8a0efd82642098ea
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Wed Oct 26 18:15:37 2016 -0600
+
+    I added calls to add cards to our seen cards array.
+
+commit d64ef7ef6d0e4e654a7a5f83a32fa3591250ad92
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Wed Oct 26 17:42:38 2016 -0600
+
+    Hey grader, so for our selectNotVisitedRoomTarget test it fails once in awhile but that is beacuse i'm checking to make sure that after we leave the room we don't automatically go back to the room. of course it will go back into the room if it was chosen, but that is a random chance to do that. just though i would let you know.
+
+commit 7c3ca7e7247e2b9d82c55889233413a55612577b
+Author: The Ngo <The@laathe.mines.edu>
+Date:   Wed Oct 26 10:31:50 2016 -0600
+
+    Added in methods for choosing from multiple unseen cards
+
+commit ce3e7540ebbcf9020ada9852fdd44f7f661ea7ee
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 22:06:34 2016 -0600
+
+    Working on making the test for create suggestion, change some stuff in the computerplayer class.
+
+commit 74c0a7c3d48cd88d2ddb6ab04c14c0bc90f156d2
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 21:46:42 2016 -0600
+
+    Added a fail.
+
+commit d86fce67410d98f6a4a9ffd6f503b0885def4fd7
+Merge: c64306b 3f422d0
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 21:44:43 2016 -0600
+
+    Merge branch 'master' of https://github.com/TheRealThe/ClueGameMVTNv2
+    We were working on two different test at the same time and we needed to
+    combine them
+
+commit 3f422d0e7119a49acdf47d060315964e83a71075
+Author: The Ngo <The@laathe.mines.edu>
+Date:   Tue Oct 25 21:42:26 2016 -0600
+
+    added few implementations to create suggestion test
+
+commit c64306bf009520499a8a1b78889b5860a85a1108
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 21:39:02 2016 -0600
+
+    I was able to get the disprovSuggestion to pass for all the test, i used a for loop to check that the two values were being picked.
+
+commit 813b89762048cce7e4a50275e240384440560322
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 21:25:32 2016 -0600
+
+    I'm working on making the test for disproving suggestion, my hinderence is strings.
+
+commit bb6ec8004944f414e057563b8d2d0916d1ab6164
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 21:01:13 2016 -0600
+
+    So there was a few errrors in the check accusation part so i fixed them. There was an error with the way i was storing the visited BoardCell and so i fixed the test so match what was happening.
+
+commit 00452721e27aa79361dfd4c1ad788ce575c2a3d9
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 20:15:06 2016 -0600
+
+    I changed the arraylist variable in Computer player to a single BoardCell value.
+
+commit a3edc22aedfcb7d68c6fd8429017e41cca9e2049
+Author: The Ngo <The@laathe.mines.edu>
+Date:   Tue Oct 25 20:12:07 2016 -0600
+
+    Added methods to add unseen cards to people and weapon list in the specific room
+
+commit cfdd360a3ad904452324638608da8b3a84d13c10
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 19:46:30 2016 -0600
+
+    I've fleshed out our disproveSugestion method i just have to set up the test.
+
+commit 9c71c327279af1b5b8c5ab3961bc41460d444a16
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 19:00:07 2016 -0600
+
+    Check accusation has passed.
+
+commit 7d9e7a52d8c2fc3ddd14aefe472dfe5edd50c41c
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 18:58:26 2016 -0600
+
+    Working on the testing for accusation.
+
+commit 1c03bc1aad24ec15642510a8c71dd3671541b057
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 18:23:05 2016 -0600
+
+    So i have created a Solution variable that will contain the solution to the game. It is made when everything is being set up. I also created three decks that contain each of the individual typess of decks. There is a getter for the solution.
+
+commit df0aa1ddf36c72507185311d46742ef8a6a83215
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 17:25:49 2016 -0600
+
+    I got the last of the select target test to pass, i left some comments to try to help describe my logic.
+
+commit 378845274f045d0fa5c5cb914444642484d98a22
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 14:59:28 2016 -0600
+
+    Going to test ot make sure that these doors aren't the only ones being visited.
+
+commit 0ecfe98c9580c68c15bfd2917c534ed9ea5e1159
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 14:44:58 2016 -0600
+
+    My logic is to start at one point and move to one of the two doors, once then we will move to the next door, and after that the next location shouldn't be the previous door. Of course there is a chance but we just need to show it pass once.
+
+commit 4a004744b7a3a40ee7e35995d38742efc77a7078
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 14:25:19 2016 -0600
+
+    Started constructing a test to test and make sure that we don't get our selves into a loop of entering the same room over again.
+
+commit d3f395bbb414bef8fc7d9b446beb5f9e6ed96b25
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 14:00:39 2016 -0600
+
+    The test passed for testing room.
+
+commit 483c6663a0223ace6f4cb9dff0e562b15bee446c
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 13:52:22 2016 -0600
+
+    Making test to test to make sure that only the door is returned for a few starting points.
+
+commit 791f062b996bcf466540179bb5599d81f342b4ce
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 12:54:18 2016 -0600
+
+    We were able to get the random target test to pass by implementing the chose location methond in the computerplayer class.
+
+commit c5afcd550ea7f57edc84de9651d65e34c8563101
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 12:42:15 2016 -0600
+
+    Started working on the selecte random location with no doors test.
+
+commit e843cf0f48a763ba88498da9541140ddc511796e
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Tue Oct 25 12:15:18 2016 -0600
+
+    Added the test file.
+
+commit 9b169af6fa5cbc4bfb6cea1d399dc456a1f7c2dd
+Author: The Ngo <The@laathe.mines.edu>
+Date:   Mon Oct 24 18:02:44 2016 -0600
+
+    Added an explanation on how the dealtCards test also test for duplicates
+
+commit e90542579ed1bbe372da2a5fc3592b21163d647a
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Mon Oct 24 17:54:37 2016 -0600
+
+    Made the dealtCard test pass. More information explained in the test.
+
+commit 0ae7beacc305b920feef0c8cb11badb87af4a2b4
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Mon Oct 24 17:31:04 2016 -0600
+
+    Fixed some bugs with the card dealing.
+
+commit c2c80beba2912194b62fd6980394d97812458f34
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Mon Oct 24 23:10:47 2016 -0600
+
+    Added the public varialbe hand so that way each player has a hand of cards
+
+commit aed6b285d678fbc4ce06bb97a81a1913eba7d2be
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Mon Oct 24 23:07:45 2016 -0600
+
+    Made the full deck test passed, this test tested to make sure that we had the correct number of cards of each type and that they are loaded correctly.
+
+commit 292665e3e56e40b67ad8a429044de0e48c94c6c3
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Mon Oct 24 22:12:23 2016 -0600
+
+    Starting to make a test to test the differnt properties of teh deck.
+
+commit 71d7c644e5a0bc2cc4f60ef4f397c9a80db2e3f2
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Sun Oct 23 14:21:17 2016 -0600
+
+    I added the test full deck, but there is nothing in it yet.
+
+commit d3d16c61672d8012eb00cb0eca80007bfd03ef5c
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Sun Oct 23 12:27:31 2016 -0600
+
+    So after looking at the code i saw that the problem that i was running into was that i was using magenta and not black for the equals. Test passed.
+
+commit a90bb73c9544beae79e359b5b98e86bc0cc17f83
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Sun Oct 23 11:31:10 2016 -0600
+
+    Created a test to test and make sure that the people were loaded correctlly, i'm goign to test the person and the first and last computer player.
+
+commit e201b295493f51588491fb6104faea87fdc31422
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Thu Oct 20 19:24:42 2016 -0600
+
+    I have the player config set up we just have to test it now. I added a method to convert string to Color and filled in HumanPlayer.
+
+commit 27974947491b4bac7390ddb5979a9d68211be70c
+Merge: 646104d 31635e0
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Thu Oct 20 18:58:07 2016 -0600
+
+    Merge branch 'master' of https://github.com/TheRealThe/ClueGameMVTNv2
+    We are adding our two methods to one class
+
+commit 646104da6ddd30418e75d1ccd95d67fc775f5ca3
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Thu Oct 20 18:57:43 2016 -0600
+
+    Changed the layout of our players text file
+
+commit 31635e035ef72320e9934375c762125ede011592
+Author: The Ngo <The@laathe.mines.edu>
+Date:   Thu Oct 20 18:57:36 2016 -0600
+
+    Added method to read in weapons and put into deck
+
+commit 9b7fa638968839c1ee689cfbc45a981eab7468ee
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Thu Oct 20 18:44:57 2016 -0600
+
+    I changed the load config to load player config so that way we can just have two methods called in initiialize. I also added a new method that will will take the player and weapons files as inputs.
+
+commit dfedc69df55b226b45662e49e93823ec23cc2a00
+Merge: 9968f2a 932f580
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Thu Oct 20 18:19:27 2016 -0600
+
+    Merge branch 'master' of https://github.com/TheRealThe/ClueGameMVTNv2
+    Because we wanted too?
+
+commit 9968f2a6239089810667b26695c1e5cc548c64b1
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Thu Oct 20 18:19:01 2016 -0600
+
+    I changed the set config by adding two more strings
+
+commit 932f580ef6be7daf3fa86bb2681878c35a8414f5
+Author: The Ngo <The@laathe.mines.edu>
+Date:   Thu Oct 20 18:17:47 2016 -0600
+
+    Added the weapons to weapons.txt
+
+commit b3849d99c113b0d5aad7c7d400b8ff46cde9eb20
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Thu Oct 20 17:48:41 2016 -0600
+
+    Changed the files to txt
+
+commit 22ff778615089639a77af4763e3e59e13918b0a5
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Thu Oct 20 17:47:29 2016 -0600
+
+    Added the weapons file
+
+commit 329bb717bec3a80b528311bb5497d9f62ab751e9
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Thu Oct 20 12:15:37 2016 -0600
+
+    saved
+
+commit 99c01a897509799ca829e4a76ce01b5b80ac0b82
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Thu Oct 20 12:15:02 2016 -0600
+
+    I made an array of type card called deck to contain all the cards, i added a private enum variable in card so that we know what type it is.
+
+commit 023c7038e6f7ae6738432c7cde471b75e2b99662
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Thu Oct 20 12:07:34 2016 -0600
+
+    Added in some more methods and i understand what solution is, each person will have an accusation and that will be in the form of a solution.
+
+commit f6737751ff0389bb3d77fce4d9603a57acbf9341
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Thu Oct 20 12:01:06 2016 -0600
+
+    This text file conatins the name, baord cell, and color of our players.
+
+commit 2291c36050bd3c39e2bfb3f30fb2719c41a2609b
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Thu Oct 20 11:24:23 2016 -0600
+
+    I added in more classes and added some methods into our classes. You can learn about these classes from the UML diagram on the problem page.
+
+commit 02a5b9cbc4b8d89af96c05895c43a535dada368e
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Thu Oct 20 11:17:55 2016 -0600
+
+    I added the two classes, added some getters in setters in Player, and i added the methods for Comp player.
+
+commit 200976f184a027b8a38f0a7d3313aa36bdfa1134
+Author: Michael Villafuerte <mvillafu@mymail.mines.edu>
+Date:   Thu Oct 20 11:12:10 2016 -0600
+
+    Added the new class to our git
+
+commit f0db30896ae2aff7f9417d591fd99720d32723c1
+Author: nickzdeb <nickzdeb@gmail.com>
+Date:   Thu Oct 13 11:27:28 2016 -0600
+
+    Add files via upload
+
+commit 42b4c7b583587c2e82b63799bf931da1994adab6
+Author: nickzdeb <nickzdeb@gmail.com>
+Date:   Wed Oct 12 21:49:51 2016 -0600
+
+    finished final tests, broke tests from part 1
+
+commit 7da0a5d98720a1333f149ed09d1f4e84e8d5dc64
+Author: nickzdeb <nickzdeb@gmail.com>
+Date:   Wed Oct 12 19:44:42 2016 -0600
+
+    Got all tests to work on our file except for one
+
+commit 1fb45990ae06d8fc148b25f384ce7e00aa0f4809
+Author: Ethan Bonin <ethanbonin@gmail.com>
+Date:   Wed Oct 12 18:04:30 2016 -0600
+
+    We got all the professor tests to pass for the adj tests. Now we need to get our tests to pass. We are thinking that we did something wrong with our tests.
+
+commit 09a872a981f37c6c8cdad09a85982075b70ea41d
+Author: Ethan Bonin <ethanbonin@gmail.com>
+Date:   Wed Oct 12 17:18:27 2016 -0600
+
+    We got all the Adjcalcs to pass. now need to work on adjcalctargets
+
+commit 6cdb7c303195c92e612ca0eaf6569cdbe67d6e26
+Author: Ethan Bonin <ethanbonin@gmail.com>
+Date:   Tue Oct 11 15:19:17 2016 -0600
+
+    Working on trying to work ou the conditions to get the set to delete
+
+commit 1425b4ca701d778cb0702617ed95c47ddb9c4c41
+Author: Ethan Bonin <ethanbonin@gmail.com>
+Date:   Tue Oct 11 13:56:51 2016 -0600
+
+    Got one of the tests to pass for Adj Matrix
+
+commit e4222661b82b36aeabe10a0b50a353f3958e8398
+Author: nickzdeb <nickzdeb@gmail.com>
+Date:   Mon Oct 10 12:16:07 2016 -0600
+
+    Finished all tests for part 3
+
+commit 9316f1c077c73a24845a869a69b048c96d863d6e
+Author: Christopher Bonin <ethanbonin@gmail.com>
+Date:   Sat Oct 8 00:07:38 2016 -0600
+
+    Almost finished part 3 of our tests. Adjusting all the values. Left off at testTargetsintoROom
+
+commit a6beed071e1fb01bbf06c20517c496e59f1d9e15
+Author: nickzdeb <nickzdeb@gmail.com>
+Date:   Fri Oct 7 22:25:31 2016 -0600
+
+    Start of part 3
+
+commit 498277e71d84363b34a72b8e9bcf5edbfc168164
+Author: Ethan Bonin <ethanbonin@gmail.com>
+Date:   Fri Oct 7 22:10:15 2016 -0600
+
+    We got all the test to work. We finally got the legend to fully checked
+
+commit 8fa7a1b722bbadc0dde0f9c8be4c32ff9e8f3ad9
+Author: Ethan Bonin <ethanbonin@gmail.com>
+Date:   Fri Oct 7 21:16:15 2016 -0600
+
+    I got all the tests to work.. kind of...
+
+commit f2e177fc3ee5ce57060b6ea9ab028b64d7739dcd
+Author: Ethan Bonin <ethanbonin@gmail.com>
+Date:   Fri Oct 7 20:02:46 2016 -0600
+
+    Almost got all of our own tests to work.. But Now I need to get the legend to work
+
+commit 096dba4a51a5163a598a0691446433a95ca16b97
+Author: Ethan Bonin <ethanbonin@gmail.com>
+Date:   Fri Oct 7 19:35:01 2016 -0600
+
+    Finally got all the tests to work
+
+commit a0e75a1c139c973393fda255a6dc7a7e318d7639
+Author: nickzdeb <nickzdeb@gmail.com>
+Date:   Fri Oct 7 19:15:14 2016 -0600
+
+    first exception test
+
+commit 618c861861f7a5c357cb6158f9f3c48c4a19c09c
+Author: nickzdeb <nickzdeb@gmail.com>
+Date:   Fri Oct 7 18:52:57 2016 -0600
+
+    4th test passes
+
+commit 1b2d43e92ee3a0f5a3d40f72a69eef993241c099
+Author: Christopher Bonin <ethanbonin@gmail.com>
+Date:   Fri Oct 7 17:56:40 2016 -0600
+
+    Got the Four direction door to work
+
+commit 1500ff9da5f8793956c8fe7151a0c9700801e431
+Author: Christopher Bonin <ethanbonin@gmail.com>
+Date:   Fri Oct 7 17:42:14 2016 -0600
+
+    Finally got the stupid grid to get stuff inside of it
+
+commit a52eee46610fe81171b5f4c889dd5c35193500b9
+Author: Christopher Bonin <ethanbonin@gmail.com>
+Date:   Fri Oct 7 17:28:01 2016 -0600
+
+    The tests stapped working, But I fixed them
+
+commit 7a42ba20928162f7518284c8eca1576b6722934d
+Author: Christopher Bonin <ethanbonin@gmail.com>
+Date:   Fri Oct 7 17:24:31 2016 -0600
+
+    Fixed all the headers
+
+commit d3243141e9d7bb63bb9da381f38df8e9caaee4fe
+Merge: 2ce5aee 5a06319
+Author: nickzdeb <nickzdeb@gmail.com>
+Date:   Fri Oct 7 17:21:59 2016 -0600
+
+    merged with pulled version
+
+commit 2ce5aeebfa6f1c46c86ebbde1b48b35835bbd605
+Author: nickzdeb <nickzdeb@gmail.com>
+Date:   Fri Oct 7 17:19:35 2016 -0600
+
+    updated boardCell functions
+
+commit 5a06319d2d336116b51d5cd4bfdfc0dfdc6bbd3d
+Author: Christopher Bonin <ethanbonin@gmail.com>
+Date:   Fri Oct 7 17:17:42 2016 -0600
+
+    Corrected the loadroom and loadBoard void functions
+
+commit 42bc7de810024b3ceab3e399ed18f7b9f54057ce
+Author: Ethan Bonin <ethanbonin@gmail.com>
+Date:   Fri Oct 7 16:07:31 2016 -0600
+
+    Trudging through trying to figure out how to load the grid with the board.
+
+commit 127351c8ac77d22177dcd36c3c47824058efaee1
+Author: Ethan Bonin <ethanbonin@gmail.com>
+Date:   Thu Oct 6 23:41:13 2016 -0600
+
+    A couple of things. We need to create the board from the numrows and numcols. The CSV file needs to be placed into every BoardSpace. Once that is done, then we need to create the cases for each doorway
+
+commit ffd4547c93c58fc2d3f72a4d3d97a982bcfa82ed
+Author: Ethan Bonin <ethanbonin@gmail.com>
+Date:   Thu Oct 6 23:24:33 2016 -0600
+
+    We've made progress.... We got the second test to pass
+
+commit 96859c25d0accb1c907e4b63c2d2b4aea41d9f82
+Author: Ethan Bonin <ethanbonin@gmail.com>
+Date:   Thu Oct 6 22:53:57 2016 -0600
+
+    We just got the files to be read. WE placed them into a map. TestRooms has finally passed
+
+commit f62005ad6cffe9f87a33cfcf5b9204ef81ac32fc
+Author: Ethan Bonin <ethanbonin@gmail.com>
+Date:   Thu Oct 6 22:01:39 2016 -0600
+
+    The files are fully read now
+
+commit db52e22d628d0fa50adfc153c6743376cd0c8c1f
+Author: Ethan Bonin <ethanbonin@gmail.com>
+Date:   Thu Oct 6 21:18:03 2016 -0600
+
+    Started Fresh. Finally got hte files to be read.
+
+commit 3c31c16370465c9d416594301ef4f34262836bb7
+Author: nickzdeb <nickzdeb@gmail.com>
+Date:   Thu Oct 6 20:03:48 2016 -0600
+
+    start of board 2
+
+commit c38a881864277f8ac8eecf354c7de1ae61f72b65
+Author: Christopher Bonin <ethanbonin@gmail.com>
+Date:   Thu Oct 6 11:58:29 2016 -0600
+
+    Changed nothing. Doing a push to stay updated
+
+commit 26e2918d9bbdbfc7c3bb93473fe3ad76c3fdb92b
+Author: nickzdeb <nickzdeb@gmail.com>
+Date:   Thu Oct 6 11:45:26 2016 -0600
+
+    added all files
+
+commit bf6633d9ab4cb063b860bfbe6e4f298b1a9ffeb3
+Author: nickzdeb <nickzdeb@gmail.com>
+Date:   Thu Oct 6 11:43:38 2016 -0600
+
+    added professor tests
+
+commit 34c694c1eb844db0e4128c727109607e4a84b752
+Author: nickzdeb <nickzdeb@gmail.com>
+Date:   Thu Oct 6 11:29:05 2016 -0600
+
+    final part 1
+
+commit 24f42316589e8b6ebe060cc03c00ba1f73647c73
+Author: Christopher Bonin <ethanbonin@gmail.com>
+Date:   Tue Oct 4 12:38:20 2016 -0600
+
+    Uploaded the files
+
+commit a3195120ac3776982cb919deb095b50ed7d65e07
+Author: Christopher Bonin <ethanbonin@gmail.com>
+Date:   Tue Oct 4 11:42:16 2016 -0600
+
+    Just added all the files from part 3. About to start coding
+
+commit 842436dd400023ac405626579c38bbaa4db32db5
+Author: Christopher Bonin <ethanbonin@gmail.com>
+Date:   Mon Oct 3 18:21:58 2016 -0600
+
+    Created all functions so that it fails
+
+commit 626e72c1d0874c0219edeab43f2843d1d0e803ca
+Author: Christopher Bonin <ethanbonin@gmail.com>
+Date:   Mon Oct 3 17:31:02 2016 -0600
+
+    Got the AdjMat to work. Still working on CalcTarg
+
+commit 88cc70c34ebb10ee898592c2524cf500b34ca24e
+Author: Christopher Bonin <ethanbonin@gmail.com>
+Date:   Mon Oct 3 17:00:25 2016 -0600
+
+     Just implemented all tests that they fail.
+
+commit 578d01b6bcc881c38469a947605764aea6e4df31
+Author: nickzdeb <nickzdeb@gmail.com>
+Date:   Sun Oct 2 19:44:16 2016 -0600
+
+    The initial commit
