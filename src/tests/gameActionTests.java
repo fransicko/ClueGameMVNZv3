@@ -201,6 +201,9 @@ public class gameActionTests {
 				break;
 			}
 		}
+		
+		test.hand = new ArrayList<Card>();
+		test.hand.add(new Card(board.getSoln().room, CardType.ROOM));
 
 		//Check with only one correct value
 		Solution wrongPW = new Solution(p, board.getSoln().room, w);
@@ -209,6 +212,7 @@ public class gameActionTests {
 
 		//Check with two correct values
 		Solution wrongP = new Solution(p, board.getSoln().room, board.getSoln().weapon);
+		test.hand.add(new Card(board.getSoln().weapon, CardType.WEAPON));
 		// These will be used to check that we return atleast one of them
 		boolean cR = false;
 		boolean cW = false;

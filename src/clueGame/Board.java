@@ -416,8 +416,9 @@ public class Board {
 
 	}
 
-	//This will handle suggestions
-	public Card handleSuggestion() {
+	//This will handle suggestions, the suggester is the person who made the suggestion
+	public Card handleSuggestion(Solution suggestion, String suggester) {
+		
 		return null;
 	}
 
