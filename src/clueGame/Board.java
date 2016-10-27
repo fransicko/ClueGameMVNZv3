@@ -32,8 +32,8 @@ public class Board {
 	public ArrayList<Card> weaponCards = new ArrayList<>();
 	public ArrayList<Card> seenCards = new ArrayList<>();
 	// Player objects
-	private HumanPlayer person;
-	private ArrayList<ComputerPlayer> comp = new ArrayList<ComputerPlayer>();
+	public HumanPlayer person;
+	public ArrayList<ComputerPlayer> comp = new ArrayList<ComputerPlayer>();
 	//This is the solution to the game
 	private Solution solution;
 
@@ -418,6 +418,13 @@ public class Board {
 
 	//This will handle suggestions, the suggester is the person who made the suggestion
 	public Card handleSuggestion(Solution suggestion, String suggester) {
+		if (!suggester.equals(person.getName()) && person.disproveSuggestion(suggestion) != null) return person.disproveSuggestion(suggestion);
+		
+		for (ComputerPlayer i: comp) {
+			if (i.getName() != suggester) {
+				if (i.disproveSuggestion(suggestion) != null) return i.disproveSuggestion(suggestion);
+			}
+		}
 		
 		return null;
 	}

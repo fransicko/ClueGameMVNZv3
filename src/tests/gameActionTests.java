@@ -289,7 +289,34 @@ public class gameActionTests {
 	
 	@Test
 	public void handleSuggestion() {
-		fail("Not yet implemented");
+		String suggester = "Test";
+		// At the start the suggestion is correct but will change later
+		Solution suggestion = new Solution(board.getSoln().person, board.getSoln().room, board.getSoln().weapon);;
+		// This will test to make sure that no one has a card to disprove
+		// We will make everyones hand empty
+		Board.getInstance().person.hand = new ArrayList<Card>();
+		for (ComputerPlayer i: Board.getInstance().comp) {
+			i.hand = new ArrayList<Card>();
+		}
+		Card noOne = Board.getInstance().handleSuggestion(suggestion, suggester);
+		assertNull(noOne);
+		
+		// Only the accusing player has the cards
+		Board.getInstance().comp.add(new ComputerPlayer("test", 0, 0, Color.black));
+		Board.getInstance().comp.get(5).hand.add(new Card(board.getSoln().person, CardType.PERSON));
+		Card accus = Board.getInstance().handleSuggestion(suggestion, "test");
+		assertNull(accus);
+		
+		//only human can disprove
+		Board.getInstance().person.hand.add(new Card(board.getSoln().room, CardType.ROOM));
+		Card human1 = Board.getInstance().handleSuggestion(suggestion, "test");
+		assertTrue(board.getSoln().room.equals(human1.getName()));
+		
+		//Now the human is the accuser
+		//We are re-using the values that we have already laid out but we are getting ride of test's hand
+		Board.getInstance().comp.get(5).hand = new ArrayList<Card>();
+		Card human2 = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().person.getName());
+		assertNull(human2);
 	}
 
 }
