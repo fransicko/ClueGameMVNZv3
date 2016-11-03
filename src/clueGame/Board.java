@@ -1,11 +1,15 @@
 package clueGame;
 
 import java.util.*;
+
+import javax.swing.JPanel;
+
 import java.awt.Color;
+import java.awt.Graphics;
 import java.io.*;
 import java.lang.reflect.Field;
 
-public class Board {
+public class Board extends JPanel {
 	private int startCell;
 	private int pathLength;
 
@@ -60,6 +64,12 @@ public class Board {
 			}
 		}
 		calcAdjacencies();
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.setColor(Color.black);
+		
 	}
 
 	public void calcAdjacencies() {
