@@ -1,10 +1,16 @@
 package clueGame;
 
+import java.awt.Graphics;
+
 public class BoardCell {
 
 	private int y;
 	private int x;
 	private String boardCellInitial;
+	private int height = 20;
+	private int width = 20;
+	private int Xpixel;
+	private int Ypixel;
 
 	
 	public BoardCell(int y, int x, String letter) {
@@ -63,6 +69,10 @@ public class BoardCell {
 	public char getSecondInitial() {
 		
 		return boardCellInitial.charAt(1);
+	}
+	
+	public void draw(Graphics g) {
+		g.drawRect(x, y, width, height);
 	}
 
 }
