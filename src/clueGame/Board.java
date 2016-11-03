@@ -68,8 +68,12 @@ public class Board extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.setColor(Color.black);
-		
+		g.setColor(Color.yellow);
+		for (BoardCell[] i: grid) {
+			for (BoardCell j: i) {
+				j.draw(g);
+			}
+		}
 	}
 
 	public void calcAdjacencies() {
