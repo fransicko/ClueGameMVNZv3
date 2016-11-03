@@ -16,6 +16,9 @@ import javax.swing.border.TitledBorder;
 
 public class clueControlGUI extends JPanel{
 	private JTextField name;
+	public void nothing() {
+		
+	}
 	
 	public clueControlGUI() {
 		setLayout(new GridLayout(2,1));
