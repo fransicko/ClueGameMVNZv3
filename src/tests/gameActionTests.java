@@ -291,7 +291,7 @@ public class gameActionTests {
 	@Test
 	public void handleSuggestion() {
 		// At the start the suggestion is correct but will change later
-		Solution suggestion = new Solution(board.getSoln().person, board.getSoln().room, board.getSoln().weapon);;
+		Solution suggestion = board.getSoln();
 		// This will test to make sure that no one has a card to disprove
 		// We will make everyones hand empty
 		for (Player i: Board.getInstance().players) {
