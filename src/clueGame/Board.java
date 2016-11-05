@@ -36,6 +36,7 @@ public class Board extends JPanel {
 	public ArrayList<Card> weaponCards = new ArrayList<>();
 	public ArrayList<Card> seenCards = new ArrayList<>();
 	// Player objects
+	public ArrayList<Player> players = new ArrayList<>();
 	public HumanPlayer person;
 	public ArrayList<ComputerPlayer> comp = new ArrayList<ComputerPlayer>();
 	//This is the solution to the game
@@ -370,10 +371,12 @@ public class Board extends JPanel {
 				String[] plFile = line.split(DELIMITER);
 				if (i == 0) {
 					person = new HumanPlayer(plFile[0], Integer.parseInt(plFile[1]), Integer.parseInt(plFile[2]), convert(plFile[3]));
+					players.add(person);
 					++i;
 				}
 				else {
 					comp.add(new ComputerPlayer(plFile[0], Integer.parseInt(plFile[1]), Integer.parseInt(plFile[2]), convert(plFile[3])));
+					players.add(new ComputerPlayer(plFile[0], Integer.parseInt(plFile[1]), Integer.parseInt(plFile[2]), convert(plFile[3])));
 				}
 				personCards.add(new Card(plFile[0], CardType.PERSON));
 			}
