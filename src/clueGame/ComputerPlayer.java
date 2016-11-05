@@ -28,7 +28,7 @@ public class ComputerPlayer extends Player{
 		
 		Random ran = new Random();
 		Iterator<BoardCell> itr = targets.iterator();
-		int location = Math.abs(ran.nextInt())%targets.size();
+		int location = Math.abs(ran.nextInt(targets.size()));
 		
 		int i = 0;
 		while (itr.hasNext()) {

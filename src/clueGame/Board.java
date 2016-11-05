@@ -461,28 +461,6 @@ public class Board extends JPanel {
 			if (i == players.size() - 1) i = -1;
 		}
 		
-		/*if (!suggester.equals(person.getName()) && person.disproveSuggestion(suggestion) != null) {
-			correctSugs = new Card(person.disproveSuggestion(suggestion));
-			
-			for (ComputerPlayer i: comp) {
-				if (i.getName() != suggester) {
-					if (i.disproveSuggestion(suggestion) != null) return i.disproveSuggestion(suggestion);
-				}
-			}
-			
-		}
-		
-		else {
-			for (ComputerPlayer i: comp) {
-				if (i.getName() != suggester) {
-					if (i.disproveSuggestion(suggestion) != null) return i.disproveSuggestion(suggestion);
-				}
-			}
-		}*/
-		
-		
-		
-		
 		return correctSugs;
 		
 	}
