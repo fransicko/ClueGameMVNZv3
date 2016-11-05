@@ -432,7 +432,6 @@ public class Board extends JPanel {
 
 	//This will handle suggestions, the suggester is the person who made the suggestion
 	public Card handleSuggestion(Solution suggestion, String suggester) {
-		int correct = 0;
 		Card correctSugs = null;
 		
 		if (!suggester.equals(person.getName()) && person.disproveSuggestion(suggestion) != null) {
