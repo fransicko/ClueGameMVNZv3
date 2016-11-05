@@ -289,7 +289,7 @@ public class gameActionTests {
 	
 	@Test
 	public void handleSuggestion() {
-		String suggester = "Test";
+		Board.getInstance().players.get(6).hand.add(new Card(board.getSoln().person, CardType.PERSON));
 		// At the start the suggestion is correct but will change later
 		Solution suggestion = new Solution(board.getSoln().person, board.getSoln().room, board.getSoln().weapon);;
 		// This will test to make sure that no one has a card to disprove
@@ -298,36 +298,35 @@ public class gameActionTests {
 		for (ComputerPlayer i: Board.getInstance().comp) {
 			i.hand = new ArrayList<Card>();
 		}
-		Card noOne = Board.getInstance().handleSuggestion(suggestion, suggester);
+		Card noOne = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().players.get(6));
 		assertNull(noOne);
 		
 		// Only the accusing player has the cards
-		Board.getInstance().comp.add(new ComputerPlayer("test", 0, 0, Color.black));
-		Board.getInstance().comp.get(5).hand.add(new Card(board.getSoln().person, CardType.PERSON));
-		Card accus = Board.getInstance().handleSuggestion(suggestion, "test");
+		Board.getInstance().players.add(new ComputerPlayer("test", 0, 0, Color.black));
+		Card accus = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().players.get(6));
 		assertNull(accus);
 		
 		//only human can disprove
 		Board.getInstance().person.hand.add(new Card(board.getSoln().room, CardType.ROOM));
-		Card human1 = Board.getInstance().handleSuggestion(suggestion, "test");
+		Card human1 = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().players.get(6));
 		assertTrue(board.getSoln().room.equals(human1.getName()));
 		
 		//Now the human is the accuser
 		//We are re-using the values that we have already laid out but we are getting ride of test's hand
-		Board.getInstance().comp.get(5).hand = new ArrayList<Card>();
-		Card human2 = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().person.getName());
+		Board.getInstance().players.get(6).hand = new ArrayList<Card>();
+		Card human2 = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().person);
 		assertNull(human2);
 		
 		// Two computers can disprove but only the first one can disprove
 		Board.getInstance().person.hand = new ArrayList<Card>();
 		Board.getInstance().comp.get(1).hand.add(new Card(board.getSoln().person, CardType.PERSON));
 		Board.getInstance().comp.get(2).hand.add(new Card(board.getSoln().room, CardType.ROOM));
-		Card comp0 = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().comp.get(0).getName());
+		Card comp0 = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().comp.get(0));
 		assertTrue(board.getSoln().person.equals(comp0.getName()));
 		
 		// Player then computer can disprove but only computer will disprove
 		Board.getInstance().person.hand.add((new Card(board.getSoln().weapon, CardType.WEAPON)));
-		Card comp1 = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().comp.get(0).getName());
+		Card comp1 = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().comp.get(0));
 		assertTrue(board.getSoln().person.equals(comp1.getName()));
 		
 	}

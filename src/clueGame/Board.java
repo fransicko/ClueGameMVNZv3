@@ -376,7 +376,8 @@ public class Board extends JPanel {
 				}
 				else {
 					comp.add(new ComputerPlayer(plFile[0], Integer.parseInt(plFile[1]), Integer.parseInt(plFile[2]), convert(plFile[3])));
-					players.add(new ComputerPlayer(plFile[0], Integer.parseInt(plFile[1]), Integer.parseInt(plFile[2]), convert(plFile[3])));
+					players.add(comp.get(i-1));
+					++i;
 				}
 				personCards.add(new Card(plFile[0], CardType.PERSON));
 			}
@@ -434,7 +435,7 @@ public class Board extends JPanel {
 	}
 
 	//This will handle suggestions, the suggester is the person who made the suggestion
-	public Card handleSuggestion(Solution suggestion, String suggester) {
+	public Card handleSuggestion(Solution suggestion, Player suggester) {
 		Card correctSugs = null;
 		
 		if (!suggester.equals(person.getName()) && person.disproveSuggestion(suggestion) != null) {
