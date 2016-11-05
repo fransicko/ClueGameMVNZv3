@@ -14,6 +14,7 @@ import clueGame.BoardCell;
 import clueGame.Card;
 import clueGame.CardType;
 import clueGame.ComputerPlayer;
+import clueGame.Player;
 import clueGame.Solution;
 
 public class gameActionTests {
@@ -289,16 +290,14 @@ public class gameActionTests {
 	
 	@Test
 	public void handleSuggestion() {
-		Board.getInstance().players.get(6).hand.add(new Card(board.getSoln().person, CardType.PERSON));
 		// At the start the suggestion is correct but will change later
 		Solution suggestion = new Solution(board.getSoln().person, board.getSoln().room, board.getSoln().weapon);;
 		// This will test to make sure that no one has a card to disprove
 		// We will make everyones hand empty
-		Board.getInstance().person.hand = new ArrayList<Card>();
-		for (ComputerPlayer i: Board.getInstance().comp) {
+		for (Player i: Board.getInstance().players) {
 			i.hand = new ArrayList<Card>();
 		}
-		Card noOne = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().players.get(6));
+		Card noOne = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().players.get(0));
 		assertNull(noOne);
 		
 		// Only the accusing player has the cards
@@ -319,14 +318,14 @@ public class gameActionTests {
 		
 		// Two computers can disprove but only the first one can disprove
 		Board.getInstance().person.hand = new ArrayList<Card>();
-		Board.getInstance().comp.get(1).hand.add(new Card(board.getSoln().person, CardType.PERSON));
-		Board.getInstance().comp.get(2).hand.add(new Card(board.getSoln().room, CardType.ROOM));
-		Card comp0 = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().comp.get(0));
+		Board.getInstance().comp.get(2).hand.add(new Card(board.getSoln().person, CardType.PERSON));
+		Board.getInstance().comp.get(3).hand.add(new Card(board.getSoln().room, CardType.ROOM));
+		Card comp0 = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().players.get(1));
 		assertTrue(board.getSoln().person.equals(comp0.getName()));
 		
 		// Player then computer can disprove but only computer will disprove
 		Board.getInstance().person.hand.add((new Card(board.getSoln().weapon, CardType.WEAPON)));
-		Card comp1 = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().comp.get(0));
+		Card comp1 = Board.getInstance().handleSuggestion(suggestion, Board.getInstance().players.get(1));
 		assertTrue(board.getSoln().person.equals(comp1.getName()));
 		
 	}
