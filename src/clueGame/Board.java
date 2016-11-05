@@ -438,7 +438,24 @@ public class Board extends JPanel {
 	public Card handleSuggestion(Solution suggestion, Player suggester) {
 		Card correctSugs = null;
 		
-		if (!suggester.equals(person.getName()) && person.disproveSuggestion(suggestion) != null) {
+		// Gets the location of our suggester
+		int index = players.indexOf(suggestion);
+		
+		// We will check to see if we are at the end of the list of players
+		int newIndex = 0;
+		if (index != players.size() - 1) newIndex = index+1;
+		
+		for (int i = newIndex; i < players.size(); ++i) {
+			Card sugs = players.get(i).disproveSuggestion(suggestion);
+			
+			if (i == index) return correctSugs;
+			if (sugs != null) return sugs;
+			
+			// Reset the index so that way we start at the beginning
+			if (i == players.size() - 1) i = 0;
+		}
+		
+		/*if (!suggester.equals(person.getName()) && person.disproveSuggestion(suggestion) != null) {
 			correctSugs = new Card(person.disproveSuggestion(suggestion));
 			
 			for (ComputerPlayer i: comp) {
@@ -455,7 +472,7 @@ public class Board extends JPanel {
 					if (i.disproveSuggestion(suggestion) != null) return i.disproveSuggestion(suggestion);
 				}
 			}
-		}
+		}*/
 		
 		
 		
