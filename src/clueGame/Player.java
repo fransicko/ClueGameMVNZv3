@@ -21,9 +21,9 @@ public class Player {
 
 	public Card disproveSuggestion(Solution suggestion) {
 		//These are here to see if any of the cards are correct
-		boolean cP = false;//Board.getInstance().getSoln().person.equals(suggestion.person);
-		boolean cW = false;//Board.getInstance().getSoln().weapon.equals(suggestion.weapon);
-		boolean cR = false;//Board.getInstance().getSoln().room.equals(suggestion.room);
+		boolean cP = false;
+		boolean cW = false;
+		boolean cR = false;
 		
 		for (Card i: hand) {
 			if (i.getName().equals(suggestion.person)) cP = true;
