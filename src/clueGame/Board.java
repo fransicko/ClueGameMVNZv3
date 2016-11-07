@@ -69,7 +69,7 @@ public class Board extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.setColor(Color.yellow);
+		g.setColor(Color.black);
 		for (BoardCell[] i: grid) {
 			for (BoardCell j: i) {
 				j.draw(g);

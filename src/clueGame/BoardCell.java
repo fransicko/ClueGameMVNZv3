@@ -4,20 +4,22 @@ import java.awt.Graphics;
 
 public class BoardCell {
 
-	private int y;
-	private int x;
+	private int y;	// This represents the rows
+	private int x;	// This represents the columns
 	private String boardCellInitial;
 	private int height = 20;
 	private int width = 20;
 	private int Xpixel;
 	private int Ypixel;
-
 	
 	public BoardCell(int y, int x, String letter) {
 		super();
 		this.y = y;
 		this.x = x;
 		this.boardCellInitial = letter;
+		
+		this.Xpixel = x*width;
+		this.Ypixel = y*height;
 	}
 
 	public int getY() {
@@ -72,7 +74,7 @@ public class BoardCell {
 	}
 	
 	public void draw(Graphics g) {
-		g.drawRect(x, y, width, height);
+		g.drawRect(Xpixel, Ypixel, width, height);
 	}
 
 }
