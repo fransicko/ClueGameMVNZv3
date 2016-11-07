@@ -60,7 +60,6 @@ public class BoardCell {
 
 
 	public char getInitial() {
-		
 		return boardCellInitial.charAt(0);
 	}
 	
@@ -75,6 +74,12 @@ public class BoardCell {
 	}
 	
 	public void draw(Graphics g) {
+		// These two lines fill in the rectangle with the given color
+		g.setColor(Color.yellow);
+		g.fillRect(Xpixel, Ypixel, width, height);
+
+		// These two lines create the black border around the rectangle
+		g.setColor(Color.black);
 		g.drawRect(Xpixel, Ypixel, width, height);
 		
 	}
