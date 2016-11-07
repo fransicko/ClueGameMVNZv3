@@ -1,5 +1,6 @@
 package clueGame;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class BoardCell {
@@ -75,6 +76,7 @@ public class BoardCell {
 	
 	public void draw(Graphics g) {
 		g.drawRect(Xpixel, Ypixel, width, height);
+		
 	}
 
 }
