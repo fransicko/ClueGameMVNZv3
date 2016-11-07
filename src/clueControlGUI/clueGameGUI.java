@@ -13,7 +13,7 @@ public class clueGameGUI extends JFrame{
 	private static Board board;
 	
 	public clueGameGUI() {
-		setSize(400, 400);
+		setSize(800, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board = Board.getInstance();
 		board.setConfigFiles("ClueBoard.csv", "ClueLegend.txt");

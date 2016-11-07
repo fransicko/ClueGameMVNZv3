@@ -74,9 +74,21 @@ public class BoardCell {
 	}
 	
 	public void draw(Graphics g) {
-		// These two lines fill in the rectangle with the given color
-		g.setColor(Color.yellow);
-		g.fillRect(Xpixel, Ypixel, width, height);
+		
+		if (getInitial() == 'W') {
+			// These two lines fill in the rectangle with the given color
+			g.setColor(Color.yellow);
+			g.fillRect(Xpixel, Ypixel, width, height);
+		}
+		else if (getInitial() == 'X') {
+			g.setColor(Color.red);
+			g.fillRect(Xpixel, Ypixel, width, height);
+		}
+		else {
+			g.setColor(Color.gray);
+			g.fillRect(Xpixel, Ypixel, width, height);
+		}
+		
 
 		// These two lines create the black border around the rectangle
 		g.setColor(Color.black);
