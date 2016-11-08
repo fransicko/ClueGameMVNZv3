@@ -3,14 +3,19 @@ package clueControlGUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 import clueGame.Board;
 
@@ -33,6 +38,8 @@ public class clueGameGUI extends JFrame{
 		setJMenuBar(menuBar);
 		menuBar.add(createFileMenu());
 		
+		add(myCardsPanel());
+		
 	}
 	
 	private JMenu createFileMenu() {
@@ -52,6 +59,26 @@ public class clueGameGUI extends JFrame{
 		item.addActionListener(new MenuItemListener());
 		
 		return item;
+	}
+	
+	private JPanel myCardsPanel() { //Need to get the size right
+		JPanel panel = new JPanel();
+		//panel.setLayout(new GridLayout(1,1));
+		panel.setBorder(new TitledBorder(new EtchedBorder(), "My Cards"));
+		
+		JPanel panelPeople = new JPanel();
+		JPanel panelRooms = new JPanel();
+		JPanel panelWeapons = new JPanel();
+		
+		panelPeople.setBorder(new TitledBorder(new EtchedBorder(), "People"));
+		panelRooms.setBorder(new TitledBorder(new EtchedBorder(), "Rooms"));
+		panelWeapons.setBorder(new TitledBorder(new EtchedBorder(), "Weapons"));
+		
+		panel.add(panelPeople);
+		panel.add(panelRooms);
+		panel.add(panelWeapons);
+		
+		return panel;
 	}
 
 	public static void main(String[] args) {
