@@ -27,7 +27,6 @@ public class Board extends JPanel {
 	private BoardCell[][] grid = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 	int NUM_ROWS;
 	int NUM_COLS;
-	String[] fullLegend = null;
 
 	// This will be our deck of cards, the other three are the sub decks of deck.
 	private ArrayList<Card> deck = new ArrayList<>();
