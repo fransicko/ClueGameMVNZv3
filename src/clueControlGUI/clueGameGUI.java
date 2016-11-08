@@ -23,6 +23,8 @@ public class clueGameGUI extends JFrame{
 	private static Board board;
 	
 	public clueGameGUI() {
+		JPanel panel = new JPanel(); // Attempting to put the board on a panel
+		panel.setLayout(new GridLayout(1,2)); //Setting layout
 		setSize(800, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board = Board.getInstance();
@@ -32,13 +34,14 @@ public class clueGameGUI extends JFrame{
 		// Initialize will load BOTH config files 
 		board.loadConfigFile();
 		
-		add(board, BorderLayout.CENTER);
+		panel.add(board); //new
+		add(panel); //new
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		menuBar.add(createFileMenu());
 		
-		add(myCardsPanel());
+		add(myCardsPanel());//myCards call
 		
 	}
 	
@@ -63,7 +66,7 @@ public class clueGameGUI extends JFrame{
 	
 	private JPanel myCardsPanel() { //Need to get the size right
 		JPanel panel = new JPanel();
-		//panel.setLayout(new GridLayout(1,1));
+		panel.setLayout(new GridLayout(3,3));
 		panel.setBorder(new TitledBorder(new EtchedBorder(), "My Cards"));
 		
 		JPanel panelPeople = new JPanel();
