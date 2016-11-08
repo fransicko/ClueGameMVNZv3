@@ -12,10 +12,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import org.junit.rules.DisableOnDebug;
+
 import clueGame.Board;
 
 public class clueGameGUI extends JFrame{
 	private static Board board;
+	private detectiveNotes notes = new detectiveNotes();
 	
 	public clueGameGUI() {
 		setSize(800, 800);
@@ -35,13 +38,29 @@ public class clueGameGUI extends JFrame{
 		
 	}
 	
+	
+	
 	private JMenu createFileMenu() {
 		JMenu menu = new JMenu("File");
+		menu.add(createDetecItem());
 		menu.add(createFileExitItem());
 		
 		return menu;
 	}
 	
+	private JMenuItem createDetecItem() {
+		JMenuItem item = new JMenuItem("Notes");
+		class DialogListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				notes.setVisible(true);
+				
+			}
+		}
+		item.addActionListener(new DialogListener());
+		
+		return item;
+	}
+
 	private JMenuItem createFileExitItem() {
 		JMenuItem item = new JMenuItem("Exit");
 		class MenuItemListener implements ActionListener {

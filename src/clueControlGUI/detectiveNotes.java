@@ -38,6 +38,17 @@ public class detectiveNotes extends JDialog {
 
 	
 	public detectiveNotes() {
+		setUp();
+		/*JFrame frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(new Dimension(700,300));
+		
+		control = new detectiveNotes();
+		frame.add(control, BorderLayout.CENTER);
+		frame.setVisible(true);*/
+		
+		setTitle("Notes");
+		setSize(700, 300);
 		setLayout(new GridLayout(1,2));
 		JPanel panel = new JPanel();
 		JPanel panel2 = new JPanel();
@@ -149,14 +160,7 @@ public class detectiveNotes extends JDialog {
 	}
 	
 	/*public static void main(String[] args) {
-		setUp();
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(new Dimension(700,300));
 		
-		detectiveNotes control = new detectiveNotes();
-		frame.add(control, BorderLayout.CENTER);
-		frame.setVisible(true);
 		
 	}*/
 
