@@ -75,11 +75,16 @@ public class BoardCell {
 	
 	public void draw(Graphics g) {
 		char initail = getInitial();
+		Board board = Board.getInstance();
 		
 		if (initail == 'W') {
 			// These two lines fill in the rectangle with the given color
 			g.setColor(Color.yellow);
 			g.fillRect(Xpixel, Ypixel, width, height);
+			
+			// These two lines create the black border around the rectangle
+			g.setColor(Color.black);
+			g.drawRect(Xpixel, Ypixel, width, height);
 		}
 		else if (initail == 'X') {
 			g.setColor(Color.red);
@@ -88,14 +93,40 @@ public class BoardCell {
 		else {
 			g.setColor(Color.gray);
 			g.fillRect(Xpixel, Ypixel, width, height);
+			
+			if (boardCellInitial.length() == 2) {
+				g.setColor(Color.blue);
+				
+				if (getSecondInitial() == 'R') {
+					
+					g.fillRect(Xpixel+width-5, Ypixel, 5, height);
+					g.drawRect(Xpixel+width-5, Ypixel, 5, height);
+				}
+				else if (getSecondInitial() == 'L') {
+					
+					g.fillRect(Xpixel, Ypixel, 5, height);
+					g.drawRect(Xpixel, Ypixel, 5, height);
+				}
+				else if (getSecondInitial() == 'U') {
+					
+					g.fillRect(Xpixel, Ypixel, width, 5);
+					g.drawRect(Xpixel, Ypixel, width, 5);
+				}
+				else if (getSecondInitial() == 'D') {
+					
+					g.fillRect(Xpixel, Ypixel+height-5, width, 5);
+					g.drawRect(Xpixel, Ypixel+height-5, width, 5);
+				}
+				
+				if (getSecondInitial() == 'N') {
+					String name = board.getLegendAt(getInitial());
+					g.drawString(name, Xpixel, Ypixel);
+				}
+			}
 		}
-		
-
-		// These two lines create the black border around the rectangle
-		
+		//These two lines create the black border around the rectangle
 		g.setColor(Color.black);
 		g.drawRect(Xpixel, Ypixel, width, height);
-		
 	}
 
 }
