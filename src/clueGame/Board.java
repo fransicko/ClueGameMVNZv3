@@ -70,14 +70,11 @@ public class Board extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		
 		for (BoardCell[] i: grid) {
 			for (BoardCell j: i) {
 				j.draw(g);
 			}
 		}
-		
-		//g.drawRect(0, 0, 520, 500);
 		
 	}
 
