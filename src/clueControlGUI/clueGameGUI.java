@@ -86,6 +86,8 @@ public class clueGameGUI extends JFrame{
 
 	public static void main(String[] args) {
 		clueGameGUI frame = new clueGameGUI();
+		clueControlGUI control = new clueControlGUI();
+		frame.add(control, BorderLayout.SOUTH);
 		frame.setVisible(true);
 	}
 }
