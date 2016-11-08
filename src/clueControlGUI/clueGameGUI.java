@@ -26,7 +26,9 @@ public class clueGameGUI extends JFrame{
 	private detectiveNotes notes = new detectiveNotes();
 	
 	public clueGameGUI() {
+		//setLayout(new GridLayout(2,1));
 		JPanel panel = new JPanel(); // Attempting to put the board on a panel
+		JPanel panel2 = new JPanel();
 		panel.setLayout(new GridLayout(1,2)); //Setting layout
 		setSize(800, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,14 +39,19 @@ public class clueGameGUI extends JFrame{
 		// Initialize will load BOTH config files 
 		board.loadConfigFile();
 		
-		panel.add(board, BorderLayout.WEST); //new
-		add(panel); //new
+		panel.add(board/*, BorderLayout.WEST*/); //new
+		//panel.add(myCardsPanel()/*, BorderLayout.EAST*/);//myCards call
+		add(panel);
+		
+		clueControlGUI control = new clueControlGUI();
+		panel2.add(control/*, BorderLayout.SOUTH*/);
+		//add(panel2);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		menuBar.add(createFileMenu());
 		
-		add(myCardsPanel(), BorderLayout.EAST);//myCards call
+		
 		
 	}
 	
@@ -105,8 +112,6 @@ public class clueGameGUI extends JFrame{
 
 	public static void main(String[] args) {
 		clueGameGUI frame = new clueGameGUI();
-		clueControlGUI control = new clueControlGUI();
-		frame.add(control, BorderLayout.SOUTH);
 		frame.setVisible(true);
 	}
 }
