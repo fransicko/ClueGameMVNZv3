@@ -79,6 +79,10 @@ public class BoardCell {
 			// These two lines fill in the rectangle with the given color
 			g.setColor(Color.yellow);
 			g.fillRect(Xpixel, Ypixel, width, height);
+			
+			// These two lines create the black border around the rectangle
+			g.setColor(Color.black);
+			g.drawRect(Xpixel, Ypixel, width, height);
 		}
 		else if (getInitial() == 'X') {
 			g.setColor(Color.red);
@@ -88,11 +92,6 @@ public class BoardCell {
 			g.setColor(Color.gray);
 			g.fillRect(Xpixel, Ypixel, width, height);
 		}
-		
-
-		// These two lines create the black border around the rectangle
-		g.setColor(Color.black);
-		g.drawRect(Xpixel, Ypixel, width, height);
 		
 	}
 
