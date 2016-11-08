@@ -74,6 +74,8 @@ public class BoardCell {
 	}
 	
 	public void draw(Graphics g) {
+		Board board = Board.getInstance();
+		
 		
 		if (getInitial() == 'W') {
 			// These two lines fill in the rectangle with the given color
@@ -114,6 +116,11 @@ public class BoardCell {
 					
 					g.fillRect(Xpixel, Ypixel+height-5, width, 5);
 					g.drawRect(Xpixel, Ypixel+height-5, width, 5);
+				}
+				
+				if (getSecondInitial() == 'N') {
+					String name = board.getLegendAt(getInitial());
+					g.drawString(name, Xpixel, Ypixel);
 				}
 			}
 		}
