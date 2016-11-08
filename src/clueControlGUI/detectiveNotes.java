@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,8 +21,8 @@ import clueGame.Card;
 import clueGame.Player;
 
 
-public class detectiveNotes extends JPanel{
-	private JTextField name;
+public class detectiveNotes extends JDialog {
+	//private JTextField name;
 	static Board board;
 	
 	public static void setUp() {
@@ -147,7 +148,7 @@ public class detectiveNotes extends JPanel{
 		return panel;
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		setUp();
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -157,6 +158,6 @@ public class detectiveNotes extends JPanel{
 		frame.add(control, BorderLayout.CENTER);
 		frame.setVisible(true);
 		
-	}
+	}*/
 
 }

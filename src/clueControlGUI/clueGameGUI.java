@@ -3,8 +3,13 @@ package clueControlGUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import clueGame.Board;
@@ -24,8 +29,31 @@ public class clueGameGUI extends JFrame{
 		
 		add(board, BorderLayout.CENTER);
 		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		menuBar.add(createFileMenu());
+		
 	}
 	
+	private JMenu createFileMenu() {
+		JMenu menu = new JMenu("File");
+		menu.add(createFileExitItem());
+		
+		return menu;
+	}
+	
+	private JMenuItem createFileExitItem() {
+		JMenuItem item = new JMenuItem("Exit");
+		class MenuItemListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		}
+		item.addActionListener(new MenuItemListener());
+		
+		return item;
+	}
+
 	public static void main(String[] args) {
 		clueGameGUI frame = new clueGameGUI();
 		frame.setVisible(true);
