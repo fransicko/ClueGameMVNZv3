@@ -91,6 +91,31 @@ public class BoardCell {
 		else {
 			g.setColor(Color.gray);
 			g.fillRect(Xpixel, Ypixel, width, height);
+			
+			if (boardCellInitial.length() == 2) {
+				g.setColor(Color.blue);
+				
+				if (getSecondInitial() == 'R') {
+					
+					g.fillRect(Xpixel+width-5, Ypixel, 5, height);
+					g.drawRect(Xpixel+width-5, Ypixel, 5, height);
+				}
+				else if (getSecondInitial() == 'L') {
+					
+					g.fillRect(Xpixel, Ypixel, 5, height);
+					g.drawRect(Xpixel, Ypixel, 5, height);
+				}
+				else if (getSecondInitial() == 'U') {
+					
+					g.fillRect(Xpixel, Ypixel, width, 5);
+					g.drawRect(Xpixel, Ypixel, width, 5);
+				}
+				else if (getSecondInitial() == 'D') {
+					
+					g.fillRect(Xpixel, Ypixel+height-5, width, 5);
+					g.drawRect(Xpixel, Ypixel+height-5, width, 5);
+				}
+			}
 		}
 		
 	}
