@@ -119,6 +119,8 @@ public class detectiveNotes extends JPanel{
 		return panel;
 	}
 	
+	// comment
+	
 	private JPanel roomGuessPanel() {
 		JPanel panel = new JPanel();
 		JComboBox<String> personGuess = new JComboBox<String>();
