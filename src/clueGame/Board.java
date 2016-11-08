@@ -77,7 +77,10 @@ public class Board extends JPanel {
 			}
 		}
 		
-		//g.drawRect(0, 0, 520, 500);
+		for (Player i: players) {
+			i.draw(g);
+		}
+		
 		
 	}
 

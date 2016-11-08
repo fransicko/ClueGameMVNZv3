@@ -23,6 +23,7 @@ public class clueGameGUI extends JFrame{
 		board.loadConfigFile();
 		
 		add(board, BorderLayout.CENTER);
+		
 	}
 	
 	public static void main(String[] args) {

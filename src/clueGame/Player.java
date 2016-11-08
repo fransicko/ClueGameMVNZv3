@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -146,7 +147,13 @@ public class Player {
 		hand.add(card);
 	}
 
-
+	public void draw(Graphics g) {
+		
+		g.setColor(color);
+		g.fillRoundRect(column*20, row*20, 20, 20, 100, 100);
+		g.drawRoundRect(column*20, row*20, 20, 20, 100, 100);
+		
+	}	
 
 
 }
