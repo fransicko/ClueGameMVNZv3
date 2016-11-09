@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,6 +15,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
@@ -21,6 +23,8 @@ import javax.swing.border.TitledBorder;
 import org.junit.rules.DisableOnDebug;
 
 import clueGame.Board;
+import clueGame.Card;
+import clueGame.CardType;
 
 public class clueGameGUI extends JFrame{
 	private static Board board;
@@ -103,9 +107,59 @@ public class clueGameGUI extends JFrame{
 		JPanel panelRooms = new JPanel();
 		JPanel panelWeapons = new JPanel();
 		
+		JTextArea people = new JTextArea(2, 10);
+		JTextArea rooms = new JTextArea(2, 10);
+		JTextArea weapons = new JTextArea(2, 10);
+		
 		panelPeople.setBorder(new TitledBorder(new EtchedBorder(), "People"));
 		panelRooms.setBorder(new TitledBorder(new EtchedBorder(), "Rooms"));
 		panelWeapons.setBorder(new TitledBorder(new EtchedBorder(), "Weapons"));
+		
+		// These strings are for the display boxes since a player could have four cards
+		String name1 = "";
+		String name2 = "";
+		String room1 = "";
+		String room2 = "";
+		String weap1 = "";
+		String weap2 = "";
+		
+		for (Card i: board.person.hand) {
+			if (i.getType() == CardType.PERSON) {
+				if (name1.equals("")) {
+					name1 = i.getName();
+				}
+				else {
+					name2 = i.getName();
+				}
+			}
+			
+			else if (i.getType() == CardType.ROOM) {
+				if (room1.equals("")) {
+					room1 = i.getName();
+				}
+				else {
+					room2 = i.getName();
+				}
+			}
+			
+			else if (i.getType() == CardType.WEAPON) {
+				if (weap1.equals("")) {
+					weap1 = i.getName();
+				}
+				else {
+					weap2 = i.getName();
+				}
+			}
+		}	
+		
+		
+		people.setText(name1 + ", " + name2);
+		rooms.setText(room1 + ", " + room2);
+		weapons.setText(weap1 + ", " + weap2);
+		
+		panelPeople.add(people);
+		panelRooms.add(rooms);
+		panelWeapons.add(weapons);
 		
 		panel.add(panelPeople);
 		panel.add(panelRooms);
