@@ -97,15 +97,15 @@ public class clueControlGUI extends JPanel{
 		return panel;
 	}
 	
-	public static void main(String[] args) {
-		/*JFrame frame = new JFrame();
+	/*public static void main(String[] args) {
+		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(new Dimension(600,300));
 		
 		clueControlGUI control = new clueControlGUI();
 		frame.add(control, BorderLayout.CENTER);
-		frame.setVisible(true);*/
+		frame.setVisible(true);
 		
 		
-	}
+	}*/
 }

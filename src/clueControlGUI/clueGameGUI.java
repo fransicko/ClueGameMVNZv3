@@ -2,6 +2,7 @@ package clueControlGUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -30,7 +31,8 @@ public class clueGameGUI extends JFrame{
 		JPanel panel = new JPanel(); // Attempting to put the board on a panel
 		JPanel panel2 = new JPanel();
 		panel.setLayout(new GridLayout(1,2)); //Setting layout
-		setSize(800, 800);
+		//panel.setSize(800, 800);
+		setSize(750, 675);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board = Board.getInstance();
 		board.setConfigFiles("ClueBoard.csv", "ClueLegend.txt");
@@ -39,12 +41,13 @@ public class clueGameGUI extends JFrame{
 		// Initialize will load BOTH config files 
 		board.loadConfigFile();
 		
-		panel.add(board/*, BorderLayout.WEST*/); //new
-		//panel.add(myCardsPanel()/*, BorderLayout.EAST*/);//myCards call
-		add(panel);
+		add(board, BorderLayout.CENTER); //new
+		add(myCardsPanel(), BorderLayout.EAST);//myCards call
+		//add(panel);
 		
 		clueControlGUI control = new clueControlGUI();
-		panel2.add(control/*, BorderLayout.SOUTH*/);
+		control.setSize(new Dimension(200, 750));
+		add(control, BorderLayout.SOUTH);
 		//add(panel2);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -94,6 +97,7 @@ public class clueGameGUI extends JFrame{
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(3,1));
 		panel.setBorder(new TitledBorder(new EtchedBorder(), "My Cards"));
+		panel.setPreferredSize(new Dimension(200, 500));
 		
 		JPanel panelPeople = new JPanel();
 		JPanel panelRooms = new JPanel();

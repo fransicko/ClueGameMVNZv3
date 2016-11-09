@@ -48,7 +48,7 @@ public class detectiveNotes extends JDialog {
 		frame.setVisible(true);*/
 		
 		setTitle("Notes");
-		setSize(700, 300);
+		setSize(100, 450);
 		setLayout(new GridLayout(1,2));
 		JPanel panel = new JPanel();
 		JPanel panel2 = new JPanel();
