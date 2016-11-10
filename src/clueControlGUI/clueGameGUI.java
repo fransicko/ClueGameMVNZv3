@@ -119,8 +119,6 @@ public class clueGameGUI extends JFrame{
 		String weap1 = "";
 		String weap2 = "";
 		
-		System.out.println(board.deckSize());
-		for (Card i: board.person.hand) System.out.println(i.getName());
 		
 		for (Card i: board.person.hand) {
 			if (i.getType() == CardType.PERSON) {
@@ -153,9 +151,9 @@ public class clueGameGUI extends JFrame{
 		}	
 		
 		
-		people.setText(name1 + ", " + name2);
-		rooms.setText(room1 + ", " + room2);
-		weapons.setText(weap1 + ", " + weap2);
+		people.setText(name1 + "\n" + name2);
+		rooms.setText(room1 + "\n" + room2);
+		weapons.setText(weap1 + "\n" + weap2);
 		
 		panelPeople.add(people);
 		panelRooms.add(rooms);
