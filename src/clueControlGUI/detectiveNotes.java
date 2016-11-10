@@ -25,20 +25,8 @@ public class detectiveNotes extends JDialog {
 	//private JTextField name;
 	static Board board;
 	
-	public static void setUp() {
-		// Board is singleton, get the only instance
-		board = Board.getInstance();
-		// set the file names to use my config files
-		board.setConfigFiles("ClueBoard.csv", "ClueLegend.txt");
-		// set the file names for the player and weapon files
-		board.setConfigFiles2("Players.txt", "weapons.txt");
-		// Initialize will load BOTH config files 
-		board.loadConfigFile();
-	}
-
-	
 	public detectiveNotes() {
-		setUp();
+		board = Board.getInstance();
 		/*JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(new Dimension(700,300));

@@ -39,11 +39,7 @@ public class clueGameGUI extends JFrame{
 		setSize(750, 675);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board = Board.getInstance();
-		board.setConfigFiles("ClueBoard.csv", "ClueLegend.txt");
-		// set the file names for the player and weapon files
-		board.setConfigFiles2("Players.txt", "weapons.txt");
-		// Initialize will load BOTH config files 
-		board.loadConfigFile();
+		
 		
 		add(board, BorderLayout.CENTER); //new
 		add(myCardsPanel(), BorderLayout.EAST);//myCards call
@@ -123,6 +119,9 @@ public class clueGameGUI extends JFrame{
 		String weap1 = "";
 		String weap2 = "";
 		
+		System.out.println(board.deckSize());
+		for (Card i: board.person.hand) System.out.println(i.getName());
+		
 		for (Card i: board.person.hand) {
 			if (i.getType() == CardType.PERSON) {
 				if (name1.equals("")) {
@@ -150,6 +149,7 @@ public class clueGameGUI extends JFrame{
 					weap2 = i.getName();
 				}
 			}
+			
 		}	
 		
 		
@@ -168,8 +168,4 @@ public class clueGameGUI extends JFrame{
 		return panel;
 	}
 
-	public static void main(String[] args) {
-		clueGameGUI frame = new clueGameGUI();
-		frame.setVisible(true);
-	}
 }
