@@ -22,11 +22,14 @@ import clueGame.Board;
 public class clueControlGUI extends JPanel{
 	private Board board = Board.getInstance();
 	private JTextField name;
-	private createWhoseTurn turn;
+	private CreateWhoseTurn turn;
+	private CreateDiePanel die;
 	
 	
 	public clueControlGUI() {
-		turn = new createWhoseTurn();
+		turn = new CreateWhoseTurn();
+		die = new CreateDiePanel();
+		
 		setLayout(new GridLayout(2,1));
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1, 3));
@@ -38,29 +41,14 @@ public class clueControlGUI extends JPanel{
 		add(panel);
 		JPanel panel2= new JPanel();
 		panel2.setLayout(new GridLayout(1, 3));
-		panel2.add(createDiePanel());
+		panel2.add(die);
 		add(panel2);
-		panel2.add(new createGuessPanel());
+		panel2.add(new CreateGuessPanel());
 		add(panel2);
 		panel2.add(createGuessResultPanel());
 		add(panel2);
 		
 	}
-	
-	private JPanel createDiePanel() {
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(1,2));
-		JLabel dieLabel = new JLabel("Roll");
-		name = new JTextField(5);
-		panel.add(dieLabel);
-		panel.add(name);
-		panel.setBorder(new TitledBorder(new EtchedBorder(), "Die"));
-		
-		return panel;
-		
-	}
-	
-	
 	
 	private JPanel createNextPlayerButtonPanel() {
 		JButton nextPlayer = new JButton("Next player");
@@ -75,6 +63,7 @@ public class clueControlGUI extends JPanel{
 		private int next = 0;
 		public void actionPerformed(ActionEvent e) {
 			turn.setWhosTurn(board.players.get(next).getName());
+			die.setRoll();
 			
 			++next;
 			

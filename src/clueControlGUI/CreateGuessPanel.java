@@ -8,11 +8,11 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-public class createGuessPanel extends JPanel{
+public class CreateGuessPanel extends JPanel{
 	private JTextArea guess;
 	private JTextField name;
 	
-	public createGuessPanel() {
+	public CreateGuessPanel() {
 		
 		//JPanel panel = new JPanel();
 		setLayout(new GridLayout(1,2));

@@ -1,16 +1,17 @@
 package clueControlGUI;
 
 import java.awt.GridLayout;
+import java.util.Random;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class createWhoseTurn extends JPanel{
+public class CreateWhoseTurn extends JPanel{
 	private JTextArea whosTurn;
 	private String playerTurn = "";
 	
-	public createWhoseTurn() {
+	public CreateWhoseTurn() {
 		//JPanel panel = new JPanel();
 		setLayout((new GridLayout(2,1)));
 		JLabel guessLabel = new JLabel("Whose turn?");
