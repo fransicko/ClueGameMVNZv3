@@ -4,18 +4,25 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import clueGame.Board;
+
 
 public class clueControlGUI extends JPanel{
+	private Board board = Board.getInstance();
 	private JTextField name;
+	private String whosTurn = "";
 	
 	public clueControlGUI() {
 		setLayout(new GridLayout(2,1));
@@ -65,8 +72,20 @@ public class clueControlGUI extends JPanel{
 	private JPanel createNextPlayerButtonPanel() {
 		JButton nextPlayer = new JButton("Next player");
 		JPanel panel = new JPanel(new BorderLayout());
+		nextPlayer.addActionListener(new NextPlayerListener());
+		
 		panel.add(nextPlayer);
 		return panel;
+	}
+	
+	class NextPlayerListener implements ActionListener {
+		private int turn = 0;
+		public void actionPerformed(ActionEvent e) {
+			setWhosTurn(board.players.get(turn).getName());
+			++turn;
+			
+			if (turn == 6) turn = 0;
+		}
 	}
 	
 	private JPanel createMakeAccusationButtonPanel() {
@@ -91,21 +110,18 @@ public class clueControlGUI extends JPanel{
 		JPanel panel = new JPanel();
 		panel.setLayout((new GridLayout(2,1)));
 		JLabel guessLabel = new JLabel("Whose turn?");
-		name = new JTextField(5);
+		//name = new JTextField(5);
 		panel.add(guessLabel);
-		panel.add(name);
+		//panel.add(name);
+		JTextArea people = new JTextArea(1, 10);
+		people.setText(whosTurn);
+		panel.add(people);
+		
 		return panel;
 	}
 	
-	/*public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(new Dimension(600,300));
-		
-		clueControlGUI control = new clueControlGUI();
-		frame.add(control, BorderLayout.CENTER);
-		frame.setVisible(true);
-		
-		
-	}*/
+	public void setWhosTurn(String whosTurn) {
+		this.whosTurn = whosTurn;
+	}
+	
 }
