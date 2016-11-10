@@ -54,9 +54,9 @@ public class clueControlGUI extends JPanel{
 	private JPanel createGuessPanel() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,2));
-		JLabel guessLabel = new JLabel("Guess");
+		//JLabel guessLabel = new JLabel("Guess");
 		name = new JTextField(5);
-		panel.add(guessLabel);
+		//panel.add(guessLabel);
 		panel.add(name);
 		panel.setBorder(new TitledBorder(new EtchedBorder(), "Guess"));
 		return panel;
@@ -79,9 +79,9 @@ public class clueControlGUI extends JPanel{
 	private JPanel createGuessResultPanel() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,2));
-		JLabel guessLabel = new JLabel("Response");
+		//JLabel guessLabel = new JLabel("Response");
 		name = new JTextField(5);
-		panel.add(guessLabel);
+		//panel.add(guessLabel);
 		panel.add(name);
 		panel.setBorder(new TitledBorder(new EtchedBorder(), "Guess Result"));
 		return panel;
