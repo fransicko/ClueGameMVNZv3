@@ -65,8 +65,9 @@ public class clueControlGUI extends JPanel{
 			turn.setWhosTurn(board.players.get(next).getName());
 			die.setRoll();
 			
-			++next;
+			MouseClickerPanel mouse = new MouseClickerPanel(die.getRoll());
 			
+			++next;
 			if (next == 6) next = 0;
 		}
 	}

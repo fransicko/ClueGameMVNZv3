@@ -15,11 +15,7 @@ public class CreateDiePanel extends JPanel {
 	private int roll;
 	
 	public CreateDiePanel() {
-		//JPanel panel = new JPanel();
 		setLayout(new GridLayout(1,2));
-		//JLabel dieLabel = new JLabel("Roll");
-		//name = new JTextField(5);
-		//panel.add(name);
 		setBorder(new TitledBorder(new EtchedBorder(), "Die"));
 		die = new JTextArea(1, 10);
 		updateDie();
@@ -37,5 +33,8 @@ public class CreateDiePanel extends JPanel {
 		updateDie();
 	}
 	
+	public int getRoll(){
+		return this.roll;
+	}
 	
 }

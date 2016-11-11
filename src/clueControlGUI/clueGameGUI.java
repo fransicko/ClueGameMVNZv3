@@ -27,7 +27,7 @@ import clueGame.Card;
 import clueGame.CardType;
 
 public class clueGameGUI extends JFrame{
-	private static Board board;
+	private static Board board = Board.getInstance();
 	private detectiveNotes notes = new detectiveNotes();
 	
 	public clueGameGUI() {
@@ -38,8 +38,6 @@ public class clueGameGUI extends JFrame{
 		//panel.setSize(800, 800);
 		setSize(750, 675);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		board = Board.getInstance();
-		
 		
 		add(board, BorderLayout.CENTER); //new
 		add(myCardsPanel(), BorderLayout.EAST);//myCards call
