@@ -29,10 +29,9 @@ import clueGame.CardType;
 public class clueGameGUI extends JFrame{
 	private static Board board = Board.getInstance();
 	private detectiveNotes notes = new detectiveNotes();
-	private CreateBoard b;
+	// mouse = MouseClickerPanel.getInstance();
 	
 	public clueGameGUI() {
-		b = new CreateBoard();
 		//setLayout(new GridLayout(2,1));
 		JPanel panel = new JPanel(); // Attempting to put the board on a panel
 		JPanel panel2 = new JPanel();
@@ -41,7 +40,7 @@ public class clueGameGUI extends JFrame{
 		setSize(750, 675);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		add(b, BorderLayout.CENTER); //new
+		add(board, BorderLayout.CENTER); //new
 		add(myCardsPanel(), BorderLayout.EAST);//myCards call
 		//add(panel);
 		
@@ -54,7 +53,7 @@ public class clueGameGUI extends JFrame{
 		setJMenuBar(menuBar);
 		menuBar.add(createFileMenu());
 		
-		
+		//add(mouse);
 		
 	}
 	
