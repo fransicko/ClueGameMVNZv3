@@ -32,7 +32,7 @@ public class MouseClickerPanel extends JPanel {
 		setPreferredSize(new Dimension(20, 20));
 
 
-		board.calcTargets(board.person.getColumn(), board.person.getRow(), roll);
+		//board.calcTargets(board.person.getColumn(), board.person.getRow(), roll);
 		createBoxes(board.getTargets());
 	}
 
