@@ -29,7 +29,7 @@ public class MouseClickerPanel extends JPanel implements MouseListener{
 
 	// ctor is private to ensure only one can be created
 	private MouseClickerPanel() {
-		addMouseListener(this);
+		addMouseListener(this); //Not sure if this is being called
 	}
 
 	// this method returns the only Board
@@ -68,6 +68,12 @@ public class MouseClickerPanel extends JPanel implements MouseListener{
 	}
 
 
+	//Added the next couple functions
+	//playerchoice is based on if one of the targetboxes in the arraylist have a mouse click
+	//I retrieve the humanPLayer variable called person from board and update the X and Y position
+	//I created a setter in board to set a new humanPLayer, it retained the name and color, just a new position
+	//What Im stuck on is actually updating the dot on the screen, i believe it is an issue with addmouselistener(this)
+	//Feel free to modify
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		for (targetBox i: targets) {
@@ -80,6 +86,7 @@ public class MouseClickerPanel extends JPanel implements MouseListener{
 			}
 		}
 			
+		//This is for displaying the error message if the click was not in a targetbox, needs more work
 		if (playerChoice == null) {
 			JOptionPane invalidTarget = new JOptionPane();
 			//invalidTarget.showMessageDialog(frame, "Invalid Target");
