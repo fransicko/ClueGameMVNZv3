@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 import clueGame.Board;
 
-public class gameSetUp {
+public class ClueGame {
 	private static Board board;
 	
 	public static void main(String[] args) {

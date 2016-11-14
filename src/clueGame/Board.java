@@ -577,6 +577,10 @@ public class Board extends JPanel {
 		
 		comp.get(num).setColumn(move.getX());
 		comp.get(num).setRow(move.getY());
+		
+		repaint();
+		
+		
 	}
 	
 
