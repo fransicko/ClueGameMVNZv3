@@ -28,7 +28,7 @@ public class targetBox {
 	}
 
 	public boolean containsClick(int mouseX,int mouseY) {
-		Rectangle rect = new Rectangle(x, y, 20, 20);
+		Rectangle rect = new Rectangle(mouseX, mouseY, 20, 20);
 		
 		if (rect.contains(new Point(mouseX, mouseY))) {
 			return true;

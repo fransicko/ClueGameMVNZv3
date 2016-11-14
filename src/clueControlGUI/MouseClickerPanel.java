@@ -19,31 +19,18 @@ import clueGame.HumanPlayer;
 public class MouseClickerPanel extends JPanel implements MouseListener{
 	private Board board = Board.getInstance();
 	private ArrayList<targetBox> targets;
-	private int roll;
+	//private int roll;
 	int mouseX;
 	int mouseY;
 	targetBox playerChoice = null;
-
-	// variable used for singleton pattern
-	private static MouseClickerPanel theInstance = new MouseClickerPanel();
-
-	// ctor is private to ensure only one can be created
-	private MouseClickerPanel() {
-		addMouseListener(this); //Not sure if this is being called
-	}
-
-	// this method returns the only Board
-	public static MouseClickerPanel getInstance() {
-		return theInstance;
-	}
-
-	public MouseClickerPanel(int roll) {
-		this.roll = roll;
+	
+	public MouseClickerPanel() {
 		setPreferredSize(new Dimension(20, 20));
 
 
 		//board.calcTargets(board.person.getColumn(), board.person.getRow(), roll);
 		createBoxes(board.getTargets());
+		addMouseListener(this);
 	}
 
 	private void createBoxes(Set<BoardCell> targs) {
@@ -62,12 +49,6 @@ public class MouseClickerPanel extends JPanel implements MouseListener{
 		}
 	}
 	
-	public void reset() {
-		roll = 0;
-		targets = new ArrayList<>();
-	}
-
-
 	//Added the next couple functions
 	//playerchoice is based on if one of the targetboxes in the arraylist have a mouse click
 	//I retrieve the humanPLayer variable called person from board and update the X and Y position

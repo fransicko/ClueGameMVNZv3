@@ -4,6 +4,8 @@ import java.util.*;
 
 import javax.swing.JPanel;
 
+import clueControlGUI.MouseClickerPanel;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.*;
@@ -567,14 +569,21 @@ public class Board extends JPanel {
 		calcTargets(person.getRow(), person.getColumn(), roll);
 		Set<BoardCell> targs = getTargets();
 		
+		for (BoardCell i: targs) {
+			i.setCanMove(Color.cyan);
+		}
+		repaint();
+		//HumanPlayer dumb = person;
+		MouseClickerPanel click = new MouseClickerPanel();
+		add(click);
+		
 		boolean endTurn = false;
 		
 		while (!endTurn) {
-			for (BoardCell i: targs) {
-				i.setCanMove(Color.cyan);
-			}
-			repaint();
+			
+			
 			endTurn = true;
+			
 		}
 		/*
 		for (BoardCell i: targs) {
