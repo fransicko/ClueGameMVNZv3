@@ -12,6 +12,7 @@ public class BoardCell {
 	private int width = 20;
 	private int Xpixel;
 	private int Ypixel;
+	private Color canMove;
 	
 	public BoardCell(int y, int x, String letter) {
 		super();
@@ -21,6 +22,7 @@ public class BoardCell {
 		
 		this.Xpixel = x*width;
 		this.Ypixel = y*height;
+		canMove = Color.yellow;
 	}
 
 	public int getY() {
@@ -79,8 +81,9 @@ public class BoardCell {
 		
 		if (initail == 'W') {
 			// These two lines fill in the rectangle with the given color
-			g.setColor(Color.yellow);
+			g.setColor(canMove);
 			g.fillRect(Xpixel, Ypixel, width, height);
+			canMove = Color.yellow;
 			
 			// These two lines create the black border around the rectangle
 			g.setColor(Color.black);
@@ -91,11 +94,17 @@ public class BoardCell {
 			g.fillRect(Xpixel, Ypixel, width, height);
 		}
 		else {
-			g.setColor(Color.gray);
+			if (canMove == Color.cyan) {
+				g.setColor(canMove);
+				canMove = Color.yellow;
+			}
+			else g.setColor(Color.gray);
+			
 			g.fillRect(Xpixel, Ypixel, width, height);
 			
 			if (boardCellInitial.length() == 2) {
 				g.setColor(Color.blue);
+				
 				
 				if (getSecondInitial() == 'R') {
 					
@@ -125,8 +134,13 @@ public class BoardCell {
 			}
 		}
 		//These two lines create the black border around the rectangle
-		g.setColor(Color.black);
-		g.drawRect(Xpixel, Ypixel, width, height);
+		//g.setColor(Color.black);
+		//g.drawRect(Xpixel, Ypixel, width, height);
 	}
+
+	public void setCanMove(Color canMove) {
+		this.canMove = canMove;
+	}
+	
 
 }

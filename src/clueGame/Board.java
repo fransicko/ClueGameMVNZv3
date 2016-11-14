@@ -560,13 +560,23 @@ public class Board extends JPanel {
 
 	public void makeMove(int roll) {
 		// The board will always now the players location
-		calcTargets(person.getColumn(), person.getRow(), roll);
+		calcTargets(person.getRow(), person.getColumn(), roll);
+		Set<BoardCell> targs = getTargets();
 		
 		boolean endTurn = false;
 		
 		while (!endTurn) {
+			for (BoardCell i: targs) {
+				i.setCanMove(Color.cyan);
+			}
+			repaint();
 			endTurn = true;
 		}
+		/*
+		for (BoardCell i: targs) {
+			i.setCanMove(Color.yellow);
+		}*/
+		repaint();
 		
 	}
 	
