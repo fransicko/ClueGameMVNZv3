@@ -8,5 +8,4 @@ public class HumanPlayer extends Player{
 		super(name, row, column, color);
 		// TODO Auto-generated constructor stub
 	}
-
 }

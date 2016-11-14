@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import clueGame.Board;
 import clueGame.BoardCell;
+import clueGame.HumanPlayer;
 
 public class MouseClickerPanel extends JPanel implements MouseListener{
 	private Board board = Board.getInstance();
@@ -72,7 +73,9 @@ public class MouseClickerPanel extends JPanel implements MouseListener{
 		for (targetBox i: targets) {
 			if(i.containsClick(e.getX(), e.getY())) {
 				playerChoice = new targetBox(i.getX(), i.getY());
-				
+				HumanPlayer currentPlayer = board.getPerson();
+				HumanPlayer player = new HumanPlayer (currentPlayer.getName(), playerChoice.getX(), playerChoice.getY(), currentPlayer.getColor());
+				board.setPerson(player);
 				break;
 			}
 		}

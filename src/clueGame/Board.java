@@ -536,6 +536,10 @@ public class Board extends JPanel {
 	public HumanPlayer getPerson() {
 		return person;
 	}
+	
+	public void setPerson(HumanPlayer updatedLocationPlayer) {
+		person = updatedLocationPlayer;
+	}
 
 	// Get the person at the index
 	public ComputerPlayer getCompAt(int index) {
