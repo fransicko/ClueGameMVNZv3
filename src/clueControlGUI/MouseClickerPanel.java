@@ -2,24 +2,33 @@ package clueControlGUI;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import clueGame.Board;
 import clueGame.BoardCell;
 
-public class MouseClickerPanel extends JPanel {
+public class MouseClickerPanel extends JPanel implements MouseListener{
 	private Board board = Board.getInstance();
 	private ArrayList<targetBox> targets;
 	private int roll;
+	int mouseX;
+	int mouseY;
+	targetBox playerChoice = null;
 
 	// variable used for singleton pattern
 	private static MouseClickerPanel theInstance = new MouseClickerPanel();
 
 	// ctor is private to ensure only one can be created
 	private MouseClickerPanel() {
+		addMouseListener(this);
 	}
 
 	// this method returns the only Board
@@ -56,6 +65,37 @@ public class MouseClickerPanel extends JPanel {
 		roll = 0;
 		targets = new ArrayList<>();
 	}
+
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		for (targetBox i: targets) {
+			if(i.containsClick(e.getX(), e.getY())) {
+				playerChoice = new targetBox(i.getX(), i.getY());
+				
+				break;
+			}
+		}
+			
+		if (playerChoice == null) {
+			JOptionPane invalidTarget = new JOptionPane();
+			//invalidTarget.showMessageDialog(frame, "Invalid Target");
+
+			//frame.setVisible(true);
+		}
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {}
+
+	@Override
+	public void mouseExited(MouseEvent e) {}
 
 
 
