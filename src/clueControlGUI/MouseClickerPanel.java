@@ -25,6 +25,8 @@ public class MouseClickerPanel extends JPanel implements MouseListener{
 	targetBox playerChoice = null;
 	
 	public MouseClickerPanel() {
+		//So i moved some things around and from what i've learned it 
+		//appears that the set preffered size is creating that gray box we see at the top.
 		setPreferredSize(new Dimension(20, 20));
 
 
