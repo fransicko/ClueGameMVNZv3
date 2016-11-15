@@ -9,6 +9,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Set;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -16,23 +17,23 @@ import clueGame.Board;
 import clueGame.BoardCell;
 import clueGame.HumanPlayer;
 
-public class MouseClickerPanel extends JPanel implements MouseListener{
+public class MouseClickerPanel implements MouseListener{
 	private Board board = Board.getInstance();
-	private ArrayList<targetBox> targets;
+	private Set<BoardCell> targets;
 	//private int roll;
 	int mouseX;
 	int mouseY;
 	targetBox playerChoice = null;
-	
-	public MouseClickerPanel() {
+
+	/*	public MouseClickerPanel() {
 		//So i moved some things around and from what i've learned it 
 		//appears that the set preffered size is creating that gray box we see at the top.
-		setPreferredSize(new Dimension(20, 20));
+		//setPreferredSize(new Dimension(20, 20));
 
 
 		//board.calcTargets(board.person.getColumn(), board.person.getRow(), roll);
 		createBoxes(board.getTargets());
-		addMouseListener(this);
+		//addMouseListener(this);
 	}
 
 	private void createBoxes(Set<BoardCell> targs) {
@@ -50,7 +51,7 @@ public class MouseClickerPanel extends JPanel implements MouseListener{
 			i.draw(g);
 		}
 	}
-	
+	 */
 	//Added the next couple functions
 	//playerchoice is based on if one of the targetboxes in the arraylist have a mouse click
 	//I retrieve the humanPLayer variable called person from board and update the X and Y position
@@ -59,7 +60,7 @@ public class MouseClickerPanel extends JPanel implements MouseListener{
 	//Feel free to modify
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		for (targetBox i: targets) {
+		/*		for (targetBox i: targets) {
 			if(i.containsClick(e.getX(), e.getY())) {
 				playerChoice = new targetBox(i.getX(), i.getY());
 				HumanPlayer currentPlayer = board.getPerson();
@@ -68,13 +69,35 @@ public class MouseClickerPanel extends JPanel implements MouseListener{
 				break;
 			}
 		}
-			
+
 		//This is for displaying the error message if the click was not in a targetbox, needs more work
 		if (playerChoice == null) {
 			JOptionPane invalidTarget = new JOptionPane();
 			//invalidTarget.showMessageDialog(frame, "Invalid Target");
 
 			//frame.setVisible(true);
+		}*/
+
+
+		targets = board.getTargets();
+		Point i = e.getPoint();
+		if(targets.contains(board.getCellAt((int) i.getY()/20, (int) i.getX()/20))) {
+			System.out.println("We clicked a good spot");
+			//playerChoice = new targetBox(i.getX(), i.getY());
+			//HumanPlayer currentPlayer = board.getPerson();
+			//board.person = new HumanPlayer (currentPlayer.getName(), (int) i.getX(), (int) i.getY(), currentPlayer.getColor());
+			//board.setPerson(player);
+			board.person.setColumn((int) i.getX());
+			board.person.setRow((int) i.getY());
+			board.setTurn(true);
+			board.person.finishMove();
+
+		}
+		else {
+			JFrame frame = new JFrame();
+			JOptionPane wrong = new JOptionPane();
+			wrong.showMessageDialog(frame, "Invalid position", "Try again", JOptionPane.INFORMATION_MESSAGE);
+
 		}
 	}
 

@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -24,12 +25,12 @@ public class clueControlGUI extends JPanel{
 	private JTextField name;
 	private CreateWhoseTurn turn;
 	private CreateDiePanel die;
-	
-	
+
+
 	public clueControlGUI() {
 		turn = new CreateWhoseTurn();
 		die = new CreateDiePanel();
-		
+
 		setLayout(new GridLayout(2,1));
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1, 3));
@@ -47,42 +48,55 @@ public class clueControlGUI extends JPanel{
 		add(panel2);
 		panel2.add(createGuessResultPanel());
 		add(panel2);
-		
+
 	}
-	
+
 	private JPanel createNextPlayerButtonPanel() {
 		JButton nextPlayer = new JButton("Next player");
 		JPanel panel = new JPanel(new BorderLayout());
 		nextPlayer.addActionListener(new NextPlayerListener());
-		
+
 		panel.add(nextPlayer);
 		return panel;
 	}
-	
+
 	class NextPlayerListener implements ActionListener {
 		private int next = 0;
 		public void actionPerformed(ActionEvent e) {
-			turn.setWhosTurn(board.players.get(next).getName());
-			die.setRoll();
-			if (next == 0) {
-				board.makeMove(die.getRoll());
-			}
-			else {
-				board.compMove(next-1, die.getRoll());
+			if (board.nextTurn) {
+				turn.setWhosTurn(board.players.get(next).getName());
+				die.setRoll();
+				//board.nextTurn = false;
+				if (next == 0) {
+					board.setTurn(false);
+					board.person.makeMove(die.getRoll());
+					//board.makeMove(die.getRoll());
+
+				}
+				else {
+					board.compMove(next-1, die.getRoll());
+				}
+
+				++next;
+				if (next == 6) next = 0;
 			}
 			
-			++next;
-			if (next == 6) next = 0;
+			else {
+				JFrame frame = new JFrame();
+				JOptionPane wrong = new JOptionPane();
+				wrong.showMessageDialog(frame, "You must chose a location", "Play your turn", JOptionPane.INFORMATION_MESSAGE);
+			}
+
 		}
 	}
-	
+
 	private JPanel createMakeAccusationButtonPanel() {
 		JButton accusation = new JButton("Make an Accusation");
 		JPanel panel = new JPanel(new BorderLayout());
 		panel.add(accusation);
 		return panel;
 	}
-	
+
 	private JPanel createGuessResultPanel() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,2));
@@ -93,6 +107,6 @@ public class clueControlGUI extends JPanel{
 		panel.setBorder(new TitledBorder(new EtchedBorder(), "Guess Result"));
 		return panel;
 	}
-	
-	
+
+
 }

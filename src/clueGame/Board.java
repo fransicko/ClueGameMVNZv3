@@ -14,6 +14,8 @@ import java.lang.reflect.Field;
 public class Board extends JPanel {
 	private int startCell;
 	private int pathLength;
+	
+	public Boolean nextTurn = true;
 
 	private Map<BoardCell, Set<BoardCell>> adjMatrix;
 	private Map<Character, String> legendMap = new HashMap<Character, String>();
@@ -563,35 +565,16 @@ public class Board extends JPanel {
 	public Solution getSoln() {
 		return solution;
 	}
-
-	public void makeMove(int roll) {
-		// The board will always now the players location
-		calcTargets(person.getRow(), person.getColumn(), roll);
-		Set<BoardCell> targs = getTargets();
-		
-		for (BoardCell i: targs) {
-			i.setCanMove(Color.cyan);
-		}
-		repaint();
-		//HumanPlayer dumb = person;
-		MouseClickerPanel click = new MouseClickerPanel();
-		add(click);
-		
-		boolean endTurn = false;
-		
-		while (!endTurn) {
-			
-			
-			endTurn = true;
-			
-		}
-		/*
-		for (BoardCell i: targs) {
-			i.setCanMove(Color.yellow);
-		}*/
-		repaint();
-		
+	
+	public void setTurn(Boolean t) {
+		nextTurn = t;
 	}
+
+/*	public void makeMove(int roll) {
+		// The board will always now the players location
+
+		
+	}*/
 	
 	// This will be the comp at num computerPlayer
 	public void compMove(int num, int k) {
