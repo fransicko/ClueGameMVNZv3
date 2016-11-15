@@ -582,5 +582,9 @@ public class Board extends JPanel {
 		
 	}
 	
+	public String getInitial(int x, int y) {
+		return grid[x][y].getWholeValue();
+	}
+	
 
 }

@@ -19,13 +19,6 @@ import clueGame.HumanPlayer;
 
 public class MouseClickerPanel implements MouseListener{
 	private Board board = Board.getInstance();
-
-	//Added the next couple functions
-	//playerchoice is based on if one of the targetboxes in the arraylist have a mouse click
-	//I retrieve the humanPLayer variable called person from board and update the X and Y position
-	//I created a setter in board to set a new humanPLayer, it retained the name and color, just a new position
-	//What Im stuck on is actually updating the dot on the screen, i believe it is an issue with addmouselistener(this)
-	//Feel free to modify
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -38,6 +31,10 @@ public class MouseClickerPanel implements MouseListener{
 			
 			board.setTurn(true);
 			board.person.finishMove();
+			
+			if(board.person.getTileInitial().length() == 2) {
+				//Display the guess panel - Player is inside a room
+			}
 
 		}
 		else {

@@ -66,11 +66,9 @@ public class clueControlGUI extends JPanel{
 			if (board.nextTurn) {
 				turn.setWhosTurn(board.players.get(next).getName());
 				die.setRoll();
-				//board.nextTurn = false;
 				if (next == 0) {
 					board.setTurn(false);
 					board.person.makeMove(die.getRoll());
-					//board.makeMove(die.getRoll());
 
 				}
 				else {
@@ -83,8 +81,7 @@ public class clueControlGUI extends JPanel{
 			
 			else {
 				JFrame frame = new JFrame();
-				JOptionPane wrong = new JOptionPane();
-				wrong.showMessageDialog(frame, "You must chose a location", "Play your turn", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(frame, "You must chose a location", "Play your turn", JOptionPane.INFORMATION_MESSAGE);
 			}
 
 		}
@@ -110,9 +107,7 @@ public class clueControlGUI extends JPanel{
 	private JPanel createGuessResultPanel() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,2));
-		//JLabel guessLabel = new JLabel("Response");
 		name = new JTextField(5);
-		//panel.add(guessLabel);
 		panel.add(name);
 		panel.setBorder(new TitledBorder(new EtchedBorder(), "Guess Result"));
 		return panel;
