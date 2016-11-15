@@ -62,7 +62,7 @@ public class clueGameGUI extends JFrame{
 	
 	
 	private JMenu createFileMenu() {
-		JMenu menu = new JMenu("File");
+		JMenu menu = new JMenu("Clue");
 		menu.add(createDetecItem());
 		menu.add(createFileExitItem());
 		

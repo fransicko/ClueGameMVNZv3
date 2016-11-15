@@ -30,6 +30,7 @@ public class HumanPlayer extends Player{
 	public void finishMove() {
 		board.removeMouseListener(click);
 		for (BoardCell i: board.getTargets()) {
+			
 			i.setCanMove(Color.yellow);
 		}
 		

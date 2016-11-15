@@ -82,14 +82,16 @@ public class MouseClickerPanel implements MouseListener{
 		targets = board.getTargets();
 		Point i = e.getPoint();
 		if(targets.contains(board.getCellAt((int) i.getY()/20, (int) i.getX()/20))) {
-			System.out.println("We clicked a good spot");
+			System.out.println(board.person.getColumn() + " " + board.person.getRow());
+			//System.out.println("We clicked a good spot");
 			//playerChoice = new targetBox(i.getX(), i.getY());
 			//HumanPlayer currentPlayer = board.getPerson();
 			//board.person = new HumanPlayer (currentPlayer.getName(), (int) i.getX(), (int) i.getY(), currentPlayer.getColor());
 			//board.setPerson(player);
-			board.person.setColumn((int) i.getX());
-			board.person.setRow((int) i.getY());
+			board.person.setColumn((int) i.getX()/20);
+			board.person.setRow((int) i.getY()/20);
 			board.setTurn(true);
+			System.out.println(board.person.getColumn() + " " + board.person.getRow());
 			board.person.finishMove();
 
 		}
