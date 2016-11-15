@@ -10,6 +10,8 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Set;
 
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -17,6 +19,7 @@ import javax.swing.JPanel;
 
 import clueGame.Board;
 import clueGame.BoardCell;
+import clueGame.Card;
 import clueGame.HumanPlayer;
 
 public class MouseClickerPanel extends JDialog implements MouseListener{
@@ -38,7 +41,7 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 				//Display the guess panel - Player is inside a room
 				MouseClickerPanel guessPanel = new MouseClickerPanel();
 				guessPanel.setTitle("Make a Guess");
-				guessPanel.setSize(700, 450);
+				guessPanel.setSize(350, 225);
 				guessPanel.setLayout(new GridLayout(1,2));
 				
 				JPanel panel = new JPanel();
@@ -47,6 +50,19 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 				
 				JPanel panel2 = new JPanel();
 				panel2.setLayout(new GridLayout(3, 1));
+				JCheckBox people;
+				
+				JComboBox<String> personDropDownGuess = new JComboBox<String>();
+				
+				for (Card j: board.personCards) {
+					if (j.getName() != board.person.getName());
+					people = new JCheckBox(j.getName());
+					personDropDownGuess.add(people);
+				}
+				
+				panel2.add(personDropDownGuess);
+				
+				JComboBox<String> weaponDropDownGuess = new JComboBox<String>();
 				
 				
 				guessPanel.add(panel);

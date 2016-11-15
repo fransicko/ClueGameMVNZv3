@@ -76,7 +76,6 @@ public class detectiveNotes extends JDialog {
 		
 		for (Card i: board.roomCards) {
 			room = new JCheckBox(i.getName());
-			//System.out.println(i);
 			panel.add(room);
 		}
 		
@@ -91,7 +90,6 @@ public class detectiveNotes extends JDialog {
 		
 		for (Card i: board.weaponCards) {
 			room = new JCheckBox(i.getName());
-			//System.out.println(i);
 			panel.add(room);
 		}
 		
