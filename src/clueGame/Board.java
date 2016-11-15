@@ -570,13 +570,6 @@ public class Board extends JPanel {
 		nextTurn = t;
 	}
 
-/*	public void makeMove(int roll) {
-		// The board will always now the players location
-
-		
-	}*/
-	
-	// This will be the comp at num computerPlayer
 	public void compMove(int num, int k) {
 		calcTargets(comp.get(num).getRow(), comp.get(num).getColumn(), k);
 		BoardCell move = comp.get(num).pickLocation(getTargets());
