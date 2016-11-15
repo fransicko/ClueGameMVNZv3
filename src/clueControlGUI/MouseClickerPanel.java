@@ -37,13 +37,17 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 			if(board.person.getTileInitial().length() == 2) {
 				//Display the guess panel - Player is inside a room
 				MouseClickerPanel guessPanel = new MouseClickerPanel();
-				setTitle("Notes");
-				setSize(700, 450);
-				setLayout(new GridLayout(1,2));
+				guessPanel.setTitle("Make a Guess");
+				guessPanel.setSize(700, 450);
+				guessPanel.setLayout(new GridLayout(1,2));
+				
 				JPanel panel = new JPanel();
-				JPanel panel2 = new JPanel();
 				panel.setLayout(new GridLayout(3, 1));
+				
+				
+				JPanel panel2 = new JPanel();
 				panel2.setLayout(new GridLayout(3, 1));
+				
 				
 				guessPanel.add(panel);
 				guessPanel.add(panel2);
