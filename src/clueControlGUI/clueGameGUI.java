@@ -31,31 +31,24 @@ import clueGame.CardType;
 public class clueGameGUI extends JFrame{
 	private static Board board = Board.getInstance();
 	private detectiveNotes notes = new detectiveNotes();
-	// mouse = MouseClickerPanel.getInstance();
 	
 	public clueGameGUI() {
-		//setLayout(new GridLayout(2,1));
 		JPanel panel = new JPanel(); // Attempting to put the board on a panel
 		JPanel panel2 = new JPanel();
-		panel.setLayout(new GridLayout(1,2)); //Setting layout
-		//panel.setSize(800, 800);
+		panel.setLayout(new GridLayout(1,2)); 
 		setSize(750, 675);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		add(board, BorderLayout.CENTER); //new
-		add(myCardsPanel(), BorderLayout.EAST);//myCards call
-		//add(panel);
+		add(board, BorderLayout.CENTER); 
+		add(myCardsPanel(), BorderLayout.EAST);
 		
 		clueControlGUI control = new clueControlGUI();
 		control.setSize(new Dimension(200, 750));
 		add(control, BorderLayout.SOUTH);
-		//add(panel2);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		menuBar.add(createFileMenu());
-		
-		//add(mouse);
 		
 	}
 	
@@ -94,7 +87,7 @@ public class clueGameGUI extends JFrame{
 		return item;
 	}
 	
-	private JPanel myCardsPanel() { //Need to get the size right
+	private JPanel myCardsPanel() { 
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(3,1));
 		panel.setBorder(new TitledBorder(new EtchedBorder(), "My Cards"));

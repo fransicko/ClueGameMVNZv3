@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class Player {
 	private String Name;
-	private int row;
-	private int column;
+	protected int row;
+	protected int column;
 	private Color color;
 	public ArrayList<Card> hand = new ArrayList<>();
 	public Board board = Board.getInstance();

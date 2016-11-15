@@ -569,4 +569,8 @@ public class Board extends JPanel {
 	public void setTurn(Boolean t) {
 		nextTurn = t;
 	}
+
+	public String getInitial(int x, int y) {
+		return grid[x][y].getWholeValue();
+	}
 }

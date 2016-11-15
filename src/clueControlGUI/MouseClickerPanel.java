@@ -2,6 +2,7 @@ package clueControlGUI;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
@@ -9,23 +10,20 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Set;
 
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import clueGame.Board;
 import clueGame.BoardCell;
+import clueGame.Card;
 import clueGame.HumanPlayer;
 
-public class MouseClickerPanel implements MouseListener{
+public class MouseClickerPanel extends JDialog implements MouseListener{
 	private Board board = Board.getInstance();
-
-	//Added the next couple functions
-	//playerchoice is based on if one of the targetboxes in the arraylist have a mouse click
-	//I retrieve the humanPLayer variable called person from board and update the X and Y position
-	//I created a setter in board to set a new humanPLayer, it retained the name and color, just a new position
-	//What Im stuck on is actually updating the dot on the screen, i believe it is an issue with addmouselistener(this)
-	//Feel free to modify
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -38,6 +36,39 @@ public class MouseClickerPanel implements MouseListener{
 			
 			board.setTurn(true);
 			board.person.finishMove();
+			
+			if(board.person.getTileInitial().length() == 2) {
+				//Display the guess panel - Player is inside a room
+				MouseClickerPanel guessPanel = new MouseClickerPanel();
+				guessPanel.setTitle("Make a Guess");
+				guessPanel.setSize(350, 225);
+				guessPanel.setLayout(new GridLayout(1,2));
+				
+				JPanel panel = new JPanel();
+				panel.setLayout(new GridLayout(3, 1));
+				
+				
+				JPanel panel2 = new JPanel();
+				panel2.setLayout(new GridLayout(3, 1));
+				JCheckBox people;
+				
+				JComboBox<String> personDropDownGuess = new JComboBox<String>();
+				
+				for (Card j: board.personCards) {
+					if (j.getName() != board.person.getName());
+					people = new JCheckBox(j.getName());
+					personDropDownGuess.add(people);
+				}
+				
+				panel2.add(personDropDownGuess);
+				
+				JComboBox<String> weaponDropDownGuess = new JComboBox<String>();
+				
+				
+				guessPanel.add(panel);
+				guessPanel.add(panel2);
+				guessPanel.setVisible(true);
+			}
 
 		}
 		else {

@@ -1,6 +1,5 @@
 package clueControlGUI;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -27,13 +26,6 @@ public class detectiveNotes extends JDialog {
 	
 	public detectiveNotes() {
 		board = Board.getInstance();
-		/*JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(new Dimension(700,300));
-		
-		control = new detectiveNotes();
-		frame.add(control, BorderLayout.CENTER);
-		frame.setVisible(true);*/
 		
 		setTitle("Notes");
 		setSize(700, 450);
@@ -84,7 +76,6 @@ public class detectiveNotes extends JDialog {
 		
 		for (Card i: board.roomCards) {
 			room = new JCheckBox(i.getName());
-			//System.out.println(i);
 			panel.add(room);
 		}
 		
@@ -99,7 +90,6 @@ public class detectiveNotes extends JDialog {
 		
 		for (Card i: board.weaponCards) {
 			room = new JCheckBox(i.getName());
-			//System.out.println(i);
 			panel.add(room);
 		}
 		
