@@ -2,6 +2,7 @@ package clueControlGUI;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
@@ -9,6 +10,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Set;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -17,7 +19,7 @@ import clueGame.Board;
 import clueGame.BoardCell;
 import clueGame.HumanPlayer;
 
-public class MouseClickerPanel implements MouseListener{
+public class MouseClickerPanel extends JDialog implements MouseListener{
 	private Board board = Board.getInstance();
 	
 	@Override
@@ -34,6 +36,18 @@ public class MouseClickerPanel implements MouseListener{
 			
 			if(board.person.getTileInitial().length() == 2) {
 				//Display the guess panel - Player is inside a room
+				MouseClickerPanel guessPanel = new MouseClickerPanel();
+				setTitle("Notes");
+				setSize(700, 450);
+				setLayout(new GridLayout(1,2));
+				JPanel panel = new JPanel();
+				JPanel panel2 = new JPanel();
+				panel.setLayout(new GridLayout(3, 1));
+				panel2.setLayout(new GridLayout(3, 1));
+				
+				guessPanel.add(panel);
+				guessPanel.add(panel2);
+				guessPanel.setVisible(true);
 			}
 
 		}

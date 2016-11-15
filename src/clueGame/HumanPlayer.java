@@ -37,6 +37,6 @@ public class HumanPlayer extends Player{
 	}
 	
 	public String getTileInitial() {
-		return board.getInitial(row, column);;
+		return board.getInitial(row, column);
 	}
 }
