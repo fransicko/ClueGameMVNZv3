@@ -89,6 +89,16 @@ public class clueControlGUI extends JPanel{
 
 		}
 	}
+	
+	class MakeAccusationListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
 
 	private JPanel createMakeAccusationButtonPanel() {
 		JButton accusation = new JButton("Make an Accusation");
