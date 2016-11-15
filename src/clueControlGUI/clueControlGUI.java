@@ -25,11 +25,13 @@ public class clueControlGUI extends JPanel{
 	private JTextField name;
 	private CreateWhoseTurn turn;
 	private CreateDiePanel die;
+	private CreateGuessPanel guess;
 
 
 	public clueControlGUI() {
 		turn = new CreateWhoseTurn();
 		die = new CreateDiePanel();
+		guess = new CreateGuessPanel();
 
 		setLayout(new GridLayout(2,1));
 		JPanel panel = new JPanel();
@@ -44,7 +46,7 @@ public class clueControlGUI extends JPanel{
 		panel2.setLayout(new GridLayout(1, 3));
 		panel2.add(die);
 		add(panel2);
-		panel2.add(new CreateGuessPanel());
+		panel2.add(guess);
 		add(panel2);
 		panel2.add(createGuessResultPanel());
 		add(panel2);
@@ -74,7 +76,8 @@ public class clueControlGUI extends JPanel{
 
 				}
 				else {
-					board.compMove(next-1, die.getRoll());
+					board.comp.get(next-1).compMove(die.getRoll());
+					guess.setGuess(board.comp.get(next-1).suggestion);
 				}
 
 				++next;

@@ -12,6 +12,16 @@ public class Solution {
 		this.room = room;
 		this.weapon = weapon;
 	}
+
+	@Override
+	public String toString() {
+		return person + " in the " + room + " with a " + weapon;
+	}
+	
+	public String getPerson() {
+		return this.person;
+	}
+	
 	
 	
 

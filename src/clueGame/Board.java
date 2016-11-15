@@ -569,18 +569,4 @@ public class Board extends JPanel {
 	public void setTurn(Boolean t) {
 		nextTurn = t;
 	}
-
-	public void compMove(int num, int k) {
-		calcTargets(comp.get(num).getRow(), comp.get(num).getColumn(), k);
-		BoardCell move = comp.get(num).pickLocation(getTargets());
-		
-		comp.get(num).setColumn(move.getX());
-		comp.get(num).setRow(move.getY());
-		
-		repaint();
-		
-		
-	}
-	
-
 }

@@ -11,6 +11,7 @@ public class Player {
 	private int column;
 	private Color color;
 	public ArrayList<Card> hand = new ArrayList<>();
+	public Board board = Board.getInstance();
 
 	public Player(String name, int row, int column, Color color) {
 		super();

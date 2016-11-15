@@ -8,19 +8,29 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import clueGame.Solution;
+
 public class CreateGuessPanel extends JPanel{
 	private JTextArea guess;
-	private JTextField name;
+	private String g;	// Couldn't use guess again
 	
 	public CreateGuessPanel() {
 		
-		//JPanel panel = new JPanel();
 		setLayout(new GridLayout(1,2));
-		//JLabel guessLabel = new JLabel("Guess");
-		name = new JTextField(5);
-		//panel.add(guessLabel);
-		add(name);
 		setBorder(new TitledBorder(new EtchedBorder(), "Guess"));
+		guess = new JTextArea(1, 20);
+		updateGuess();
+		
+		add(guess);
 		//return panel;
+	}
+	
+	private void updateGuess() {
+		guess.setText(g);
+	}
+	
+	public void setGuess(Solution sugg) {
+		this.g = sugg.toString();
+		updateGuess();
 	}
 }

@@ -16,7 +16,7 @@ public class ComputerPlayer extends Player{
 		super(name, row, column, color);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public BoardCell pickLocation(Set<BoardCell> targets) {
 		for (BoardCell i: targets) {
 			//(visited.getX() == i.getX() && visited.getY() == i.getY())
@@ -25,11 +25,11 @@ public class ComputerPlayer extends Player{
 				return i;
 			}
 		}
-		
+
 		Random ran = new Random();
 		Iterator<BoardCell> itr = targets.iterator();
 		int location = Math.abs(ran.nextInt(targets.size()));
-		
+
 		int i = 0;
 		while (itr.hasNext()) {
 			BoardCell loc = itr.next();
@@ -37,22 +37,22 @@ public class ComputerPlayer extends Player{
 				return loc;
 			}
 			++i;
-			
+
 		}
-		
+
 		return null;
 	}
-	
+
 	public void makeAccusation() {
 		Random ran = new Random();
 		int room = Math.abs(ran.nextInt())%Board.getInstance().roomCards.size();
 		int ppl = Math.abs(ran.nextInt())%Board.getInstance().personCards.size();
 		int weapon = Math.abs(ran.nextInt())%Board.getInstance().weaponCards.size();
-		
+
 		Solution compSoln = new Solution(Board.getInstance().personCards.get(ppl).getName(), Board.getInstance().roomCards.get(room).getName(), Board.getInstance().weaponCards.get(weapon).getName());
 		Board.getInstance().checkAccusation(compSoln);
 	}
-	
+
 	public void createSuggestion() {
 		Random ran = new Random();
 		String room = Board.getInstance().getCellAt(getRow(), getColumn()).getWholeValue();
@@ -68,11 +68,37 @@ public class ComputerPlayer extends Player{
 				weapon.add(i);
 			}
 		}
-		
+
 		int selection1 = Math.abs(ran.nextInt())%people.size();
 		int selection2 = Math.abs(ran.nextInt())%weapon.size();
-		
+
 		suggestion = new Solution(people.get(selection1).getName(), room, weapon.get(selection2).getName());
+
+	}
+
+	public void compMove(int k) {
+		board.calcTargets(getRow(), getColumn(), k);
+		BoardCell move = pickLocation(board.getTargets());
+
+		setColumn(move.getX());
+		setRow(move.getY());
+		
+		if (board.getCellAt(getRow(), getColumn()).isDoorway()) makeSuggestion();
+		board.repaint();
+
+	}
+	
+	public void makeSuggestion() {
+		createSuggestion();
+		
+		// This will pull a random player so the current room
+		for (int i = 0; i < 6; ++i) {
+			if (board.players.get(i).getName().equals(suggestion.getPerson())) {
+				board.players.get(i).setRow(getRow());
+				board.players.get(i).setColumn(getColumn());
+				break;
+			}
+		}
 		
 	}
 
