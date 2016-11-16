@@ -1,5 +1,6 @@
 package clueControlGUI;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -10,12 +11,15 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Set;
 
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import clueGame.Board;
 import clueGame.BoardCell;
@@ -45,24 +49,52 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 				guessPanel.setLayout(new GridLayout(1,2));
 				
 				JPanel panel = new JPanel();
-				panel.setLayout(new GridLayout(3, 1));
+				panel.setLayout(new GridLayout(4, 1));
 				
 				
 				JPanel panel2 = new JPanel();
-				panel2.setLayout(new GridLayout(3, 1));
-				JCheckBox people;
+				panel2.setLayout(new GridLayout(4, 1));
 				
+				//Add Your Room, Weapons, People messageDialog
+				JLabel yourRoomGuess = new JLabel("Your Room");
+				JLabel personGuess = new JLabel("Person");
+				JLabel weaponGuess = new JLabel("Weapon");
+				panel.add(yourRoomGuess);
+				panel.add(personGuess);
+				panel.add(weaponGuess);
+				
+				//Add current room as guessRoom
+				JLabel roomGuess = new JLabel(board.legendMap.get(board.person.getTileInitial().charAt(0)));
+				panel2.add(roomGuess);
+				
+				//For the person drop down menu on guess panel
 				JComboBox<String> personDropDownGuess = new JComboBox<String>();
 				
 				for (Card j: board.personCards) {
-					if (j.getName() != board.person.getName());
-					people = new JCheckBox(j.getName());
-					personDropDownGuess.add(people);
+					if (j.getName() != board.person.getName()) {
+						personDropDownGuess.addItem(j.getName());
+					}
 				}
 				
 				panel2.add(personDropDownGuess);
 				
+				//For the weapon drop down menu on guess panel
 				JComboBox<String> weaponDropDownGuess = new JComboBox<String>();
+				
+				for (Card j: board.weaponCards) {
+					//if (j.getName() != board.seenCards.getName());
+					weaponDropDownGuess.addItem(j.getName());
+				}
+				
+				panel2.add(weaponDropDownGuess);
+				
+				//Need to Add submit button to panel1
+				JButton submitGuessPanel = new JButton("Submit");
+				panel.add(submitGuessPanel);
+				
+				//Cancel button for panel2
+				JButton cancelGuessPanel = new JButton("Cancel");
+				panel2.add(cancelGuessPanel);
 				
 				
 				guessPanel.add(panel);

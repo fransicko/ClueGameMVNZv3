@@ -18,7 +18,7 @@ public class Board extends JPanel {
 	public Boolean nextTurn = true;
 
 	private Map<BoardCell, Set<BoardCell>> adjMatrix;
-	private Map<Character, String> legendMap = new HashMap<Character, String>();
+	public Map<Character, String> legendMap = new HashMap<Character, String>();
 	Set<BoardCell> visited;
 	Set<BoardCell> targets;
 	private final int MAX_BOARD_SIZE = 100;
