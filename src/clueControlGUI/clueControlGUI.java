@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,6 +19,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import clueGame.Board;
+import clueGame.Card;
 
 
 public class clueControlGUI extends JPanel{
@@ -94,7 +96,72 @@ public class clueControlGUI extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+			//Display the accusation panel
+			MouseClickerPanel guessPanel = new MouseClickerPanel();
+			guessPanel.setTitle("Make an Accusation");
+			guessPanel.setSize(350, 225);
+			guessPanel.setLayout(new GridLayout(1,2));
+			
+			JPanel panel = new JPanel();
+			panel.setLayout(new GridLayout(4, 1));
+			
+			
+			JPanel panel2 = new JPanel();
+			panel2.setLayout(new GridLayout(4, 1));
+			
+			//Add Your Room, Weapons, People messageDialog
+			JLabel yourRoomGuess = new JLabel("Room");
+			JLabel personGuess = new JLabel("Person");
+			JLabel weaponGuess = new JLabel("Weapon");
+			panel.add(yourRoomGuess);
+			panel.add(personGuess);
+			panel.add(weaponGuess);
+			
+			//Add room drop down
+			JComboBox<String> roomDropDownAccusation = new JComboBox<String>();
+			
+			for (Card j: board.roomCards) {
+				roomDropDownAccusation.addItem(j.getName());
+			}
+			
+			panel2.add(roomDropDownAccusation);
+			
+			//For the person drop down
+			JComboBox<String> personDropDownAccusation = new JComboBox<String>();
+			
+			for (Card j: board.personCards) {
+				if (j.getName() != board.person.getName()) {
+					personDropDownAccusation.addItem(j.getName());
+				}
+			}
+			
+			
+			panel2.add(personDropDownAccusation);
+			
+			//For the weapon drop down menu on guess panel
+			JComboBox<String> weaponDropDownAccusation = new JComboBox<String>();
+			
+			for (Card j: board.weaponCards) {
+				weaponDropDownAccusation.addItem(j.getName());
+			}
+			
+			panel2.add(weaponDropDownAccusation);
+			
+			//Need to Add submit button to panel1
+			JButton submitGuessPanel = new JButton("Submit");
+			submitGuessPanel.addActionListener(new SubmitGuessListener());
+			panel.add(submitGuessPanel);
+			
+			//Cancel button for panel2
+			JButton cancelGuessPanel = new JButton("Cancel");
+			cancelGuessPanel.addActionListener(new CancelGuessListener());
+			panel2.add(cancelGuessPanel);
+			
+			
+			guessPanel.add(panel);
+			guessPanel.add(panel2);
+			guessPanel.setVisible(true);
+			
 			
 		}
 		
@@ -103,6 +170,7 @@ public class clueControlGUI extends JPanel{
 	private JPanel createMakeAccusationButtonPanel() {
 		JButton accusation = new JButton("Make an Accusation");
 		JPanel panel = new JPanel(new BorderLayout());
+		accusation.addActionListener(new MakeAccusationListener());
 		panel.add(accusation);
 		return panel;
 	}
