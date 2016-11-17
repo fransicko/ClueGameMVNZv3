@@ -112,6 +112,11 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 				guessPanel.add(panel2);
 				guessPanel.setVisible(true);
 				
+				if (board.getCellAt(board.person.getRow(), board.person.getColumn()).isDoorway()) { 
+					System.out.println("Its in damn it");
+					//guess.setGuess(board.person.suggestion);
+				}
+				
 				
 			}
 
@@ -136,6 +141,7 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 			//System.out.println(personSug);
 			
 			board.person.setSuggestion(new Solution(personSug, roomSug, weaponSug));
+			//System.out.println(board.person.suggestion);
 			board.seenCards.add(board.handleSuggestion(board.person.suggestion, board.person));
 			
 			//guessPanel.

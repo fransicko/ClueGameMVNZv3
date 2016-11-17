@@ -12,7 +12,7 @@ import clueGame.Solution;
 
 public class CreateGuessPanel extends JPanel{
 	private JTextArea guess;
-	private String g;	// Couldn't use guess again
+	private String g = "";	// Couldn't use guess again
 	
 	public CreateGuessPanel() {
 		

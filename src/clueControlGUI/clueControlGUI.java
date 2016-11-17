@@ -73,7 +73,7 @@ public class clueControlGUI extends JPanel{
 				if (next == 0) {
 					board.setTurn(false);
 					board.person.makeMove(die.getRoll());
-					if (!board.person.suggestion.getPerson().equals("")) guess.setGuess(board.person.suggestion);
+					
 
 				}
 				else {
