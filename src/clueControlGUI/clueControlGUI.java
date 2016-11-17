@@ -97,10 +97,10 @@ public class clueControlGUI extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			//Display the accusation panel
-			MouseClickerPanel guessPanel = new MouseClickerPanel();
-			guessPanel.setTitle("Make an Accusation");
-			guessPanel.setSize(350, 225);
-			guessPanel.setLayout(new GridLayout(1,2));
+			MouseClickerPanel accusationPanel = new MouseClickerPanel();
+			accusationPanel.setTitle("Make an Accusation");
+			accusationPanel.setSize(350, 225);
+			accusationPanel.setLayout(new GridLayout(1,2));
 			
 			JPanel panel = new JPanel();
 			panel.setLayout(new GridLayout(4, 1));
@@ -126,7 +126,7 @@ public class clueControlGUI extends JPanel{
 			
 			panel2.add(roomDropDownAccusation);
 			
-			//For the person drop down
+			//Add person drop down
 			JComboBox<String> personDropDownAccusation = new JComboBox<String>();
 			
 			for (Card j: board.personCards) {
@@ -138,7 +138,7 @@ public class clueControlGUI extends JPanel{
 			
 			panel2.add(personDropDownAccusation);
 			
-			//For the weapon drop down menu on guess panel
+			//Add weapon drop down
 			JComboBox<String> weaponDropDownAccusation = new JComboBox<String>();
 			
 			for (Card j: board.weaponCards) {
@@ -149,19 +149,18 @@ public class clueControlGUI extends JPanel{
 			
 			//Need to Add submit button to panel1
 			JButton submitGuessPanel = new JButton("Submit");
-			submitGuessPanel.addActionListener(new SubmitGuessListener());
+			submitGuessPanel.addActionListener(new SubmitAccusationListener());
 			panel.add(submitGuessPanel);
 			
 			//Cancel button for panel2
-			JButton cancelGuessPanel = new JButton("Cancel");
-			cancelGuessPanel.addActionListener(new CancelGuessListener());
-			panel2.add(cancelGuessPanel);
+			JButton cancelAccusationPanel = new JButton("Cancel");
+			cancelAccusationPanel.addActionListener(new CancelAccusationListener());
+			panel2.add(cancelAccusationPanel);
 			
 			
-			guessPanel.add(panel);
-			guessPanel.add(panel2);
-			guessPanel.setVisible(true);
-			
+			accusationPanel.add(panel);
+			accusationPanel.add(panel2);
+			accusationPanel.setVisible(true);
 			
 		}
 		
@@ -184,5 +183,20 @@ public class clueControlGUI extends JPanel{
 		return panel;
 	}
 
+	class CancelAccusationListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+		}
+	}
+	
+	class SubmitAccusationListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+	
+		}
+	}
 
 }
