@@ -29,9 +29,14 @@ import clueGame.BoardCell;
 import clueGame.Card;
 import clueGame.HumanPlayer;
 import clueGame.Player;
+import clueGame.Solution;
 
 public class MouseClickerPanel extends JDialog implements MouseListener{
 	private Board board = Board.getInstance();
+	public JComboBox<String> weaponDropDownGuess = new JComboBox<String>();
+	public JComboBox<String> personDropDownGuess = new JComboBox<String>();
+	public MouseClickerPanel guessPanel = new MouseClickerPanel();
+	
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -46,8 +51,10 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 			board.person.finishMove();
 			
 			if(board.person.getTileInitial().length() == 2) {
+				
+				guessPanel = new MouseClickerPanel();
+				
 				//Display the guess panel - Player is inside a room
-				MouseClickerPanel guessPanel = new MouseClickerPanel();
 				guessPanel.setTitle("Make a Guess");
 				guessPanel.setSize(350, 225);
 				guessPanel.setLayout(new GridLayout(1,2));
@@ -72,7 +79,6 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 				panel2.add(roomGuess);
 				
 				//For the person drop down menu on guess panel
-				JComboBox<String> personDropDownGuess = new JComboBox<String>();
 				
 				for (Card j: board.personCards) {
 					if (j.getName() != board.person.getName()) {
@@ -84,7 +90,6 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 				panel2.add(personDropDownGuess);
 				
 				//For the weapon drop down menu on guess panel
-				JComboBox<String> weaponDropDownGuess = new JComboBox<String>();
 				
 				for (Card j: board.weaponCards) {
 					weaponDropDownGuess.addItem(j.getName());
@@ -108,7 +113,6 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 				guessPanel.setVisible(true);
 				
 				
-				
 			}
 
 		}
@@ -118,6 +122,27 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 			wrong.showMessageDialog(frame, "Invalid position", "Try again", JOptionPane.INFORMATION_MESSAGE);
 
 		}
+	}
+	
+	class SubmitGuessListener implements ActionListener {
+
+		Solution playerSug;
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String personSug = personDropDownGuess.getSelectedItem().toString();
+			String weaponSug = weaponDropDownGuess.getSelectedItem().toString();
+			String roomSug = board.legendMap.get(board.person.getTileInitial().charAt(0));
+			
+			playerSug = new Solution(personSug, roomSug, weaponSug);
+			board.seenCards.add(board.handleSuggestion(playerSug, board.person));
+			
+			guessPanel.
+			guessPanel.dispose();
+			
+		}
+		
+
 	}
 
 	@Override
@@ -136,16 +161,7 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 
 }
 
-class SubmitGuessListener implements ActionListener {
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		
-	}
-	
-
-}
 
 class CancelGuessListener implements ActionListener {
 
