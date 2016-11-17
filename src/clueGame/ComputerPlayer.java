@@ -55,7 +55,7 @@ public class ComputerPlayer extends Player{
 
 	public void createSuggestion() {
 		Random ran = new Random();
-		String room = Board.getInstance().getCellAt(getRow(), getColumn()).getWholeValue();
+		String room = board.legendMap.get(Board.getInstance().getCellAt(getRow(), getColumn()).getInitial());
 		ArrayList<Card> people = new ArrayList<>();
 		for (Card i : Board.getInstance().personCards) {
 			if (!Board.getInstance().seenCards.contains(i)) {

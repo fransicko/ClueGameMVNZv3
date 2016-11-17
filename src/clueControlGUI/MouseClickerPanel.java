@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -21,10 +23,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import clueControlGUI.clueControlGUI.NextPlayerListener;
 import clueGame.Board;
 import clueGame.BoardCell;
 import clueGame.Card;
 import clueGame.HumanPlayer;
+import clueGame.Player;
 
 public class MouseClickerPanel extends JDialog implements MouseListener{
 	private Board board = Board.getInstance();
@@ -76,13 +80,13 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 					}
 				}
 				
+				
 				panel2.add(personDropDownGuess);
 				
 				//For the weapon drop down menu on guess panel
 				JComboBox<String> weaponDropDownGuess = new JComboBox<String>();
 				
 				for (Card j: board.weaponCards) {
-					//if (j.getName() != board.seenCards.getName());
 					weaponDropDownGuess.addItem(j.getName());
 				}
 				
@@ -90,16 +94,21 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 				
 				//Need to Add submit button to panel1
 				JButton submitGuessPanel = new JButton("Submit");
+				submitGuessPanel.addActionListener(new SubmitGuessListener());
 				panel.add(submitGuessPanel);
 				
 				//Cancel button for panel2
 				JButton cancelGuessPanel = new JButton("Cancel");
+				cancelGuessPanel.addActionListener(new CancelGuessListener());
 				panel2.add(cancelGuessPanel);
 				
 				
 				guessPanel.add(panel);
 				guessPanel.add(panel2);
 				guessPanel.setVisible(true);
+				
+				
+				
 			}
 
 		}
@@ -126,3 +135,24 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 
 
 }
+
+class SubmitGuessListener implements ActionListener {
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}
+
+class CancelGuessListener implements ActionListener {
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JFrame frame = new JFrame();
+		JOptionPane.showMessageDialog(frame, "You must make a suggestion", "Play your turn", JOptionPane.INFORMATION_MESSAGE);
+	}
+}
+
