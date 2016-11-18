@@ -77,6 +77,7 @@ public class clueControlGUI extends JPanel{
 				}
 				else {
 					board.comp.get(next-1).compMove(die.getRoll());
+					// This is so that the guess panel doesn't change if no new guess was made
 					if (board.getCellAt(board.comp.get(next-1).getRow(), board.comp.get(next-1).getColumn()).isDoorway()) {
 						guess.setGuess(board.comp.get(next-1).suggestion);
 					}

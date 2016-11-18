@@ -8,6 +8,7 @@ import clueControlGUI.MouseClickerPanel;
 public class HumanPlayer extends Player{
 	private Board board = Board.getInstance();
 	private MouseClickerPanel click = new MouseClickerPanel();
+	public Solution suggestion = new Solution("", "", "");
 
 	public HumanPlayer(String name, int row, int column, Color color) {
 		super(name, row, column, color);
@@ -38,5 +39,9 @@ public class HumanPlayer extends Player{
 	
 	public String getTileInitial() {
 		return board.getInitial(row, column);
+	}
+	
+	public void setSuggestion(Solution sugs) {
+		this.suggestion = sugs;
 	}
 }
