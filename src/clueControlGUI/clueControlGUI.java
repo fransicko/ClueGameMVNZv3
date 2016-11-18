@@ -85,10 +85,6 @@ public class clueControlGUI extends JPanel{
 					board.comp.get(next-1).compMove(die.getRoll());
 
 				}
-				if (board.getCellAt(board.players.get(next).getRow(), board.players.get(next).getColumn()).isDoorway()) {
-					guess.setGuess(board.players.get(next).suggestion);
-					response.setResponse();
-				}
 
 				++next;
 				if (next == 6) next = 0;

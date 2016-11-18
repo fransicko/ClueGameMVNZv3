@@ -151,7 +151,7 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 			board.repaint();
 			
 			guess.setGuess(board.person.suggestion);
-			response.setResponse();
+			response.setResponse(0);
 			guessPanel.dispose();
 			
 		}

@@ -38,11 +38,13 @@ public class CreateGuessResultPanel extends JPanel{
 		response.setText(r);
 	}
 	
-	public void setResponse() {
-		Card disprove = board.handleSuggestion(board.person.suggestion, board.person);
+	public void setResponse(int i) {
+		Card disprove = board.handleSuggestion(board.players.get(i).suggestion, board.players.get(i));
 		board.seenCards.add(disprove);
-		this.r = disprove.toString();
-		//this.r = sugg.toString();
+		if (disprove != null) {
+			this.r = disprove.toString();
+		}
+		
 		updateResponse();
 	}
 }
