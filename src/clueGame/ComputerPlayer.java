@@ -95,6 +95,13 @@ public class ComputerPlayer extends Player{
 	public void makeSuggestion() {
 		createSuggestion();
 		
+		int index = 0;
+		for (int i = 0; i < board.players.size(); ++i) {
+			if (board.players.get(i).getName().equals(getName())) {
+				index = i;
+				break;
+			}
+		}
 		// This will pull a random player so the current room
 		for (int i = 0; i < 6; ++i) {
 			if (board.players.get(i).getName().equals(suggestion.getPerson())) {
@@ -105,7 +112,7 @@ public class ComputerPlayer extends Player{
 					board.comp.get(i-1).setVisited(getRow(), getColumn());
 				}
 				guess.setGuess(suggestion);
-				response.setResponse(i);
+				response.setResponse(index);
 				
 				break;
 			}

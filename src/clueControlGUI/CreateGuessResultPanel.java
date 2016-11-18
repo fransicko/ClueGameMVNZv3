@@ -45,6 +45,7 @@ public class CreateGuessResultPanel extends JPanel{
 			this.r = disprove.toString();
 		}
 		
+		
 		updateResponse();
 	}
 }
