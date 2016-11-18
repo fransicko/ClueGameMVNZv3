@@ -33,12 +33,15 @@ public class clueControlGUI extends JPanel{
 	JComboBox<String> roomDropDownAccusation = new JComboBox<String>();
 	JComboBox<String> weaponDropDownAccusation = new JComboBox<String>();
 	private static int next = 0;
+	private CreateGuessResultPanel response;
+
 
 
 	public clueControlGUI() {
 		turn = new CreateWhoseTurn();
 		die = new CreateDiePanel();
 		guess = CreateGuessPanel.getInstance();
+		response = CreateGuessResultPanel.getInstance();
 
 		setLayout(new GridLayout(2,1));
 		JPanel panel = new JPanel();
@@ -55,7 +58,7 @@ public class clueControlGUI extends JPanel{
 		add(panel2);
 		panel2.add(guess);
 		add(panel2);
-		panel2.add(createGuessResultPanel());
+		panel2.add(response);
 		add(panel2);
 
 	}
@@ -84,6 +87,7 @@ public class clueControlGUI extends JPanel{
 				}
 				if (board.getCellAt(board.players.get(next).getRow(), board.players.get(next).getColumn()).isDoorway()) {
 					guess.setGuess(board.players.get(next).suggestion);
+					response.setResponse();
 				}
 
 				++next;
@@ -186,14 +190,14 @@ public class clueControlGUI extends JPanel{
 		return panel;
 	}
 
-	private JPanel createGuessResultPanel() {
+/*	private JPanel createGuessResultPanel() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,2));
 		name = new JTextField(5);
 		panel.add(name);
 		panel.setBorder(new TitledBorder(new EtchedBorder(), "Guess Result"));
 		return panel;
-	}
+	}*/
 
 	class CancelAccusationListener implements ActionListener {
 
