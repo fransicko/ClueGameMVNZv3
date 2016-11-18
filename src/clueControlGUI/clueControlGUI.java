@@ -20,6 +20,7 @@ import javax.swing.border.TitledBorder;
 
 import clueGame.Board;
 import clueGame.Card;
+import clueGame.ComputerPlayer;
 import clueGame.Solution;
 
 
@@ -83,8 +84,12 @@ public class clueControlGUI extends JPanel{
 					board.person.makeMove(die.getRoll());
 				}
 				else {
-					board.comp.get(next-1).compMove(die.getRoll());
-
+					if (board.comp.get(next-1).hasAccusation == true) {
+						board.comp.get(next-1).makeAccusation();
+					}
+					else {
+					 board.comp.get(next-1).compMove(die.getRoll());
+					}
 				}
 
 				++next;
@@ -222,7 +227,7 @@ public class clueControlGUI extends JPanel{
 					
 					JFrame frame = new JFrame();
 					JOptionPane wrong = new JOptionPane();
-					wrong.showMessageDialog(frame, "Congradulation! You Won!");
+					wrong.showMessageDialog(frame, "Congradulations! You Won!");
 				}
 
 		}
