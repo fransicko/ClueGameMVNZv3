@@ -96,10 +96,18 @@ public class ComputerPlayer extends Player{
 			if (board.players.get(i).getName().equals(suggestion.getPerson())) {
 				board.players.get(i).setRow(getRow());
 				board.players.get(i).setColumn(getColumn());
+				
+				if (!board.players.get(i).getName().equals("Mr. Smith")) {
+					board.comp.get(i-1).setVisited(getRow(), getColumn());
+				}
 				break;
 			}
 		}
 		
+	}
+	
+	public void setVisited(int i, int j) {
+		visited = new BoardCell(i, j, board.getCellAt(i, j).getWholeValue());
 	}
 
 }
