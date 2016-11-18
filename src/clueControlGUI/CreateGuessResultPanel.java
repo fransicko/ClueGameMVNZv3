@@ -48,6 +48,7 @@ public class CreateGuessResultPanel extends JPanel{
 			board.players.get(i).hasAccusation = true;
 		}
 		
+		
 		updateResponse();
 	}
 }
