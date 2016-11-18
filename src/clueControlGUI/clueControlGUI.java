@@ -85,7 +85,7 @@ public class clueControlGUI extends JPanel{
 				}
 				else {
 					if (board.comp.get(next-1).hasAccusation == true) {
-						board.comp.get(next-1).makeAccusation();
+						board.comp.get(next-1).makeAccusation(); //Computer making accusation, it should be right if their last suggestion had no disproval
 					}
 					else {
 					 board.comp.get(next-1).compMove(die.getRoll());

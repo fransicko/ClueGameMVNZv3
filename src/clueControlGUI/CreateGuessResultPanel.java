@@ -44,6 +44,9 @@ public class CreateGuessResultPanel extends JPanel{
 		if (disprove != null) {
 			this.r = disprove.toString();
 		}
+		else {
+			board.players.get(i).hasAccusation = true;
+		}
 		
 		updateResponse();
 	}

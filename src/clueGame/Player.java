@@ -13,6 +13,7 @@ public class Player {
 	public ArrayList<Card> hand = new ArrayList<>();
 	public Board board = Board.getInstance();
 	public Solution suggestion = new Solution("", "", "");
+	public boolean hasAccusation = false;
 
 	public Player(String name, int row, int column, Color color) {
 		super();
