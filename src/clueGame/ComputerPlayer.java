@@ -7,9 +7,14 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 
+import clueControlGUI.CreateGuessPanel;
+import clueControlGUI.CreateGuessResultPanel;
+
 public class ComputerPlayer extends Player{
 	// This will be used to keep track of rooms visited
 	private BoardCell visited = new BoardCell(0, 0,"nothing");
+	public CreateGuessPanel guess = CreateGuessPanel.getInstance();
+	public CreateGuessResultPanel response = CreateGuessResultPanel.getInstance();
 
 	public ComputerPlayer(String name, int row, int column, Color color) {
 		super(name, row, column, color);
@@ -99,9 +104,13 @@ public class ComputerPlayer extends Player{
 				if (!board.players.get(i).getName().equals("Mr. Smith")) {
 					board.comp.get(i-1).setVisited(getRow(), getColumn());
 				}
+				guess.setGuess(suggestion);
+				response.setResponse(i);
+				
 				break;
 			}
 		}
+		
 		
 	}
 	
