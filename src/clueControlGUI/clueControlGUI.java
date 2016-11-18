@@ -28,6 +28,11 @@ public class clueControlGUI extends JPanel{
 	private CreateWhoseTurn turn;
 	private CreateDiePanel die;
 	private CreateGuessPanel guess;
+	MouseClickerPanel accusationPanel = new MouseClickerPanel();
+	JComboBox<String> personDropDownAccusation = new JComboBox<String>();
+	JComboBox<String> roomDropDownAccusation = new JComboBox<String>();
+	JComboBox<String> weaponDropDownAccusation = new JComboBox<String>();
+	private static int next = 0;
 
 
 	public clueControlGUI() {
@@ -65,7 +70,6 @@ public class clueControlGUI extends JPanel{
 	}
 
 	class NextPlayerListener implements ActionListener {
-		private int next = 0;
 		public void actionPerformed(ActionEvent e) {
 			if (board.nextTurn) {
 				turn.setWhosTurn(board.players.get(next).getName());
@@ -76,7 +80,7 @@ public class clueControlGUI extends JPanel{
 				}
 				else {
 					board.comp.get(next-1).compMove(die.getRoll());
-					
+
 				}
 				if (board.getCellAt(board.players.get(next).getRow(), board.players.get(next).getColumn()).isDoorway()) {
 					guess.setGuess(board.players.get(next).suggestion);
@@ -85,7 +89,7 @@ public class clueControlGUI extends JPanel{
 				++next;
 				if (next == 6) next = 0;
 			}
-			
+
 			else {
 				JFrame frame = new JFrame();
 				JOptionPane.showMessageDialog(frame, "You must chose a location", "Play your turn", JOptionPane.INFORMATION_MESSAGE);
@@ -93,79 +97,85 @@ public class clueControlGUI extends JPanel{
 
 		}
 	}
-	
+
 	class MakeAccusationListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//Display the accusation panel
-			MouseClickerPanel accusationPanel = new MouseClickerPanel();
-			accusationPanel.setTitle("Make an Accusation");
-			accusationPanel.setSize(350, 225);
-			accusationPanel.setLayout(new GridLayout(1,2));
-			
-			JPanel panel = new JPanel();
-			panel.setLayout(new GridLayout(4, 1));
-			
-			
-			JPanel panel2 = new JPanel();
-			panel2.setLayout(new GridLayout(4, 1));
-			
-			//Add Your Room, Weapons, People messageDialog
-			JLabel yourRoomGuess = new JLabel("Room");
-			JLabel personGuess = new JLabel("Person");
-			JLabel weaponGuess = new JLabel("Weapon");
-			panel.add(yourRoomGuess);
-			panel.add(personGuess);
-			panel.add(weaponGuess);
-			
-			//Add room drop down
-			JComboBox<String> roomDropDownAccusation = new JComboBox<String>();
-			
-			for (Card j: board.roomCards) {
-				roomDropDownAccusation.addItem(j.getName());
-			}
-			
-			panel2.add(roomDropDownAccusation);
-			
-			//Add person drop down
-			JComboBox<String> personDropDownAccusation = new JComboBox<String>();
-			
-			for (Card j: board.personCards) {
-				if (j.getName() != board.person.getName()) {
-					personDropDownAccusation.addItem(j.getName());
+
+			if (next == 1) {
+				accusationPanel = new MouseClickerPanel();
+				//Display the accusation panel
+				accusationPanel.setTitle("Make an Accusation");
+				accusationPanel.setSize(350, 225);
+				accusationPanel.setLayout(new GridLayout(1,2));
+
+				JPanel panel = new JPanel();
+				panel.setLayout(new GridLayout(4, 1));
+
+
+				JPanel panel2 = new JPanel();
+				panel2.setLayout(new GridLayout(4, 1));
+
+				//Add Your Room, Weapons, People messageDialog
+				JLabel yourRoomGuess = new JLabel("Room");
+				JLabel personGuess = new JLabel("Person");
+				JLabel weaponGuess = new JLabel("Weapon");
+				panel.add(yourRoomGuess);
+				panel.add(personGuess);
+				panel.add(weaponGuess);
+
+				//Add room drop down
+
+				for (Card j: board.roomCards) {
+					roomDropDownAccusation.addItem(j.getName());
 				}
+
+				panel2.add(roomDropDownAccusation);
+
+				//Add person drop down
+
+				for (Card j: board.personCards) {
+					if (j.getName() != board.person.getName()) {
+						personDropDownAccusation.addItem(j.getName());
+					}
+				}
+
+
+				panel2.add(personDropDownAccusation);
+
+				//Add weapon drop down
+
+				for (Card j: board.weaponCards) {
+					weaponDropDownAccusation.addItem(j.getName());
+				}
+
+				panel2.add(weaponDropDownAccusation);
+
+				//Need to Add submit button to panel1
+				JButton submitAccusationPanel = new JButton("Submit");
+				submitAccusationPanel.addActionListener(new SubmitAccusationListener());
+				panel.add(submitAccusationPanel);
+
+				//Cancel button for panel2
+				JButton cancelAccusationPanel = new JButton("Cancel");
+				cancelAccusationPanel.addActionListener(new CancelAccusationListener());
+				panel2.add(cancelAccusationPanel);
+
+
+				accusationPanel.add(panel);
+				accusationPanel.add(panel2);
+				accusationPanel.setVisible(true);
 			}
 			
-			
-			panel2.add(personDropDownAccusation);
-			
-			//Add weapon drop down
-			JComboBox<String> weaponDropDownAccusation = new JComboBox<String>();
-			
-			for (Card j: board.weaponCards) {
-				weaponDropDownAccusation.addItem(j.getName());
+			else {
+				JFrame frame = new JFrame();
+				JOptionPane wrong = new JOptionPane();
+				wrong.showMessageDialog(frame, "It is not your turn!");
 			}
-			
-			panel2.add(weaponDropDownAccusation);
-			
-			//Need to Add submit button to panel1
-			JButton submitGuessPanel = new JButton("Submit");
-			submitGuessPanel.addActionListener(new SubmitAccusationListener());
-			panel.add(submitGuessPanel);
-			
-			//Cancel button for panel2
-			JButton cancelAccusationPanel = new JButton("Cancel");
-			cancelAccusationPanel.addActionListener(new CancelAccusationListener());
-			panel2.add(cancelAccusationPanel);
-			
-			
-			accusationPanel.add(panel);
-			accusationPanel.add(panel2);
-			accusationPanel.setVisible(true);
-			
+
 		}
-		
+
 	}
 
 	private JPanel createMakeAccusationButtonPanel() {
@@ -189,18 +199,22 @@ public class clueControlGUI extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+			accusationPanel.dispose();
 		}
 	}
-	
+
 	class SubmitAccusationListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-	
+				String personAccuse = personDropDownAccusation.getSelectedItem().toString();
+				String weaponAccuse = weaponDropDownAccusation.getSelectedItem().toString();
+				String roomAccuse = roomDropDownAccusation.getSelectedItem().toString();
+
+
 		}
 	}
-	
-	
+
+
 
 }
