@@ -146,6 +146,7 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 				if (board.players.get(i).getName().equals(board.person.suggestion.getPerson())) {
 					board.players.get(i).setRow(board.person.getRow());
 					board.players.get(i).setColumn(board.person.getColumn());
+					board.comp.get(i-1).setVisited(board.players.get(i).getRow(), board.players.get(i).getColumn());
 					break;
 				}
 			}

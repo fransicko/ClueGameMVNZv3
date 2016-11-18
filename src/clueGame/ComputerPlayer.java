@@ -7,6 +7,9 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import clueControlGUI.CreateGuessPanel;
 import clueControlGUI.CreateGuessResultPanel;
 
@@ -81,17 +84,43 @@ public class ComputerPlayer extends Player{
 	}
 
 	public void compMove(int k) {
-		board.calcTargets(getRow(), getColumn(), k);
-		BoardCell move = pickLocation(board.getTargets());
+		// If they have an undisproven guess then they can make an accusation next turn
+		if (hasAccusation) {
+			accuse();
+			hasAccusation = false;
+		}
+		else {
+			board.calcTargets(getRow(), getColumn(), k);
+			BoardCell move = pickLocation(board.getTargets());
 
-		setColumn(move.getX());
-		setRow(move.getY());
-		
-		if (board.getCellAt(getRow(), getColumn()).isDoorway()) makeSuggestion();
-		board.repaint();
+			setColumn(move.getX());
+			setRow(move.getY());
+			
+			if (board.getCellAt(getRow(), getColumn()).isDoorway()) makeSuggestion();
+			board.repaint();
+		}
+
 
 	}
 	
+	private void accuse() {
+		if (board.checkAccusation(suggestion) == true) {
+			//Player wins game
+			
+			JFrame frame = new JFrame();
+			JOptionPane wrong = new JOptionPane();
+			wrong.showMessageDialog(frame, "Congradulations " + getName() + ", it was " + suggestion.toString());
+			System.exit(0);
+		}
+		else {
+			JFrame frame = new JFrame();
+			JOptionPane wrong = new JOptionPane();
+			wrong.showMessageDialog(frame, getName() + " guessed incorrectly with " + suggestion.toString());
+			
+		}
+		
+	}
+
 	public void makeSuggestion() {
 		createSuggestion();
 		
