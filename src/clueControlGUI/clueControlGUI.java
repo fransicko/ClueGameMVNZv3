@@ -20,6 +20,7 @@ import javax.swing.border.TitledBorder;
 
 import clueGame.Board;
 import clueGame.Card;
+import clueGame.Solution;
 
 
 public class clueControlGUI extends JPanel{
@@ -108,6 +109,9 @@ public class clueControlGUI extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 
 			if (next == 1) {
+				personDropDownAccusation = new JComboBox<String>();
+				roomDropDownAccusation = new JComboBox<String>();
+				weaponDropDownAccusation = new JComboBox<String>();
 				accusationPanel = new MouseClickerPanel();
 				//Display the accusation panel
 				accusationPanel.setTitle("Make an Accusation");
@@ -214,7 +218,16 @@ public class clueControlGUI extends JPanel{
 				String personAccuse = personDropDownAccusation.getSelectedItem().toString();
 				String weaponAccuse = weaponDropDownAccusation.getSelectedItem().toString();
 				String roomAccuse = roomDropDownAccusation.getSelectedItem().toString();
-
+				
+				Solution Accusation = new Solution(personAccuse, roomAccuse, weaponAccuse);
+				
+				if (board.checkAccusation(Accusation) == true) {
+					//Player wins game
+					
+					JFrame frame = new JFrame();
+					JOptionPane wrong = new JOptionPane();
+					wrong.showMessageDialog(frame, "Congradulation! You Won!");
+				}
 
 		}
 	}

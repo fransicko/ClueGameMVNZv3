@@ -54,6 +54,8 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 			
 			if(board.person.getTileInitial().length() == 2) {
 				
+				weaponDropDownGuess = new JComboBox<String>();
+				personDropDownGuess = new JComboBox<String>();
 				guessPanel = new MouseClickerPanel();
 				
 				//Display the guess panel - Player is inside a room
