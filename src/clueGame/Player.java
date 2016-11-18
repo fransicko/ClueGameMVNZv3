@@ -12,6 +12,7 @@ public class Player {
 	private Color color;
 	public ArrayList<Card> hand = new ArrayList<>();
 	public Board board = Board.getInstance();
+	public Solution suggestion = new Solution("", "", "");
 
 	public Player(String name, int row, int column, Color color) {
 		super();

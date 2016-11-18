@@ -36,6 +36,7 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 	public JComboBox<String> weaponDropDownGuess = new JComboBox<String>();
 	public JComboBox<String> personDropDownGuess = new JComboBox<String>();
 	public MouseClickerPanel guessPanel;
+	public CreateGuessPanel guess = CreateGuessPanel.getInstance();
 	
 	
 	@Override
@@ -112,10 +113,10 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 				guessPanel.add(panel2);
 				guessPanel.setVisible(true);
 				
-				if (board.getCellAt(board.person.getRow(), board.person.getColumn()).isDoorway()) { 
+/*				if (board.getCellAt(board.person.getRow(), board.person.getColumn()).isDoorway()) { 
 					System.out.println("Its in damn it");
-					//guess.setGuess(board.person.suggestion);
-				}
+					//
+				}*/
 				
 				
 			}
@@ -144,7 +145,7 @@ public class MouseClickerPanel extends JDialog implements MouseListener{
 			//System.out.println(board.person.suggestion);
 			board.seenCards.add(board.handleSuggestion(board.person.suggestion, board.person));
 			
-			//guessPanel.
+			guess.setGuess(board.person.suggestion);
 			guessPanel.dispose();
 			
 		}

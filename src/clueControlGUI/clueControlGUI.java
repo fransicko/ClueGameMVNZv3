@@ -33,7 +33,7 @@ public class clueControlGUI extends JPanel{
 	public clueControlGUI() {
 		turn = new CreateWhoseTurn();
 		die = new CreateDiePanel();
-		guess = new CreateGuessPanel();
+		guess = CreateGuessPanel.getInstance();
 
 		setLayout(new GridLayout(2,1));
 		JPanel panel = new JPanel();
@@ -73,16 +73,13 @@ public class clueControlGUI extends JPanel{
 				if (next == 0) {
 					board.setTurn(false);
 					board.person.makeMove(die.getRoll());
-					
-
 				}
 				else {
 					board.comp.get(next-1).compMove(die.getRoll());
-					// This is so that the guess panel doesn't change if no new guess was made
-					if (board.getCellAt(board.comp.get(next-1).getRow(), board.comp.get(next-1).getColumn()).isDoorway()) {
-						guess.setGuess(board.comp.get(next-1).suggestion);
-					}
 					
+				}
+				if (board.getCellAt(board.players.get(next).getRow(), board.players.get(next).getColumn()).isDoorway()) {
+					guess.setGuess(board.players.get(next).suggestion);
 				}
 
 				++next;
@@ -203,5 +200,7 @@ public class clueControlGUI extends JPanel{
 	
 		}
 	}
+	
+	
 
 }

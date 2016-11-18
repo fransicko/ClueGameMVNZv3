@@ -4,8 +4,6 @@ import java.util.*;
 
 import javax.swing.JPanel;
 
-import clueControlGUI.MouseClickerPanel;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.*;
@@ -44,6 +42,7 @@ public class Board extends JPanel {
 	public ArrayList<ComputerPlayer> comp = new ArrayList<ComputerPlayer>();
 	//This is the solution to the game
 	private Solution solution;
+	
 
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
