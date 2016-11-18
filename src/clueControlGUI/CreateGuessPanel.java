@@ -33,12 +33,6 @@ public class CreateGuessPanel extends JPanel{
 		return theInstance;
 	}
 	
-/*	public CreateGuessPanel() {
-		
-		
-		//return panel;
-	}*/
-	
 	private void updateGuess() {
 		guess.setText(g);
 	}
