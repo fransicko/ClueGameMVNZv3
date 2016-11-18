@@ -22,7 +22,7 @@ public class CreateGuessResultPanel extends JPanel{
 	// ctor is private to ensure only one can be created
 	private CreateGuessResultPanel() {
 		setLayout(new GridLayout(1,2));
-		setBorder(new TitledBorder(new EtchedBorder(), "Response"));
+		setBorder(new TitledBorder(new EtchedBorder(), "Guess result"));
 		response = new JTextArea(1, 20);
 		updateResponse();
 		
@@ -45,6 +45,7 @@ public class CreateGuessResultPanel extends JPanel{
 			this.r = disprove.toString();
 		}
 		else {
+			this.r = "no new clue.";
 			board.players.get(i).hasAccusation = true;
 		}
 		

@@ -228,7 +228,19 @@ public class clueControlGUI extends JPanel{
 					JFrame frame = new JFrame();
 					JOptionPane wrong = new JOptionPane();
 					wrong.showMessageDialog(frame, "Congradulations! You Won!");
+					System.exit(0);
 				}
+				else {
+					JFrame frame = new JFrame();
+					JOptionPane wrong = new JOptionPane();
+					wrong.showMessageDialog(frame, "Incorrect!");
+					
+				}
+				
+				board.setTurn(true);
+				board.person.finishMove();
+				
+				accusationPanel.dispose();
 
 		}
 	}

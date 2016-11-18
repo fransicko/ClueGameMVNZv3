@@ -36,7 +36,7 @@ public class clueGameGUI extends JFrame{
 		JPanel panel = new JPanel(); // Attempting to put the board on a panel
 		JPanel panel2 = new JPanel();
 		panel.setLayout(new GridLayout(1,2)); 
-		setSize(750, 675);
+		setSize(775, 675);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		add(board, BorderLayout.CENTER); 
