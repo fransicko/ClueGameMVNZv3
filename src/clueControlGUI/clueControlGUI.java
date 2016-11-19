@@ -109,7 +109,7 @@ public class clueControlGUI extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			if (next == 1) {
+			if (next == 1 && !board.nextTurn) {
 				personDropDownAccusation = new JComboBox<String>();
 				roomDropDownAccusation = new JComboBox<String>();
 				weaponDropDownAccusation = new JComboBox<String>();

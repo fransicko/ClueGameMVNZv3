@@ -40,7 +40,7 @@ public class CreateGuessResultPanel extends JPanel{
 	
 	public void setResponse(int i) {
 		Card disprove = board.handleSuggestion(board.players.get(i).suggestion, board.players.get(i));
-		board.seenCards.add(disprove);
+		//board.seenCards.add(disprove);
 		if (disprove != null) {
 			this.r = disprove.toString();
 		}
