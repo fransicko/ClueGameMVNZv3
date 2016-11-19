@@ -27,7 +27,7 @@ public class ComputerPlayer extends Player{
 	public BoardCell pickLocation(Set<BoardCell> targets) {
 		for (BoardCell i: targets) {
 			//(visited.getX() == i.getX() && visited.getY() == i.getY())
-			if (i.isDoorway() && !(visited.getX() == i.getX() && visited.getY() == i.getY() && visited.getWholeValue().equals(i.getWholeValue()))) {
+			if (i.isDoorway() && !visited.getWholeValue().equals(i.getWholeValue())) {
 				visited = new BoardCell(i.getY(), i.getX(), i.getWholeValue());
 				return i;
 			}
