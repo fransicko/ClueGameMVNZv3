@@ -28,7 +28,7 @@ public class Player {
 		boolean cP = false;
 		boolean cW = false;
 		boolean cR = false;
-		
+
 		for (Card i: hand) {
 			if (i.getName().equals(suggestion.person)) cP = true;
 			else if (i.getName().equals(suggestion.room)) cR = true;
@@ -102,12 +102,23 @@ public class Player {
 					return ans;
 				}
 			}
-
-			// Now check the individual ones
-			if (cP) return new Card(suggestion.person, CardType.PERSON);
-			if (cW) return new Card(suggestion.weapon, CardType.WEAPON);
-			if (cR) return new Card(suggestion.room, CardType.ROOM);
+			else {
+				// Now check the individual ones
+				if (cP) {
+					Board.getInstance().seenCards.add(new Card(suggestion.person, CardType.PERSON));
+					return new Card(suggestion.person, CardType.PERSON);
+				}
+				if (cW)  {
+					Board.getInstance().seenCards.add(new Card(suggestion.weapon, CardType.WEAPON));
+					return new Card(suggestion.weapon, CardType.WEAPON);
+				}
+				if (cR) {
+					Board.getInstance().seenCards.add(new Card(suggestion.room, CardType.ROOM));
+					return new Card(suggestion.room, CardType.ROOM);
+				}
+			}
 		}
+		
 
 		return null;
 
@@ -151,11 +162,11 @@ public class Player {
 	}
 
 	public void draw(Graphics g) {
-		
+
 		g.setColor(color);
 		g.fillRoundRect(column*20, row*20, 20, 20, 100, 100);
 		g.drawRoundRect(column*20, row*20, 20, 20, 100, 100);
-		
+
 	}
 
 

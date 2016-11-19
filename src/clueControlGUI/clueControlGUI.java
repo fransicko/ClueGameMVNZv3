@@ -84,11 +84,10 @@ public class clueControlGUI extends JPanel{
 					board.person.makeMove(die.getRoll());
 				}
 				else {
-					if (board.comp.get(next-1).hasAccusation == true) {
-						board.comp.get(next-1).makeAccusation(); //Computer making accusation, it should be right if their last suggestion had no disproval
-					}
-					else {
-					 board.comp.get(next-1).compMove(die.getRoll());
+					board.comp.get(next-1).compMove(die.getRoll());
+					
+					if (board.comp.get(next-1).compWin) {
+						board.comp.get(next-1).accuse();
 					}
 				}
 
@@ -194,15 +193,6 @@ public class clueControlGUI extends JPanel{
 		panel.add(accusation);
 		return panel;
 	}
-
-/*	private JPanel createGuessResultPanel() {
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(1,2));
-		name = new JTextField(5);
-		panel.add(name);
-		panel.setBorder(new TitledBorder(new EtchedBorder(), "Guess Result"));
-		return panel;
-	}*/
 
 	class CancelAccusationListener implements ActionListener {
 

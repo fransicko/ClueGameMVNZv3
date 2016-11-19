@@ -21,6 +21,14 @@ public class Solution {
 	public String getPerson() {
 		return this.person;
 	}
+
+	public String getRoom() {
+		return room;
+	}
+
+	public String getWeapon() {
+		return weapon;
+	}
 	
 	
 	

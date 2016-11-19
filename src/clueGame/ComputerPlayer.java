@@ -18,6 +18,7 @@ public class ComputerPlayer extends Player{
 	private BoardCell visited = new BoardCell(0, 0,"nothing");
 	public CreateGuessPanel guess = CreateGuessPanel.getInstance();
 	public CreateGuessResultPanel response = CreateGuessResultPanel.getInstance();
+	public Boolean compWin = false;
 
 	public ComputerPlayer(String name, int row, int column, Color color) {
 		super(name, row, column, color);
@@ -26,7 +27,6 @@ public class ComputerPlayer extends Player{
 
 	public BoardCell pickLocation(Set<BoardCell> targets) {
 		for (BoardCell i: targets) {
-			//(visited.getX() == i.getX() && visited.getY() == i.getY())
 			if (i.isDoorway() && !visited.getWholeValue().equals(i.getWholeValue())) {
 				visited = new BoardCell(i.getY(), i.getX(), i.getWholeValue());
 				return i;
@@ -50,29 +50,34 @@ public class ComputerPlayer extends Player{
 		return null;
 	}
 
-	public void makeAccusation() {
-		Random ran = new Random();
-		int room = Math.abs(ran.nextInt())%Board.getInstance().roomCards.size();
-		int ppl = Math.abs(ran.nextInt())%Board.getInstance().personCards.size();
-		int weapon = Math.abs(ran.nextInt())%Board.getInstance().weaponCards.size();
-
-		Solution compSoln = new Solution(Board.getInstance().personCards.get(ppl).getName(), Board.getInstance().roomCards.get(room).getName(), Board.getInstance().weaponCards.get(weapon).getName());
-		Board.getInstance().checkAccusation(compSoln);
-	}
 
 	public void createSuggestion() {
 		Random ran = new Random();
 		String room = board.legendMap.get(Board.getInstance().getCellAt(getRow(), getColumn()).getInitial());
-		ArrayList<Card> people = new ArrayList<>();
-		for (Card i : Board.getInstance().personCards) {
-			if (!Board.getInstance().seenCards.contains(i)) {
-				people.add(i);
+		ArrayList<Card> people = new ArrayList<>(Board.getInstance().personCards);
+		ArrayList<Card> weapon = new ArrayList<>(Board.getInstance().weaponCards);
+		
+		for (Card i: Board.getInstance().seenCards) {
+			if (i.getType() == CardType.PERSON) {
+				for (Card j: people) {
+					if (j.getName().equals(i.getName())) {
+						people.remove(j);
+						break;
+					}
+				}
+				
 			}
 		}
-		ArrayList<Card> weapon = new ArrayList<>();
-		for (Card i : Board.getInstance().weaponCards) {
-			if (!Board.getInstance().seenCards.contains(i)) {
-				weapon.add(i);
+		
+		for (Card i: Board.getInstance().seenCards) {
+			if (i.getType() == CardType.WEAPON) {
+				for (Card j: weapon) {
+					if (j.getName().equals(i.getName())) {
+						weapon.remove(j);
+						break;
+					}
+				}
+				
 			}
 		}
 
@@ -84,10 +89,8 @@ public class ComputerPlayer extends Player{
 	}
 
 	public void compMove(int k) {
-		// If they have an undisproven guess then they can make an accusation next turn
 		if (hasAccusation) {
 			accuse();
-			hasAccusation = false;
 		}
 		else {
 			board.calcTargets(getRow(), getColumn(), k);
@@ -95,18 +98,19 @@ public class ComputerPlayer extends Player{
 
 			setColumn(move.getX());
 			setRow(move.getY());
-			
+
 			if (board.getCellAt(getRow(), getColumn()).isDoorway()) makeSuggestion();
 			board.repaint();
 		}
 
 
+
 	}
-	
-	private void accuse() {
+
+	public void accuse() {
 		if (board.checkAccusation(suggestion) == true) {
 			//Player wins game
-			
+
 			JFrame frame = new JFrame();
 			JOptionPane wrong = new JOptionPane();
 			wrong.showMessageDialog(frame, "Congradulations " + getName() + ", it was " + suggestion.toString());
@@ -116,14 +120,16 @@ public class ComputerPlayer extends Player{
 			JFrame frame = new JFrame();
 			JOptionPane wrong = new JOptionPane();
 			wrong.showMessageDialog(frame, getName() + " guessed incorrectly with " + suggestion.toString());
-			
+			hasAccusation = false;
+			compWin = false;
+
 		}
-		
+
 	}
 
 	public void makeSuggestion() {
 		createSuggestion();
-		
+
 		int index = 0;
 		for (int i = 0; i < board.players.size(); ++i) {
 			if (board.players.get(i).getName().equals(getName())) {
@@ -136,20 +142,20 @@ public class ComputerPlayer extends Player{
 			if (board.players.get(i).getName().equals(suggestion.getPerson())) {
 				board.players.get(i).setRow(getRow());
 				board.players.get(i).setColumn(getColumn());
-				
+
 				if (!board.players.get(i).getName().equals("Mr. Smith")) {
 					board.comp.get(i-1).setVisited(getRow(), getColumn());
 				}
 				guess.setGuess(suggestion);
 				response.setResponse(index);
-				
+
 				break;
 			}
 		}
-		
-		
+
+
 	}
-	
+
 	public void setVisited(int i, int j) {
 		visited = new BoardCell(i, j, board.getCellAt(i, j).getWholeValue());
 	}

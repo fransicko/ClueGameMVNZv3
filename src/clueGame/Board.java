@@ -35,7 +35,7 @@ public class Board extends JPanel {
 	public ArrayList<Card> roomCards = new ArrayList<>();
 	public ArrayList<Card> personCards = new ArrayList<>();
 	public ArrayList<Card> weaponCards = new ArrayList<>();
-	public ArrayList<Card> seenCards = new ArrayList<>();
+	public Set<Card> seenCards = new HashSet<>();
 	// Player objects
 	public ArrayList<Player> players = new ArrayList<>();
 	public HumanPlayer person;
@@ -188,6 +188,7 @@ public class Board extends JPanel {
 			loadPlayerFiles();
 			loadWeaponFiles();
 			makeDeck();
+			mkSoln();
 			dealHands();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -206,8 +207,8 @@ public class Board extends JPanel {
 			loadPlayerFiles();
 			loadWeaponFiles();
 			makeDeck();
-			dealHands();
 			mkSoln();
+			dealHands();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -403,18 +404,30 @@ public class Board extends JPanel {
 	public void dealHands() {
 		Random ran = new Random();
 		ArrayList<Card> newDeck = new ArrayList<>(deck);
+		Solution s = getSoln();
 		
 		while (!newDeck.isEmpty()) {
-			int card = Math.abs(ran.nextInt())%newDeck.size();
-			person.giveCard(newDeck.get(card));
-			newDeck.remove(card);
-			
-			for (ComputerPlayer i: comp) {
-				if (!newDeck.isEmpty()) {
-					card = Math.abs(ran.nextInt())%newDeck.size();
-					i.giveCard(newDeck.get(card));
+			for (int i = 0; i < players.size(); ++i) {
+				if (newDeck.isEmpty()) {
+					break;
+				}
+				
+				int card = Math.abs(ran.nextInt())%newDeck.size();
+				if (s.getPerson().equals(newDeck.get(card).getName()) || s.getWeapon().equals(newDeck.get(card).getName()) || s.getRoom().equals(newDeck.get(card).getName())) {
+					newDeck.remove(card);
+					continue;
+				}
+				
+				if (i == 0) {
+					person.giveCard(newDeck.get(card));
 					newDeck.remove(card);
 				}
+				else {
+					comp.get(i-1).giveCard(newDeck.get(card));
+					newDeck.remove(card);
+				}
+				
+				
 				
 			}
 		}
@@ -431,13 +444,6 @@ public class Board extends JPanel {
 		for (Card i: weaponCards) {
 			deck.add(i);
 		}
-	}
-
-
-	//This will select the answer, 
-	//not sure how it works yet but will soon
-	public void selectAnswer() {
-
 	}
 
 	//This will handle suggestions, the suggester is the person who made the suggestion
@@ -460,8 +466,14 @@ public class Board extends JPanel {
 		for (int i = newIndex; i < players.size(); ++i) {
 			Card sugs = players.get(i).disproveSuggestion(suggestion);
 			
-			if (i == index) return correctSugs;
-			if (sugs != null) return sugs;
+			if (i == index)  {
+				//seenCards.add(correctSugs);
+				return correctSugs;
+			}
+			if (sugs != null) {
+				//seenCards.add(sugs);
+				return sugs;
+			}
 			
 			// Reset the index so that way we start at the beginning
 			if (i == players.size() - 1) i = -1;
